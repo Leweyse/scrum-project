@@ -6,7 +6,9 @@ Branch name convention.
 ### API
 - Building:
   - api/build/controller/name_controller
+  - api/build/model/name_model
   - api/build/route/name_route
+  - 
 ### Client
 - Building:
   - client/build/component/name_component
