@@ -1,1 +1,5 @@
-// import ProductCard from './productCard/ProductCard';
+import StockSection from './StockSection/StockSection';
+
+export {
+    StockSection,
+}
