@@ -15,15 +15,24 @@ class RegisterController extends Controller
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:4',
+            'password' => 'required|min:8',
             'phone' => 'required'
-        ]);
+        ], $this->errorMessages());
+
+
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
 
-        User::create($request->all());
-        return response()->json(['success' => 'created'], 201);
+        $user = User::create($request->all());
+        $token = $user->createToken(env('APP_KEY'))->plainTextToken;
+
+        $response = [
+            'user' => $user,
+            'token' => $token
+        ];
+
+        return response($response, 201);
     }
 
     private function errorMessages()
