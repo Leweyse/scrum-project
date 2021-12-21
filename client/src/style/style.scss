@@ -1,2 +1,8 @@
+@use './fonts';
+@use './abstracts';
+@use './base';
+
 @use '../components';
 @use '../pages';
+
+@use './layouts';
