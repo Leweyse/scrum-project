@@ -4,7 +4,8 @@
     margin: 0 auto;
     padding: 2rem;
     
-    border: 1px solid #000;
+    border: 1px solid var(--clr-darkgray);
+    border-radius: 5px;
 
     grid-template-rows: repeat(2, 1fr);
     place-items: center;
