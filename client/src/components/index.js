@@ -1,6 +1,7 @@
-import { ProductCard } from './block';
+import { ProductCard, Navbar } from './block';
 
 export {
     // BLOCK
     ProductCard,
+    Navbar
 }

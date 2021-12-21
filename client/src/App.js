@@ -1,7 +1,9 @@
+import {Navbar, ProductCard} from "./components";
+
 function App() {
     return (
         <>
-            
+           <Navbar/>
         </>
     );
 }
