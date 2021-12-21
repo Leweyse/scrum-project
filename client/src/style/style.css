@@ -1,25 +1,61 @@
-#productCard {
-  position: relative;
-  display: grid;
-  place-items: center;
-}
-#productCard img {
-  width: 50%;
-}
-#productCard .productTitle {
-  font-size: 2rem;
-}
-#productCard .productPrice {
-  font-size: 1.5rem;
-}
-#productCard .productSeller {
-  font-size: 1.5rem;
+@import url("https://fonts.googleapis.com/css2?family=Montserrat&display=swap");
+:root {
+  --clr-cyan: #006d77;
+  --clr-red: #df2935;
+  --clr-yellow: #ead637;
+  --clr-white: #fffcff;
+  --clr-darkgray: #474044;
+  --ff-montserrat: "Montserrat", sans-serif;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  color: var(--clr-darkgray);
+  font-family: var(--ff-montserrat);
+}
+
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body,
+#root {
+  width: 100%;
+  height: 100%;
+  background-color: var(--clr-white);
+}
+
+#productCard {
+  position: relative;
+  display: grid;
+  margin: 0 auto;
+  padding: 2rem;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 5px;
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
+}
+#productCard .image_container {
+  width: 80%;
+  height: 100%;
+}
+#productCard .description_container {
+  display: grid;
+  padding: 2rem 2rem 0 2rem;
+  place-items: center;
+  gap: 1rem;
+}
+#productCard .description_container .productTitle {
+  font-size: 1.25rem;
+}
+#productCard .description_container .productPrice {
+  font-size: 1rem;
+}
+#productCard .description_container .productSeller {
+  font-size: 1rem;
 }
 
 #navbar {
@@ -62,9 +98,26 @@
   font-size: 2vh;
 }
 
-#productsPage {
+#stockSection {
+  width: 100%;
   display: grid;
+  padding: 2rem;
   grid-template-columns: repeat(4, 1fr);
+  gap: 2rem;
 }
 
-/*# sourceMappingURL=style.css.map */
+@media (max-width: 1150px) {
+  #stockSection {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (max-width: 875px) {
+  #stockSection {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (max-width: 640px) {
+  #stockSection {
+    grid-template-columns: 1fr;
+  }
+}/*# sourceMappingURL=style.css.map */

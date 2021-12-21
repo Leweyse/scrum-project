@@ -1,9 +1,9 @@
-import {Navbar, ProductCard} from "./components";
+import { ProductsPage } from './pages';
 
 function App() {
     return (
         <>
-           <Navbar/>
+            <ProductsPage />
         </>
     );
 }
