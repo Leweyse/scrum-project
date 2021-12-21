@@ -1,9 +1,9 @@
-import { StockSection } from '../../components';
+import { StockSection, Navbar } from '../../components';
 
 const ProductsPage = () => {
     return (
         <>
-            {/* <NavBar /> */}
+            <Navbar />
             <StockSection />
             {/* <Footer /> */}
         </>
