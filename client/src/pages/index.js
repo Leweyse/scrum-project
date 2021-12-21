@@ -1,1 +1,5 @@
-// import Home from './home/Home';
+import ProductsPage from './ProductsPage/ProductsPage';
+
+export {
+    ProductsPage,
+}

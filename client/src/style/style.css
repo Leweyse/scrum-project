@@ -14,4 +14,9 @@
 }
 #productCard .productSeller {
   font-size: 1.5rem;
+}
+
+#productsPage {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
 }/*# sourceMappingURL=style.css.map */
