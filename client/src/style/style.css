@@ -1,0 +1,17 @@
+#productCard {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+#productCard img {
+  width: 50%;
+}
+#productCard .productTitle {
+  font-size: 2rem;
+}
+#productCard .productPrice {
+  font-size: 1.5rem;
+}
+#productCard .productSeller {
+  font-size: 1.5rem;
+}/*# sourceMappingURL=style.css.map */
