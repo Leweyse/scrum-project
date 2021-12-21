@@ -58,6 +58,46 @@ body,
   font-size: 1rem;
 }
 
+#navbar {
+  width: 100vw;
+  height: 11.57vh;
+  top: 0;
+  background-color: #FFFCFF;
+  display: flex;
+}
+#navbar a {
+  text-decoration: none;
+  color: #474044;
+}
+#navbar #navLeft {
+  display: flex;
+  width: 10%;
+  height: 100%;
+  justify-content: center;
+  place-items: center;
+  position: relative;
+  left: 3%;
+}
+#navbar #navLeft #navHome {
+  font-size: 3vh;
+}
+#navbar #navRight {
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+  position: absolute;
+  width: 40%;
+  height: 11.57vh;
+  right: 2.5%;
+}
+#navbar #navRight .navRight {
+  font-size: 2.5vh;
+}
+#navbar #navRight #navSearchInput {
+  height: 3vh;
+  font-size: 2vh;
+}
+
 #stockSection {
   width: 100%;
   display: grid;

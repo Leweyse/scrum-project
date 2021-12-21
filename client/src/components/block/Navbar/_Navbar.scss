@@ -1,0 +1,51 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#navbar {
+  width: 100vw;
+  height: 11.57vh;
+  top: 0;
+  background-color: #FFFCFF;
+  display: flex;
+
+  a {
+    text-decoration: none;
+    color: #474044;
+  }
+
+  #navLeft {
+    display: flex;
+    width: 10%;
+    height: 100%;
+    justify-content: center;
+    place-items: center;
+    position: relative;
+    left: 3%;
+
+    #navHome {
+      font-size: 3vh;
+    }
+  }
+
+  #navRight{
+    display: flex;
+    justify-content: space-evenly;
+    place-items: center;
+    position: absolute;
+    width: 40%;
+    height: 11.57vh;
+    right: 2.5%;
+
+    .navRight {
+      font-size: 2.5vh;
+    }
+
+    #navSearchInput {
+      height: 3vh;
+      font-size: 2vh;
+    }
+  }
+}
