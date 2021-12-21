@@ -1,0 +1,22 @@
+#productCard {
+    position: relative;
+    display: grid;
+
+    place-items: center;
+    
+    img {
+        width: 50%;
+    }
+
+    .productTitle {
+        font-size: 2rem;
+    }
+
+    .productPrice {
+        font-size: 1.5rem;
+    }
+
+    .productSeller {
+        font-size: 1.5rem;
+    }
+}
