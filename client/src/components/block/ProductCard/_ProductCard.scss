@@ -1,22 +1,40 @@
 #productCard {
     position: relative;
     display: grid;
+    margin: 0 auto;
+    padding: 2rem;
+    
+    border: 1px solid #000;
 
+    grid-template-rows: repeat(2, 1fr);
     place-items: center;
     
-    img {
-        width: 50%;
+    .image_container {
+        width: 80%;
+        height: 100%;
     }
 
-    .productTitle {
-        font-size: 2rem;
-    }
+    .description_container {
+        display: grid;
+        padding: 2rem 2rem 0 2rem;
 
-    .productPrice {
-        font-size: 1.5rem;
-    }
+        place-items: center;
+        gap: 1rem;
 
-    .productSeller {
-        font-size: 1.5rem;
+        & > * {
+            font-family: var(--ff-montserrat);
+        }
+
+        .productTitle {
+            font-size: 1.25rem;
+        }
+    
+        .productPrice {
+            font-size: 1rem;
+        }
+    
+        .productSeller {
+            font-size: 1rem;
+        }
     }
 }
