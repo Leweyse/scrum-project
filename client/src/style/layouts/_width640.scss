@@ -2,4 +2,11 @@
     #stockSection {
         grid-template-columns: 1fr;
     }
+    #loginPage #loginContainer {
+        width: 70%;
+        height:70%;
+    }
+    #loginPage #loginContainer #loginForm {
+        width: 50%;
+    }
 }

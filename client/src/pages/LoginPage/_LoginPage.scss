@@ -14,20 +14,19 @@
     flex-direction: column;
     place-items: center;
     text-align: center;
+    justify-content: space-evenly;
     overflow-x: hidden;
 
     #loginLogo {
       position: relative;
-      margin-top: 15%;
-      font-size: 15vh;
+      font-size: 6vw;
       z-index: 1;
     }
 
     #loginLogoCropped {
-      margin-top: -25%;
       position: relative;
       z-index: 0;
-      font-size: 32vh;
+      font-size: 14.5vw;
       width: 50vw;
       overflow-x: hidden;
       color: #FFFCFF;
@@ -35,7 +34,6 @@
     }
 
     #loginForm {
-      margin-top: 15%;
       position: absolute;
       z-index: 1;
       display: flex;
@@ -46,7 +44,7 @@
 
       input {
         height: 5vh;
-        font-size: 2.25vh;
+        font-size: 1rem;
       }
 
       #loginFormButtonContainer {
@@ -56,17 +54,22 @@
         button {
           width: 45%;
           height: 5vh;
-          font-size: 2.25vh;
+          font-size: 1rem;
           border-radius: 11px;
         }
       }
     }
 
     #passwordReset {
-      margin-top: 45%;
-      font-size: 2.25vh;
+      font-size: 1.15rem;
       text-decoration: none;
     }
   }
 }
 
+@media (max-width: 1200px) {
+  #loginPage #loginContainer {
+    width: 50%;
+    height: 85%;
+  }
+}
