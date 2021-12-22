@@ -22,10 +22,12 @@ use App\Http\Controllers\api\ProductController;
 //});
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
-Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products', [ProductController::class, 'all']);
+Route::get('/products/page/{page}/{take}', [ProductController::class, 'countPaginate']);
 
 Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::post('/logout', [LoginController::class, 'logout']);
+    Route::post('/product/create', [ProductController::class, 'create']);
 });
 
 
