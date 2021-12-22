@@ -1,4 +1,4 @@
-import { Navbar, ProductCard } from './block';
+import { Navbar, ProductCard, } from './block';
 
 import { StockSection } from './container';
 

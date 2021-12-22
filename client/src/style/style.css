@@ -85,7 +85,8 @@ body,
   left: 3%;
 }
 #navbar #navLeft #navHome {
-  font-size: 3vh;
+  font-size: 4vh;
+  font-weight: bold;
 }
 #navbar #navRight {
   display: flex;
@@ -112,6 +113,71 @@ body,
   gap: 2rem;
 }
 
+#loginPage {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#loginPage #loginContainer {
+  width: 30%;
+  height: 95%;
+  border-radius: 36px;
+  border: 1px solid #474044;
+  display: flex;
+  flex-direction: column;
+  place-items: center;
+  text-align: center;
+  overflow-x: hidden;
+}
+#loginPage #loginContainer #loginLogo {
+  position: relative;
+  margin-top: 15%;
+  font-size: 15vh;
+  z-index: 1;
+}
+#loginPage #loginContainer #loginLogoCropped {
+  margin-top: -25%;
+  position: relative;
+  z-index: 0;
+  font-size: 32vh;
+  width: 50vw;
+  overflow-x: hidden;
+  color: #FFFCFF;
+  -webkit-text-stroke: 1px #474044;
+}
+#loginPage #loginContainer #loginForm {
+  margin-top: 15%;
+  position: absolute;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 42.5%;
+  width: 18%;
+}
+#loginPage #loginContainer #loginForm input {
+  height: 5vh;
+  font-size: 2.25vh;
+}
+#loginPage #loginContainer #loginForm #loginFormButtonContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+#loginPage #loginContainer #loginForm #loginFormButtonContainer button {
+  width: 45%;
+  height: 5vh;
+  font-size: 2.25vh;
+  border-radius: 11px;
+}
+#loginPage #loginContainer #passwordReset {
+  margin-top: 45%;
+  font-size: 2.25vh;
+  text-decoration: none;
+}
+
 @media (max-width: 1150px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);
@@ -126,4 +192,6 @@ body,
   #stockSection {
     grid-template-columns: 1fr;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
