@@ -2,4 +2,8 @@
     #stockSection {
         grid-template-columns: repeat(3, 1fr);
     }
+
+    #loginPage #loginContainer #loginForm {
+        width: 25%;
+    }
 }
