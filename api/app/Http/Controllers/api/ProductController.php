@@ -10,11 +10,7 @@ use Validator;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function all()
     {
         return Product::orderBy('id','desc')->get();
@@ -27,12 +23,6 @@ class ProductController extends Controller
         return $products->skip($skip)->take($take);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function create(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -47,20 +37,36 @@ class ProductController extends Controller
         if ($validator->fails()) {
             return response()->json(['error' => $validator->errors()], 401);
         }
-
         $product = Product::create($request->all());
         return response($product, 201);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    public function update(Request $request, $id)
     {
-        //
+        $product = Product::where('id', $id)->first();
+        if(!$product) {
+            return response([
+                'status' => 'failed',
+                'message' => 'This product doesn\'t exixt in database'
+            ], 401);
+        }
+        $validator = Validator::make($request->all(), [
+            'categories_id' => 'required|Numeric',
+            'title' => 'required',
+            'description' => 'required',
+            'image' => 'nullable|mimes:jpg,png',
+            'price' => 'required|numeric',
+            'stock_unit' => 'required|numeric'
+        ], $this->errorMessages());
+
+        if ($validator->fails()) {
+            return response()->json(['error' => $validator->errors()], 401);
+        }
+        $update = Product::where('id', $id)->update($request->all());
+        if(!$update) {
+            return response()->json(['message' => 'unknown error'], 401);
+        }
+        return response(['message' => 'updated'], 201);
     }
 
     /**
@@ -69,22 +75,18 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function product($id)
     {
-        //
+        $product = Product::where('id', $id)->first();
+        if(!$product) {
+            return response([
+                'status' => 'failed',
+                'message' => 'This product doesn\'t exixt in database'
+            ], 401);
+        }
+        return response($product, 201);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
 
     /**
      * Remove the specified resource from storage.
