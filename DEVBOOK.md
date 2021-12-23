@@ -4,25 +4,36 @@
 
 ### Readme
 - Update
-    - readme/update
+    - `update/readme`
 
 ### DevBook
 - Update
-    - devbook/update
+    - `update/devbook`
 
 ### API
-- Building:
-  - api/build/controller/name_controller
-  - api/build/model/name_model
-  - api/build/route/name_route
+- Build:
+  - `api/build/controller/name_controller`
+  - `api/build/model/name_model`
+  - `api/build/route/name_route`
+- Restructure:
+  - `api/restructure/controller/name_controller`
+  - `api/restructure/model/name_model`
+  - `api/restructure/route/name_route`
 
 ### Client
-- Building:
-  - client/build/component/name_component
-  - client/build/page/name_pages
-- Styling:
-  - client/style/component/name_component
-  - client/style/page/name_pages
+- Build:
+  - `client/build/component/name_component`
+  - `client/build/page/name_pages`
+- Style:
+  - `client/style/component/name_component`
+  - `client/style/page/name_pages`
+- Restructure:
+  - `client/restructure/component/name_component`
+  - `client/restructure/page/name_pages`
+
+### Implement API for Client
+- `implement/component/name_component`
+- `implement/page/name_page`
 
 <!-- Section to list Object structure from API -->
 <!-- ## JSON Patterns -->
