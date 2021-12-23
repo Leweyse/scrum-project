@@ -222,6 +222,27 @@ body,
   font-size: 2vh;
 }
 
+#addListingPage {
+  width: 60%;
+  align-items: center;
+  align-content: center;
+}
+#addListingPage h1 {
+  height: 93px;
+  text-align: left;
+  font: normal normal medium 76px/93px Montserrat;
+  letter-spacing: 0px;
+  color: #FFFCFF;
+  opacity: 1;
+}
+#addListingPage label {
+  font-size: 20px;
+}
+#addListingPage input {
+  margin: 20px;
+  width: 40%;
+}
+
 @media (max-width: 1200px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);

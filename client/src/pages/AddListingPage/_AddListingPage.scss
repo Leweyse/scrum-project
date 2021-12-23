@@ -1,0 +1,21 @@
+#addListingPage {
+  width: 60%;
+  align-items: center;
+  align-content: center;
+
+  h1 {
+    height: 93px;
+    text-align: left;
+    font: normal normal medium 76px/93px Montserrat;
+    letter-spacing: 0px;
+    color: #FFFCFF;
+    opacity: 1;
+  }
+  label {
+    font-size: 20px;
+  }
+  input {
+    margin: 20px;
+    width: 40%;
+  }
+}
