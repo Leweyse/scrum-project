@@ -1,9 +1,13 @@
+import LoginPage from "./LoginPage/LoginPage";
+import SignUpPage from "./SignUpPage/SignUpPage";
+
 import LandingPage from './LandingPage/LandingPage';
 import ProductsPage from './ProductsPage/ProductsPage';
-import LoginPage from "./LoginPage/LoginPage";
 
 export {
+    LoginPage,
+    SignUpPage,
+
     LandingPage,
     ProductsPage,
-    LoginPage,
 }
