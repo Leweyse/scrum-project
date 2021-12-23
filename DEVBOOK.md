@@ -4,11 +4,11 @@
 
 ### Readme
 - Update
-    - `readme/update`
+    - `update/readme`
 
 ### DevBook
 - Update
-    - `devbook/update`
+    - `update/devbook`
 
 ### API
 - Build:
