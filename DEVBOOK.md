@@ -2,6 +2,14 @@
 
 ## Branch name convention
 
+### Readme
+- Update
+    - readme/update
+
+### DevBook
+- Update
+    - devbook/update
+
 ### API
 - Building:
   - api/build/controller/name_controller
