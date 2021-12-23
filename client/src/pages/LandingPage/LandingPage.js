@@ -1,71 +1,62 @@
 import { useState, useRef, useEffect } from 'react';
 import { Navbar } from '../../components';
+import Carousel from 'react-bootstrap/Carousel';
+import Footer from "../../components/block/Footer/Footer";
+import Yellow from '../../assets/images/ead637.jpg';
+import Red from '../../assets/images/df2935.jpg';
+import Green from '../../assets/images/006d77.jpg';
 
-const colors = ["#006d77", "#df2935", "#ead637"];
-const delay = 2500;
 
-function Slideshow() {
-    const [index, setIndex] = useState(0);
-    const timeoutRef = useRef(null);
 
-    function resetTimeout() {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-    }
-
-    useEffect(() => {
-        resetTimeout();
-        timeoutRef.current = setTimeout(
-            () =>
-                setIndex((prevIndex) =>
-                    prevIndex === colors.length - 1 ? 0 : prevIndex + 1
-                ),
-            delay
-        );
-
-        return () => {
-            resetTimeout();
-        };
-    }, [index]);
-
+function Carousel1 () {
     return (
-        <div className="slideshow">
-            <div
-                className="slideshowSlider"
-                style={{ transform: `translate3d(${-index * 100}%, 0, 0)` }}
-            >
-                {colors.map((backgroundColor, index) => (
-                    <div
-                        className="slide"
-                        key={index}
-                        style={{ backgroundColor }}
-                    ></div>
-                ))}
-            </div>
-
-            <div className="slideshowDots">
-                {colors.map((_, idx) => (
-                    <div
-                        key={idx}
-                        className={`slideshowDot${index === idx ? " active" : ""}`}
-                        onClick={() => {
-                            setIndex(idx);
-                        }}
-                    ></div>
-                ))}
-            </div>
-        </div>
-    );
+<Carousel>
+        <Carousel.Item interval={1000}>
+            <img
+                className="d-block w-100"
+                src={Green}
+                alt="First slide"
+            />
+            <Carousel.Caption className={"carouselCaption"}>
+                <h3>First slide label</h3>
+                <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+            </Carousel.Caption>
+        </Carousel.Item>
+    <Carousel.Item interval={500}>
+        <img
+            className="d-block w-100"
+            src={Red}
+            alt="Second slide"
+        />
+        <Carousel.Caption className={"carouselCaption"}>
+            <h3>Second slide label</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        </Carousel.Caption>
+    </Carousel.Item>
+    <Carousel.Item>
+        <img
+            className="d-block w-100"
+            src={Yellow}
+            alt="Third slide"
+        />
+        <Carousel.Caption>
+            <h3>Third slide label</h3>
+            <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
+        </Carousel.Caption>
+    </Carousel.Item>
+</Carousel>
+)
 }
+// const colors = ["#006d77", "#df2935", "#ead637"];
+
 
 export default function LandingPage () {
     return (
         <>
             <Navbar />
-            <h1>B-Bay</h1>
-            <Slideshow />
-            <footer></footer>
+            <p className={"mainLogo"}>B-Bay</p>
+            <Carousel1 />
+            <Footer />
         </>
     )
 }

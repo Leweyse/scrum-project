@@ -105,6 +105,34 @@ body,
   font-size: 1vw;
 }
 
+footer {
+  position: absolute;
+  width: 100vw;
+  height: 11.57vh;
+  bottom: 0;
+  margin-top: 30px;
+  background-color: #FFFCFF;
+}
+footer a {
+  text-decoration: none;
+  color: #474044;
+}
+footer #footerAbove {
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+  width: 100%;
+}
+footer #footerBelow {
+  position: relative;
+  margin-top: 20px;
+  font-size: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+}
+
 #stockSection {
   width: 100%;
   display: grid;
@@ -238,6 +266,28 @@ body,
   padding: 0.25rem;
 }
 
+p.mainLogo {
+  top: 0;
+  left: 300px;
+  width: 652px;
+  height: 200px;
+  margin-left: 27%;
+  text-align: center;
+  font-family: Montserrat;
+  font-size: 160px;
+  letter-spacing: 0px;
+  opacity: 1;
+  z-index: 2;
+}
+
+.carouselCaption h3 {
+  color: wheat;
+}
+
+.carouselCaption p {
+  color: wheat;
+}
+
 @media (max-width: 1200px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);
@@ -249,6 +299,53 @@ body,
   }
   #loginPage #loginContainer #loginForm {
     width: 25%;
+  }
+  
+  #productPage {
+    width: 100vw;
+    height: 76.86vh;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+    align-items: center;
+  }
+  #productPage #productPageLeft {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  #productPage #productPageLeft #productImage {
+    width: 60%;
+    height: 60%;
+  }
+  #productPage #productPageRight {
+    width: 40%;
+    margin-right: 8%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    text-align: left;
+    font-size: 2.5vh;
+  }
+  #productPage #productPageRight .productPageBold {
+    font-weight: bold;
+  }
+  #productPage #productPageRight #productPriceStatistics {
+    display: flex;
+    border: 1px solid #474044;
+    width: 50%;
+    height: 25%;
+    justify-content: center;
+    align-items: center;
+  }
+  #productPage #productPageRight #productPageAddToCart {
+    width: 20vh;
+    height: 10%;
+    margin-left: 75%;
+    margin-right: 25%;
+    font-size: 2vh;
   }
 }
 @media (max-width: 875px) {
