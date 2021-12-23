@@ -31,18 +31,18 @@
     }
   }
 
-  #navRight{
-    display: flex;
-    justify-content: space-evenly;
-    place-items: center;
-    position: absolute;
-    width: 40%;
-    height: 11.57vh;
-    right: 2.5%;
+     #navRight{
+      display: flex;
+      justify-content: space-evenly;
+      place-items: center;
+      position: absolute;
+      width: 40%;
+      height: 11.57vh;
+      right: 2.5%;
 
-    .navRight {
-      font-size: 2.5vh;
-    }
+      .navRight {
+        font-size: 2.5vh;
+      }
 
     #navSearchInput {
       height: 3vh;
