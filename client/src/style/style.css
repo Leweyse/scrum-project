@@ -85,7 +85,7 @@ body,
   left: 3%;
 }
 #navbar #navLeft #navHome {
-  font-size: 4vh;
+  font-size: 2vw;
   font-weight: bold;
 }
 #navbar #navRight {
@@ -98,11 +98,11 @@ body,
   right: 2.5%;
 }
 #navbar #navRight .navRight {
-  font-size: 2.5vh;
+  font-size: 1.25vw;
 }
 #navbar #navRight #navSearchInput {
   height: 3vh;
-  font-size: 2vh;
+  font-size: 1vw;
 }
 
 #stockSection {
@@ -114,52 +114,50 @@ body,
 }
 
 #loginPage {
+  display: flex;
   width: 100vw;
   height: 100vh;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 #loginPage #loginContainer {
+  display: flex;
   width: 30%;
   height: 95%;
   border-radius: 36px;
   border: 1px solid #474044;
-  display: flex;
   flex-direction: column;
   place-items: center;
   text-align: center;
+  justify-content: space-evenly;
   overflow-x: hidden;
 }
 #loginPage #loginContainer #loginLogo {
   position: relative;
-  margin-top: 15%;
-  font-size: 15vh;
+  font-size: 6vw;
   z-index: 1;
 }
 #loginPage #loginContainer #loginLogoCropped {
-  margin-top: -25%;
   position: relative;
-  z-index: 0;
-  font-size: 32vh;
   width: 50vw;
-  overflow-x: hidden;
+  font-size: 14.5vw;
   color: #FFFCFF;
   -webkit-text-stroke: 1px #474044;
+  overflow-x: hidden;
+  z-index: 0;
 }
 #loginPage #loginContainer #loginForm {
-  margin-top: 15%;
   position: absolute;
-  z-index: 1;
   display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
   height: 42.5%;
   width: 18%;
+  flex-direction: column;
+  justify-content: space-evenly;
+  z-index: 1;
 }
 #loginPage #loginContainer #loginForm input {
   height: 5vh;
-  font-size: 2.25vh;
+  font-size: 1rem;
 }
 #loginPage #loginContainer #loginForm #loginFormButtonContainer {
   display: flex;
@@ -169,29 +167,52 @@ body,
 #loginPage #loginContainer #loginForm #loginFormButtonContainer button {
   width: 45%;
   height: 5vh;
-  font-size: 2.25vh;
+  font-size: 1rem;
   border-radius: 11px;
 }
 #loginPage #loginContainer #passwordReset {
-  margin-top: 45%;
-  font-size: 2.25vh;
+  font-size: 1.15rem;
   text-decoration: none;
 }
 
-@media (max-width: 1150px) {
+@media (max-width: 1200px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  #loginPage #loginContainer {
+    width: 50%;
+    height: 85%;
+  }
+  #loginPage #loginContainer #loginForm {
+    width: 25%;
   }
 }
 @media (max-width: 875px) {
   #stockSection {
     grid-template-columns: 1fr 1fr;
   }
+
+  #loginPage #loginContainer {
+    width: 60%;
+    height: 70%;
+  }
+
+  #loginPage #loginContainer #loginForm {
+    width: 33%;
+  }
 }
 @media (max-width: 640px) {
   #stockSection {
     grid-template-columns: 1fr;
   }
-}
 
-/*# sourceMappingURL=style.css.map */
+  #loginPage #loginContainer {
+    width: 70%;
+    height: 70%;
+  }
+
+  #loginPage #loginContainer #loginForm {
+    width: 50%;
+  }
+}/*# sourceMappingURL=style.css.map */
