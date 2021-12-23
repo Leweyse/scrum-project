@@ -52,7 +52,7 @@
 ## Design Patterns
 
 - [Cart Page](https://xd.adobe.com/view/af7eb9d6-17f5-4094-8245-43c00f7aee28-fa2d/)
-- [Checkout Page](https://xd.adobe.com/view/0acee9bb-9518-46b3-9949-62968856007e-5f9d/)
+- [CheckoutPage Page](https://xd.adobe.com/view/0acee9bb-9518-46b3-9949-62968856007e-5f9d/)
 - [Order Confirmation Page](https://xd.adobe.com/view/97390c00-938d-4e46-83a2-012f3675c234-c26a/)
 - [Sign Up Page](https://xd.adobe.com/view/f6f5fc3a-fa1a-4941-b299-a4c0bd2fde14-a3a6/)
 - [Login Page](https://xd.adobe.com/view/825ed044-17c9-4c10-a2d9-0085700186f1-d70d/)
