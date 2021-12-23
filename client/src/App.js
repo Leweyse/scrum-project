@@ -4,7 +4,7 @@ function App() {
     return (
         <>
             <LoginPage/>
-            <ProductsPage/>
+            {/*<ProductsPage/>*/}
         </>
     );
 }
