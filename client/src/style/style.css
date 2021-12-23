@@ -203,6 +203,69 @@ footer #footerBelow {
   text-decoration: none;
 }
 
+#suPage {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+}
+#suPage .suContainer {
+  display: grid;
+  width: 40%;
+  height: 98%;
+  padding: 2rem 0;
+  grid-template-rows: 0.25fr 0.75fr;
+  place-items: center;
+  gap: 2rem;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 18px;
+}
+#suPage .suContainer .suLogoCropped {
+  font-size: 3.75rem;
+  color: var(--clr-white);
+  -webkit-text-stroke: 1px var(--clr-darkgray);
+}
+#suPage .suContainer .suForm {
+  display: grid;
+  gap: 2rem;
+  place-items: center;
+}
+#suPage .suContainer .suForm .suBtn {
+  width: 60%;
+  padding: 0.5rem;
+  color: var(--clr-darkgray);
+  font-size: 1.1rem;
+  background: var(--clr-white);
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+#suPage .suContainer .suForm .suBtn:hover, #suPage .suContainer .suForm .suBtn:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-white);
+  cursor: pointer;
+}
+#suPage .suContainer .suForm .suInput {
+  display: grid;
+  gap: 0.25rem;
+}
+#suPage .suContainer .suForm .suInput > * {
+  font-size: 1rem;
+}
+#suPage .suContainer .suForm .suInput label {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+#suPage .suContainer .suForm .suInput label span {
+  color: var(--clr-red);
+}
+#suPage .suContainer .suForm .suInput input {
+  width: 100%;
+  padding: 0.25rem;
+}
+
 p.mainLogo {
   top: 0;
   left: 300px;
@@ -298,6 +361,10 @@ p.mainLogo {
   #loginPage #loginContainer #loginForm {
     width: 33%;
   }
+
+  #suPage .suContainer {
+    width: 50%;
+  }
 }
 @media (max-width: 640px) {
   #stockSection {
@@ -312,6 +379,8 @@ p.mainLogo {
   #loginPage #loginContainer #loginForm {
     width: 50%;
   }
-}
 
-/*# sourceMappingURL=style.css.map */
+  #suPage .suContainer {
+    width: 70%;
+  }
+}/*# sourceMappingURL=style.css.map */
