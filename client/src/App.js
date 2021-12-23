@@ -3,6 +3,7 @@ import { LandingPage, ProductsPage, LoginPage, SingleProductPage } from './pages
 function App() {
     return (
         <>
+            <LandingPage/>
             <SingleProductPage
                 src={'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg'}
                 name={'Vinyl Ex:Re'}
