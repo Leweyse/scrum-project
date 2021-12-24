@@ -2,8 +2,9 @@
 
 ## Contents
 - [Branch: Name Convention](#branch-name-convention)
-  - [README.md](#readme)
-  - [DevBook.md](#devbook)
+  - [README.md](#readme-file)
+  - [DEVBOOK.md](#devbook-file)
+  - [Implement new package](#implement-new-package)
   - [API](#api)
   - [Client](#client)
   - [Implement API for Client](#implement-api-for-client)
@@ -13,13 +14,19 @@
   - [Fonts](#fonts)
 
 ## Branch name convention
-### Readme
+### Readme File
 - Update
     - `update/readme`
 
-### DevBook
+### DevBook File
 - Update
     - `update/devbook`
+
+### Implement new package
+- API
+  - `api/implement/package_name`
+- Client
+  - `client/implement/package_name`
 
 ### API
 - Build:
