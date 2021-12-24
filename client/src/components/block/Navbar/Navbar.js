@@ -1,14 +1,30 @@
+import { Link } from "react-router-dom";
+
 export default function Navbar () {
     return (
         <nav id={"navbar"}>
             <div id={"navLeft"}>
-                <a id={"navHome"} href={""}>B-bay</a>
+                <Link id={"navHome"} to={"/"}>B-bay</Link>
             </div>
             <div id={"navRight"}>
-                <form className={"navRight"} id={"navSearch"}><input id={"navSearchInput"} type={"text"} placeholder={"Search..."} name={"navSearch"}/></form>
-                <a className={"navRight"} href={""}>Products</a>
-                <a className={"navRight"} href={""}>Profile</a>
-                <a className={"navRight"} href={""}>Cart</a>
+                <form className={"navRight"} id={"navSearch"}>
+                    <input 
+                        id={"navSearchInput"} 
+                        type={"text"} 
+                        placeholder={"Search..."} 
+                        name={"navSearch"}
+                    />
+                </form>
+
+                <Link className={"navRight"} to={"/products"}>Products</Link>
+                {/* 
+                    If user is logged, display Profile Route
+                        <Link className={"navRight"} to={"/profile"}>Profile</Link>
+
+                    If not, display Login Route 
+                */}
+                <Link className={"navRight"} to={"/login"}>Login</Link>
+                <Link className={"navRight"} to={"/cart"}>Cart</Link>
             </div>
         </nav>
     )

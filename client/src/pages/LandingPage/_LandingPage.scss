@@ -1,0 +1,21 @@
+#landingPage {
+    position: relative;
+    display: grid;
+    width: 100%;
+
+    place-items: center;
+
+    .mainLogo {
+        top: 0;
+        font-family: var(--ff-montserrat);
+        font-size: 9rem;
+        z-index: 2;
+    }
+    
+    .carouselCaption {
+        h3,
+        p {
+            color: var(--clr-white);
+        }
+    }
+}

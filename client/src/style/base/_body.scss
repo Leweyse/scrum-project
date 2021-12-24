@@ -5,3 +5,8 @@ body,
 
     background-color: var(--clr-white);
 }
+
+#root {
+    display: grid;
+    place-items: center;
+}
