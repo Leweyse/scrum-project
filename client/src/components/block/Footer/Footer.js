@@ -1,16 +1,17 @@
-export default function Footer () {
+const Footer = () => {
     return (
-        <footer>
+        <footer id={"footer"}>
             <div id={"footerAbove"}>
-                <a href={""}>B-Bay Inc.</a>
-                <a href={""}>Products</a>
-                <a href={""}>About us</a>
-                <a href={""}>Contacts</a>
+                <a href={"/"}>B-Bay Inc.</a>
+                <a href={"/"}>Products</a>
+                <a href={"/"}>About us</a>
+                <a href={"/"}>Contacts</a>
             </div>
-            <span></span>
             <div id={"footerBelow"}>
                 <p>Copyright © 2021 All Rights Reserved.</p>
             </div>
         </footer>
     )
 }
+
+export default Footer;

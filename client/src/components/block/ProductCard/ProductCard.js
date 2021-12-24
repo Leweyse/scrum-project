@@ -1,7 +1,7 @@
 const ProductCard = (props) => {
     return (
         <article id={"productCard"}>
-            <section className={"image_container"}
+            <div className={"image_container"}
                 style={{
                     background: `
                         url(${props.src}) 
@@ -9,7 +9,7 @@ const ProductCard = (props) => {
                         cover no-repeat
                     `
                 }}
-            ></section>
+            ></div>
             <section className={"description_container"}>
                 <p className="productTitle">{props.title}</p>
                 <p className="productPrice">{props.price}</p>

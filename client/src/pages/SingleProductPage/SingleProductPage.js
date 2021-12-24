@@ -1,25 +1,43 @@
-import {Navbar} from "../../components";
+import { Footer, Navbar } from "../../components";
 
 export default function SingleProductPage (props) {
     return (
         <>
             <Navbar/>
-            <section id={"productPage"}>
-                <div id={"productPageLeft"}>
-                    <img id={"productImage"} src={props.src} alt={"Product Image"}/>
+            <main id={"productPage"}>
+                <div className={"productPageLeft"}>
+                    {/* 
+                        Screen-readers already announce `img` tags as an image. 
+                        You don’t need to use the words `image`, `photo,` or `picture` 
+                        (or any specified custom words) 
+                        in the alt prop. 
+                    */}
+                    <img className={"productImage"} src={props.src} alt={"Product"}/>
                 </div>
-                <div id={"productPageRight"}>
-                    <p id={"productName"}>{props.name}</p>
-                    <p id={"productPrice"}>{props.price}</p>
-                    <p id={"productSeller"}><span className={"productPageBold"}>Seller: </span>{props.seller}</p>
-                    <p id={"productDescription"}><span className={"productPageBold"}>Description: </span>{props.description}</p>
-                    <div id={"productPriceStatistics"}>
+                <div className={"productPageRight"}>
+                    <p className={"productName"}>
+                        <span className={"productPageBold"}>Product: </span>
+                        {props.name}
+                    </p>
+                    <p className={"productPrice"}>
+                        <span className={"productPageBold"}>Price: </span>
+                        {props.price}
+                    </p>
+                    <p className={"productSeller"}>
+                        <span className={"productPageBold"}>Seller: </span>
+                        {props.seller}
+                    </p>
+                    <p className={"productDescription"}>
+                        <span className={"productPageBold"}>Description: </span>
+                        {props.description}
+                    </p>
+                    <div className={"productPriceStatistics"}>
                         <p>Price stats go here.</p>
                     </div>
-                    <button id={"productPageAddToCart"}>Add to Cart</button>
+                    <button className={"productPageAddToCart"}>Add to Cart</button>
                 </div>
-            </section>
+            </main>
+            <Footer />
         </>
-
-        )
+    )
 }

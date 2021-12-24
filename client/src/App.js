@@ -1,4 +1,4 @@
-import { LandingPage, ProductsPage, LoginPage, SingleProductPage } from './pages';
+import { LandingPage, ProductsPage, LoginPage, SingleProductPage, SignUpPage } from './pages';
 
 function App() {
     return (
