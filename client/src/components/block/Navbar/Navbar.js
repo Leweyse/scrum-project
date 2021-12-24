@@ -19,7 +19,7 @@ export default function Navbar () {
                 <Link className={"navRight"} to={"/products"}>Products</Link>
                 {/* 
                     If user is logged, display Profile Route
-                        <Link className={"navRight"} to={"/profile"}>Profile</Link>
+                        <Link className={"navRight"} to={"/profile"}>{props.username}</Link>
 
                     If not, display Login Route 
                 */}
