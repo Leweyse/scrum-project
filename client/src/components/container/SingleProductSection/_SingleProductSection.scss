@@ -1,0 +1,50 @@
+#productPage {
+    display: grid;
+    width: 100%;
+    padding: 1rem;
+    align-items: center;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    .productPageLeft {
+        display: flex;
+
+        justify-content: center;
+        align-items: center;
+
+        .productImage {
+            padding: 5%;
+            width: 60%;
+        }
+    }
+
+    .productPageRight {
+
+        padding: 0 5%;
+        font-size: 1.25vw;
+
+        .productRightElements {
+            padding-bottom: 2vh;
+        }
+
+        .productPageBold {
+            font-weight: bold;
+        }
+
+        .productPriceStatistics {
+            display: grid;
+            width: 50%;
+            height: 8rem;
+            place-items: center;
+
+            border: 1px solid var(--clr-darkgray);
+        }
+
+        .productPageAddToCart {
+            width: 25%;
+            margin-left: 65%;
+            font-size: 2vh;
+            background: var(--clr-white);
+        }
+    }
+}

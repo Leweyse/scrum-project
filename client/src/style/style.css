@@ -30,6 +30,7 @@ body,
 
 #root {
   display: grid;
+  grid-template-rows: 0.2fr 1fr 0.2fr;
   place-items: center;
 }
 
@@ -67,7 +68,7 @@ body,
   display: flex;
   width: 100%;
   height: 100%;
-  min-height: 7rem;
+  min-height: 7vh;
   background-color: var(--clr-white);
   justify-content: space-between;
 }
@@ -107,13 +108,14 @@ body,
   display: grid;
   width: 100%;
   height: 100%;
-  min-height: 7rem;
-  padding-top: 1.5rem;
+  min-height: 7vh;
+  padding-top: 1.5vh;
   background-color: var(--clr-white);
   place-items: center;
 }
 #footer a {
   text-decoration: none;
+  font-size: 1.25vw;
   color: var(--clr-darkgray);
 }
 #footer #footerAbove {
@@ -125,7 +127,7 @@ body,
 #footer #footerBelow {
   display: flex;
   width: 100%;
-  font-size: 10px;
+  font-size: 0.75vw;
   justify-content: space-evenly;
   place-items: center;
 }
@@ -136,6 +138,46 @@ body,
   padding: 2rem 4vw;
   grid-template-columns: repeat(4, 1fr);
   gap: 4vw;
+}
+
+#productPage {
+  display: grid;
+  width: 100%;
+  padding: 1rem;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+#productPage .productPageLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#productPage .productPageLeft .productImage {
+  padding: 5%;
+  width: 60%;
+}
+#productPage .productPageRight {
+  padding: 0 5%;
+  font-size: 1.25vw;
+}
+#productPage .productPageRight .productRightElements {
+  padding-bottom: 2vh;
+}
+#productPage .productPageRight .productPageBold {
+  font-weight: bold;
+}
+#productPage .productPageRight .productPriceStatistics {
+  display: grid;
+  width: 50%;
+  height: 8rem;
+  place-items: center;
+  border: 1px solid var(--clr-darkgray);
+}
+#productPage .productPageRight .productPageAddToCart {
+  width: 25%;
+  margin-left: 65%;
+  font-size: 2vh;
+  background: var(--clr-white);
 }
 
 #loginPage {
@@ -265,58 +307,25 @@ body,
 
 #landingPage {
   position: relative;
-  display: grid;
+  display: flex;
   width: 100%;
-  place-items: center;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
 }
 #landingPage .mainLogo {
   top: 0;
   font-family: var(--ff-montserrat);
-  font-size: 9rem;
+  font-size: 7vw;
   z-index: 2;
+}
+#landingPage #landingPageCarouselContainer {
+  width: 100%;
+  height: 44vh;
 }
 #landingPage .carouselCaption h3,
 #landingPage .carouselCaption p {
   color: var(--clr-white);
-}
-
-#productPage {
-  display: grid;
-  width: 100%;
-  padding: 1rem;
-  align-items: center;
-  grid-template-columns: 0.1fr repeat(2, 1fr) 0.1fr;
-}
-#productPage .productPageLeft {
-  grid-column: 2/3;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#productPage .productPageLeft .productImage {
-  padding: 5%;
-  width: 50%;
-}
-#productPage .productPageRight {
-  grid-column: 3/4;
-  padding: 0 5%;
-  font-size: 1vw;
-}
-#productPage .productPageRight .productPageBold {
-  font-weight: bold;
-}
-#productPage .productPageRight .productPriceStatistics {
-  display: grid;
-  width: 50%;
-  height: 8rem;
-  place-items: center;
-  border: 1px solid var(--clr-darkgray);
-}
-#productPage .productPageRight .productPageAddToCart {
-  width: 25%;
-  margin-left: 75%;
-  font-size: 2vh;
-  background: var(--clr-white);
 }
 
 #checkoutPage {
@@ -404,4 +413,6 @@ body,
   #suPage .suContainer {
     width: 70%;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
