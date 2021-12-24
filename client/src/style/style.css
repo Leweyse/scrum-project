@@ -106,7 +106,7 @@ body,
 }
 
 footer {
-  position: absolute;
+  position: relative;
   width: 100vw;
   height: 11.57vh;
   bottom: 0;
@@ -268,14 +268,13 @@ footer #footerBelow {
 
 p.mainLogo {
   top: 0;
-  left: 300px;
-  width: 652px;
-  height: 200px;
+  left: 19.54vw;
+  width: 42.45vw;
+  height: 27.7vh;
   margin-left: 27%;
   text-align: center;
-  font-family: Montserrat;
-  font-size: 160px;
-  letter-spacing: 0px;
+  font-size: 10.4vw;
+  letter-spacing: 0;
   opacity: 1;
   z-index: 2;
 }
@@ -335,6 +334,42 @@ p.mainLogo {
   font-size: 2vh;
 }
 
+#checkoutPage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#checkoutPage #checkoutTitle {
+  font-size: 3.75rem;
+  color: var(--clr-white);
+  -webkit-text-stroke: 1px var(--clr-darkgray);
+}
+#checkoutPage #checkoutForm {
+  width: 60%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#checkoutPage #checkoutForm .checkoutFormRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#checkoutPage #checkoutForm .checkoutFormRow .checkoutFormUnit {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  font-weight: bold;
+}
+#checkoutPage #checkoutForm .checkoutFormRow button {
+  width: 25%;
+  border-radius: 11px;
+}
 @media (max-width: 1200px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);

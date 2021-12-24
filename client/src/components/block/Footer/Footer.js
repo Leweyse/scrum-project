@@ -5,7 +5,7 @@ export default function Footer () {
                 <a href={""}>B-Bay Inc.</a>
                 <a href={""}>Products</a>
                 <a href={""}>About us</a>
-                <a href={""}>Contacts</a>
+                <a href={""}>Contact</a>
             </div>
             <span></span>
             <div id={"footerBelow"}>
