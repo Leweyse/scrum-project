@@ -2,9 +2,11 @@ import {useState, useRef, useEffect} from 'react';
 import apiClient from '../../services/apiClient';
 import useCookie from 'react-use-cookie';
 import { getCookie, setCookie } from 'react-use-cookie';
+import { useNavigate } from "react-router-dom";
+
 
 const LoginPage = () => {
-
+    let navigate = useNavigate();
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
     const [userId, setUserId] = useCookie('user','');
@@ -32,7 +34,7 @@ const LoginPage = () => {
                         }}
                 )
                     .then((res) => {
-                        console.log('yes loged in');
+                        navigate("/checkout");
                     })
                     .catch((err) => {
                         if (err.response && err.response.status === 401) {
@@ -65,7 +67,7 @@ const LoginPage = () => {
                         if(res.data.token) {
                             setUserToken(res.data.token);
                             setUserId(res.data.user.id);
-                            console.log('yes login successful');
+                            navigate("/checkout");
                         }
                     })
                     .catch((err) => {
