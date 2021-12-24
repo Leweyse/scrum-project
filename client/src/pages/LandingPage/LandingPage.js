@@ -50,8 +50,12 @@ const LandingPage = () => {
         <>
             <Navbar />
             <main id={"landingPage"}>
-                <p className={"mainLogo"}>B-Bay</p>
-                <CarouselSlider />
+                <div id={"landingPageLogoContainer"}>
+                    <p className={"mainLogo"}>B-Bay</p>
+                </div>
+                <div id={"landingPageCarouselContainer"}>
+                    <CarouselSlider />
+                </div>
             </main>
             <Footer />
         </>

@@ -5,7 +5,6 @@ const Footer = () => {
         <footer id={"footer"}>
             <div id={"footerAbove"}>
                 <Link to={"/"}>B-Bay</Link>
-                <Link to={"/products"}>Products</Link>
                 <Link to={"/about-us"}>About us</Link>
                 <Link to={"/contact"}>Contact</Link>
             </div>
