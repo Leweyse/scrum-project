@@ -1,19 +1,21 @@
-p.mainLogo {
-  top: 0;
-  left: 19.54vw;
-  width: 42.45vw;
-  height: 27.7vh;
-  margin-left: 27%;
-  text-align: center;
-  font-size: 10.4vw;
-  letter-spacing: 0;
-  opacity: 1;
-  z-index: 2;
-}
+#landingPage {
+    position: relative;
+    display: grid;
+    width: 100%;
 
-.carouselCaption h3 {
-color: wheat;
-}
-.carouselCaption p {
-  color: wheat;
+    place-items: center;
+
+    .mainLogo {
+        top: 0;
+        font-family: var(--ff-montserrat);
+        font-size: 9rem;
+        z-index: 2;
+    }
+    
+    .carouselCaption {
+        h3,
+        p {
+            color: var(--clr-white);
+        }
+    }
 }
