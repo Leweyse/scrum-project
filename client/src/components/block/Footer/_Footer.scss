@@ -1,0 +1,32 @@
+#footer {
+    position: relative;
+    display: grid;
+    width: 100%;
+    min-height: 7rem;
+    padding-top: 1.5vh;
+    background-color: var(--clr-white);
+
+    place-items: center;
+
+    a {
+        text-decoration: none;
+        font-size: 1.25vw;
+        color: var(--clr-darkgray);
+    }
+
+    #footerAbove {
+        display: flex;
+        width: 100%;
+        justify-content: space-evenly;
+        place-items: center;
+    }
+
+    #footerBelow {
+        display: flex;
+        width: 100%;
+        
+        font-size: .75vw;
+        justify-content: space-evenly;
+        place-items: center;
+    }
+}

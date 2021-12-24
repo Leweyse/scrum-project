@@ -1,10 +1,9 @@
 #stockSection {
     width: 100%;
-
     display: grid;
-    padding: 2rem;
+    padding: 2vw 2vw;
 
     grid-template-columns: repeat(4, 1fr);
 
-    gap: 2rem;
+    gap: 4vw;
 }

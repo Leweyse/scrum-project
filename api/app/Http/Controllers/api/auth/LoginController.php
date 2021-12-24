@@ -19,7 +19,7 @@ class LoginController extends Controller
         ], $this->errorMessages());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+            return response()->json(['error' => $validator->errors()], 200);
         }
 
         $user = User::where('email', $request['email'])->first();
@@ -28,7 +28,7 @@ class LoginController extends Controller
             return response([
                 'status' => 'failed',
                 'message' => 'The email is not registered yet'
-            ], 401);
+            ], 200);
         }
         if (!Hash::check($request['password'], $user->password)) {
             return response([
@@ -44,7 +44,7 @@ class LoginController extends Controller
             'token' => $token
         ];
 
-        return response($response, 201);
+        return response($response, 200);
     }
 
     public function logout() {
@@ -54,6 +54,10 @@ class LoginController extends Controller
         ];
 
         return response($response, 201);
+    }
+
+    public function checkToken() {
+        return response('test');
     }
 
     private function errorMessages()

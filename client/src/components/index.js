@@ -1,12 +1,14 @@
-import { Navbar, ProductCard, } from './block';
+import { Navbar, ProductCard, Footer, } from './block';
 
-import { StockSection } from './container';
+import { StockSection, SingleProductSection } from './container';
 
 export {
     // BLOCK
     Navbar,
     ProductCard,
+    Footer,
 
     // CONTAINER
     StockSection,
+    SingleProductSection,
 }
