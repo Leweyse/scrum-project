@@ -105,6 +105,34 @@ body,
   font-size: 1vw;
 }
 
+footer {
+  position: relative;
+  width: 100vw;
+  height: 11.57vh;
+  bottom: 0;
+  margin-top: 30px;
+  background-color: #FFFCFF;
+}
+footer a {
+  text-decoration: none;
+  color: #474044;
+}
+footer #footerAbove {
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+  width: 100%;
+}
+footer #footerBelow {
+  position: relative;
+  margin-top: 20px;
+  font-size: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  place-items: center;
+}
+
 #stockSection {
   width: 100%;
   display: grid;
@@ -175,6 +203,173 @@ body,
   text-decoration: none;
 }
 
+#suPage {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  place-items: center;
+}
+#suPage .suContainer {
+  display: grid;
+  width: 40%;
+  height: 98%;
+  padding: 2rem 0;
+  grid-template-rows: 0.25fr 0.75fr;
+  place-items: center;
+  gap: 2rem;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 18px;
+}
+#suPage .suContainer .suLogoCropped {
+  font-size: 3.75rem;
+  color: var(--clr-white);
+  -webkit-text-stroke: 1px var(--clr-darkgray);
+}
+#suPage .suContainer .suForm {
+  display: grid;
+  gap: 2rem;
+  place-items: center;
+}
+#suPage .suContainer .suForm .suBtn {
+  width: 60%;
+  padding: 0.5rem;
+  color: var(--clr-darkgray);
+  font-size: 1.1rem;
+  background: var(--clr-white);
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+#suPage .suContainer .suForm .suBtn:hover, #suPage .suContainer .suForm .suBtn:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-white);
+  cursor: pointer;
+}
+#suPage .suContainer .suForm .suInput {
+  display: grid;
+  gap: 0.25rem;
+}
+#suPage .suContainer .suForm .suInput > * {
+  font-size: 1rem;
+}
+#suPage .suContainer .suForm .suInput label {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+#suPage .suContainer .suForm .suInput label span {
+  color: var(--clr-red);
+}
+#suPage .suContainer .suForm .suInput input {
+  width: 100%;
+  padding: 0.25rem;
+}
+
+p.mainLogo {
+  top: 0;
+  left: 19.54vw;
+  width: 42.45vw;
+  height: 27.7vh;
+  margin-left: 27%;
+  text-align: center;
+  font-size: 10.4vw;
+  letter-spacing: 0;
+  opacity: 1;
+  z-index: 2;
+}
+
+.carouselCaption h3 {
+  color: wheat;
+}
+
+.carouselCaption p {
+  color: wheat;
+}
+
+#productPage {
+  width: 100vw;
+  height: 76.86vh;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#productPage #productPageLeft {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#productPage #productPageLeft #productImage {
+  width: 60%;
+  height: 60%;
+}
+#productPage #productPageRight {
+  width: 40%;
+  margin-right: 8%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  text-align: left;
+  font-size: 2.5vh;
+}
+#productPage #productPageRight .productPageBold {
+  font-weight: bold;
+}
+#productPage #productPageRight #productPriceStatistics {
+  display: flex;
+  border: 1px solid #474044;
+  width: 50%;
+  height: 25%;
+  justify-content: center;
+  align-items: center;
+}
+#productPage #productPageRight #productPageAddToCart {
+  width: 20vh;
+  height: 10%;
+  margin-left: 75%;
+  margin-right: 25%;
+  font-size: 2vh;
+}
+
+#checkoutPage {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#checkoutPage #checkoutTitle {
+  font-size: 3.75rem;
+  color: var(--clr-white);
+  -webkit-text-stroke: 1px var(--clr-darkgray);
+}
+#checkoutPage #checkoutForm {
+  width: 60%;
+  height: 70%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#checkoutPage #checkoutForm .checkoutFormRow {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#checkoutPage #checkoutForm .checkoutFormRow .checkoutFormUnit {
+  display: flex;
+  flex-direction: column;
+  width: 25%;
+  font-weight: bold;
+}
+#checkoutPage #checkoutForm .checkoutFormRow button {
+  width: 25%;
+  border-radius: 11px;
+}
 @media (max-width: 1200px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);
@@ -201,6 +396,10 @@ body,
   #loginPage #loginContainer #loginForm {
     width: 33%;
   }
+
+  #suPage .suContainer {
+    width: 50%;
+  }
 }
 @media (max-width: 640px) {
   #stockSection {
@@ -214,5 +413,9 @@ body,
 
   #loginPage #loginContainer #loginForm {
     width: 50%;
+  }
+
+  #suPage .suContainer {
+    width: 70%;
   }
 }/*# sourceMappingURL=style.css.map */

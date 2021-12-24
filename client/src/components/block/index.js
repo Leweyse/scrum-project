@@ -1,8 +1,9 @@
 import ProductCard from './ProductCard/ProductCard';
 import Navbar from "./Navbar/Navbar";
-// import Button from './button/Button';
+import Footer from './Footer/Footer';
 
 export {
-    ProductCard,
     Navbar,
+    ProductCard,
+    Footer,
 }
