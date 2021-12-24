@@ -370,7 +370,6 @@ p.mainLogo {
   width: 25%;
   border-radius: 11px;
 }
-
 @media (max-width: 1200px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);
@@ -419,6 +418,4 @@ p.mainLogo {
   #suPage .suContainer {
     width: 70%;
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

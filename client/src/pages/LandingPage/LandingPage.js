@@ -1,7 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
-import { Navbar } from '../../components';
+import { Navbar, Footer } from '../../components';
 import Carousel from 'react-bootstrap/Carousel';
-import Footer from "../../components/block/Footer/Footer";
+
 import Yellow from '../../assets/images/ead637.jpg';
 import Red from '../../assets/images/df2935.jpg';
 import Green from '../../assets/images/006d77.jpg';
