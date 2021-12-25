@@ -21,18 +21,27 @@ class RegisterController extends Controller
 
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'error' => $errors = $validator->errors()
+                ]
+            ];
+
+            return response($response, 200);
         }
 
         $user = User::create($request->all());
         $token = $user->createToken(env('APP_KEY'))->plainTextToken;
 
         $response = [
-            'user' => $user,
-            'token' => $token
+            'status' => 'success',
+            'data' => [
+                'user' => $user,
+                'token' => $token
+            ]
         ];
-
-        return response($response, 201);
+        return response($response, 200);
     }
 
     private function errorMessages()

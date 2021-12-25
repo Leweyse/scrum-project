@@ -13,14 +13,28 @@ class ProductController extends Controller
 
     public function all()
     {
-        return Product::orderBy('id','desc')->get();
+        $products = Product::orderBy('id','desc')->get();
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'products' => $products
+            ]
+        ];
+        return response($response, 200);
     }
 
     public function countPaginate($page, $take) {
         $products = Product::all();
         $products = $products->reverse();
         $skip = ($page - 1 ) * $take;
-        return $products->skip($skip)->take($take);
+        $filtered_products =  $products->skip($skip)->take($take);
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'products' => $filtered_products
+            ]
+        ];
+        return response($response, 200);
     }
 
     public function create(Request $request)
@@ -35,10 +49,22 @@ class ProductController extends Controller
         ], $this->errorMessages());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'error' => $errors = $validator->errors()
+                ]
+            ];
+            return response($response, 200);
         }
         $product = Product::create($request->all());
-        return response($product, 201);
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'product' => $product
+            ]
+        ];
+        return response($response, 200);
     }
 
     public function update(Request $request, $id)
@@ -60,13 +86,28 @@ class ProductController extends Controller
         ], $this->errorMessages());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 401);
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'error' => $errors = $validator->errors()
+                ]
+            ];
+            return response($response, 200);
         }
         $update = Product::where('id', $id)->update($request->all());
         if(!$update) {
-            return response()->json(['message' => 'unknown error'], 401);
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'message' => 'Unknown error'
+                ]
+            ];
+            return response($response, 401);
         }
-        return response(['message' => 'updated'], 201);
+        $response = [
+            'status' => 'success'
+        ];
+        return response($response, 200);
     }
 
     /**
@@ -79,12 +120,21 @@ class ProductController extends Controller
     {
         $product = Product::where('id', $id)->first();
         if(!$product) {
-            return response([
-                'status' => 'failed',
-                'message' => 'This product doesn\'t exixt in database'
-            ], 401);
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'message' => 'this is product is either deleted or never exist in our database'
+                ]
+            ];
+            return response($response, 200);
         }
-        return response($product, 201);
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'product' => $product
+            ]
+        ];
+        return response($response, 200);
     }
 
 
@@ -96,7 +146,7 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+
     }
 
     private function errorMessages()

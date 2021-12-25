@@ -10,22 +10,16 @@ const LoginPage = () => {
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
     const [userId, setUserId] = useCookie('user','');
-    const [error,setError] = useState({})
-    const [address, setAddress] = useState('');
+    const [error,setError] = useState({});
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    // const [response, setResponse] = useState(initialApiResponseValue);
 
     const inputRefEmail = useRef();
     const inputRefPassword = useRef();
-    const api_url = process.env.REACT_APP_API_ROOT+'/login';
 
     useEffect(() => {
         if(tkn && tkn != '0') {
             setUserToken(tkn);
-
-            // check validate token
-            apiClient.get("http://scrum-api.test/sanctum/csrf-cookie").then(response => {
                 apiClient.get( 'check/sanctum/token',
                     {
                         headers: {
@@ -40,10 +34,9 @@ const LoginPage = () => {
                         if (err.response && err.response.status === 401) {
                             setTkn('0');
                             setUserToken('0');
-                            console.log('unauthorized token');
+                            setUserId('');
                         }
                     });
-            });
         }
 
     });
@@ -61,17 +54,14 @@ const LoginPage = () => {
                         }}
                 )
                     .then((res) => {
-                        if(res.data.error) {
-                            setError(res.data.error);
+                        if(res.data.data.error) {
+                            setError(res.data.data.error);
                         }
-                        if(res.data.token) {
-                            setUserToken(res.data.token);
-                            setUserId(res.data.user.id);
+                        if(res.data.data.token) {
+                            setUserToken(res.data.data.token);
+                            setUserId(res.data.data.user.id);
                             navigate("/checkout");
                         }
-                    })
-                    .catch((err) => {
-                        console.log(err)
                     });
             });
         }

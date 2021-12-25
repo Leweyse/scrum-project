@@ -19,45 +19,49 @@ class LoginController extends Controller
         ], $this->errorMessages());
 
         if ($validator->fails()) {
-            return response()->json(['error' => $validator->errors()], 200);
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'error' => $errors = $validator->errors()
+                ]
+            ];
+
+            return response($response, 200);
         }
 
         $user = User::where('email', $request['email'])->first();
 
-        if(!$user) {
-            return response([
-                'status' => 'failed',
-                'message' => 'The email is not registered yet'
-            ], 200);
+        if(!$user || !Hash::check($request['password'], $user->password)) {
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'message' => 'The credentials does not match'
+                ]
+            ];
+            return response($response, 200);
         }
-        if (!Hash::check($request['password'], $user->password)) {
-            return response([
-                'status' => 'failed',
-                'message' => 'The credentials does not match'
-            ], 401);
-        }
-
         $token = $user->createToken(env('APP_KEY'))->plainTextToken;
 
         $response = [
-            'user' => $user,
-            'token' => $token
+            'status' => 'success',
+            'data' => [
+                'user' => $user,
+                'token' => $token
+            ]
         ];
-
         return response($response, 200);
     }
 
     public function logout() {
         auth()->user()->tokens()->delete();
         $response = [
-            'message' => 'logged out'
+            'status' => 'success'
         ];
-
-        return response($response, 201);
+        return response($response, 200);
     }
 
     public function checkToken() {
-        return response('test');
+        return response('Valid token');
     }
 
     private function errorMessages()
