@@ -1,13 +1,20 @@
-import {Link} from "react-router-dom";
-import {useEffect, useRef} from "react";
-import {gsap} from "gsap";
+import { Link } from "react-router-dom";
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 
 const ProductCard = (props) => {
     const productCardRef = useRef(null);
     const cardHoverEffect = useRef(null);
 
     useEffect(() => {
-        cardHoverEffect.current = gsap.to(productCardRef.current, {duration: 0.2, scale: 1.05, backgroundImage: "linear-gradient(#EAD637, #DF2935, #006D77)", paused: true});
+        cardHoverEffect.current = gsap.to(productCardRef.current, 
+            {
+                duration: 0.2, 
+                scale: 1.05, 
+                backgroundImage: "linear-gradient(#EAD637, #DF2935, #006D77)", 
+                paused: true
+            }
+        );
     }, []);
 
     const onMouseEnterHandler = () => {
@@ -19,12 +26,14 @@ const ProductCard = (props) => {
     };
 
     return (
-        <Link 
-            id={"productCard"} 
-            to={"/product"} 
-            ref={productCardRef} 
-            onMouseEnter={onMouseEnterHandler} 
+        <Link
+            id={"productCard"}
+            ref={productCardRef}
+            to={`/products/${props.toId}`}
+
+            onMouseEnter={onMouseEnterHandler}
             onMouseLeave={onMouseLeaveHandler}
+
             onFocus={onMouseEnterHandler}
             onBlur={onMouseLeaveHandler}
         >
