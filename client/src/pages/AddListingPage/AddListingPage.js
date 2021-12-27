@@ -3,21 +3,30 @@ import imageUpload from "../../assets/images/upload_image.jpg"
 
 const AddListingPage = (props) => {
     const [name, setName] = useState("");
-    const [selectedFile, setSelectedFile] = useState(null);
+    // const [selectedFile, setSelectedFile] = useState(null);
     const [price, setPrice] = useState(!null);
     const [description, setDescription] =useState("");
+
+    // const handleFileInput = (e) => {
+    //     // handle validations
+    //     const file = e.target.files[0];
+    //     if (file.size > 1024)
+    //         onFileSelectError({ error: "File size cannot exceed more than 1MB" });
+    //     else onFileSelectSuccess(file);
+    // };
 
     return (
         <main id={"addListingPage"}>
             <section className="title">
-                <h1>Add/Edit Your Item to B-Bay</h1>
+                {/* <h1>Edit (item name)</h1> */}
+                <h1>Add Your Item</h1>
             </section>
             <section className="main-container">
                 <section className="left">
                     <img id={"uploadImage"}
                          className="uploadImage"
                          src={imageUpload}
-                         alt="Upload your image"
+                         alt="Upload"
                     />
                 </section>
                 {/*<section className="right">*/}
@@ -26,7 +35,6 @@ const AddListingPage = (props) => {
                         <label>
                             Upload image:
                         </label>
-
 
                         {/*<input id={"imageLoad"}*/}
                         {/*    type="file"*/}
@@ -67,12 +75,5 @@ const AddListingPage = (props) => {
         </main>
     )
 }
-// const handleFileInput = (e) => {
-//     // handle validations
-//     const file = e.target.files[0];
-//     if (file.size > 1024)
-//         onFileSelectError({ error: "File size cannot exceed more than 1MB" });
-//     else onFileSelectSuccess(file);
-// };
 
 export default AddListingPage;

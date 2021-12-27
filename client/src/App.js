@@ -1,5 +1,13 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { LandingPage, ProductsPage, LoginPage, SignUpPage, SingleProductPage, CheckoutPage } from './pages';
+import { 
+    LandingPage, 
+    ProductsPage, 
+    LoginPage, 
+    SignUpPage, 
+    SingleProductPage, 
+    CheckoutPage,
+    AddListingPage
+} from './pages';
 
 function App() {
     return (
@@ -9,8 +17,10 @@ function App() {
                 <Route path="product" element={ <SingleProductPage/>}/>
                 <Route path="products" element={ <ProductsPage /> } />
                 <Route path="login" element={ <LoginPage /> } />
+                <Route path="sign-up" element={ <SignUpPage /> } />
                 <Route path="register" element={ <SignUpPage /> } />
                 <Route path="checkout" element={ <CheckoutPage /> } />
+                <Route path="add" element={ <AddListingPage /> } />
             </Routes>
         </BrowserRouter>
     );
