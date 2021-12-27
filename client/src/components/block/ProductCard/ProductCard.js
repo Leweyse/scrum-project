@@ -7,7 +7,7 @@ const ProductCard = (props) => {
     const cardHoverEffect = useRef(null);
 
     useEffect(() => {
-        cardHoverEffect.current = gsap.to(productCardRef.current, 
+        cardHoverEffect.current = gsap.to(productCardRef.current,
             {
                 duration: 0.2, 
                 scale: 1.05, 
