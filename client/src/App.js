@@ -18,7 +18,6 @@ function App() {
                 <Route path="products" element={ <ProductsPage /> } />
                 <Route path="login" element={ <LoginPage /> } />
                 <Route path="sign-up" element={ <SignUpPage /> } />
-                <Route path="register" element={ <SignUpPage /> } />
                 <Route path="checkout" element={ <CheckoutPage /> } />
                 <Route path="add" element={ <AddListingPage /> } />
             </Routes>

@@ -9,7 +9,7 @@ const SignUpPage = () => {
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
     // const [userId, setUserId] = useCookie('user','');
-    const [error, setError] = useRef();
+    const [error, setError] = useState({});
 
     const inputFistNameRef = useRef();
     const inputLastnameRef = useRef();
