@@ -25,13 +25,44 @@
             font-weight: bold;
         }
     }
-
+    
     #navRight {
         position: relative;
         display: flex;
         margin-right: 4vw;
         align-items: center;
         gap: 5vw;
+        height: 100%;
+
+        #navDropdown {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+
+            #navDropdownButton {
+                border: none;
+                outline: none;
+                background-color: inherit;
+                border-radius: 50%;
+                width: 2.5rem;
+                height: 2.5rem;
+                transform: scale(1.5);
+            }
+
+            #navDropdownContent {
+                display: none;
+                opacity: 0;
+                background-color: var(--clr-white);
+                border: 1px solid var(--clr-darkgray);
+                border-radius: 11px;
+                min-width: 6vw;
+                min-height: 12vh;
+                transform: translate(0, 90%);
+                position: absolute;
+                z-index: 1;
+            }
+        }
 
         .navRight {
             font-size: 1.25vw;
