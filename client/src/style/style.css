@@ -38,11 +38,19 @@ body,
   position: relative;
   display: grid;
   margin: 0 auto;
-  padding: 2rem;
+  padding: 4rem;
+  text-decoration: none;
   border: 1px solid var(--clr-darkgray);
   border-radius: 5px;
   grid-template-rows: repeat(2, 1fr);
   place-items: center;
+}
+#productCard:hover .description_container > * {
+  color: var(--clr-white);
+  transition: 0.4s;
+}
+#productCard:hover {
+  border: 1px solid var(--clr-white);
 }
 #productCard .image_container {
   width: 100%;
@@ -455,4 +463,6 @@ body,
   #suPage .suContainer {
     width: 70%;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
