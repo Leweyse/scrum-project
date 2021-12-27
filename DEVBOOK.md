@@ -2,41 +2,21 @@
 
 ## Contents
 - [Branch: Name Convention](#branch-name-convention)
+  - [Issues](#issues)
+  - [Client](#client)
+  - [API](#api)
+  - [Implement API for Client](#implement-api-for-client)
+  - [Implement new package](#implement-new-package)
   - [README.md](#readme-file)
   - [DEVBOOK.md](#devbook-file)
-  - [Implement new package](#implement-new-package)
-  - [API](#api)
-  - [Client](#client)
-  - [Implement API for Client](#implement-api-for-client)
 - [Design Patterns](#design-patterns)
 - [CSS: Custom Properties](#css-custom-properties)
   - [Colors](#colors)
   - [Fonts](#fonts)
 
 ## Branch name convention
-### Readme File
-- Update
-    - `update/readme`
-
-### DevBook File
-- Update
-    - `update/devbook`
-
-### Implement new package
-- API
-  - `api/implement/package_name`
-- Client
-  - `client/implement/package_name`
-
-### API
-- Build:
-  - `api/build/controller/name_controller`
-  - `api/build/model/name_model`
-  - `api/build/route/name_route`
-- Restructure:
-  - `api/restructure/controller/name_controller`
-  - `api/restructure/model/name_model`
-  - `api/restructure/route/name_route`
+### Issues
+- `fixed/#number_of_issue`
 
 ### Client
 - Build:
@@ -49,9 +29,31 @@
   - `client/restructure/component/name_component`
   - `client/restructure/page/name_pages`
 
+### API
+- Build:
+  - `api/build/controller/name_controller`
+  - `api/build/model/name_model`
+  - `api/build/route/name_route`
+- Restructure:
+  - `api/restructure/controller/name_controller`
+  - `api/restructure/model/name_model`
+  - `api/restructure/route/name_route`
+
 ### Implement API for Client
 - `implement/component/name_component`
 - `implement/page/name_page`
+
+### Implement new package
+- API
+  - `api/implement/package_name`
+- Client
+  - `client/implement/package_name`
+
+### Readme File
+  - `update/readme`
+
+### DevBook File
+  - `update/devbook`
 
 <!-- Section to list Object structure from API -->
 <!-- ## JSON Patterns -->
