@@ -1,5 +1,4 @@
-import {Navbar, Footer} from "../../components";
-import LoginSection from "../../components/container/LoginSection/LoginSection";
+import { Navbar, Footer, LoginSection } from "../../components";
 
 export default function LoginPage () {
     return (
