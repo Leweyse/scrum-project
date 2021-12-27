@@ -54,7 +54,7 @@ export default function Navbar () {
                     </button>
                     <div id={"navDropdownContent"} ref={navDropdownContent}>
                         <Link className={"navRight"} to={"/login"}>Login</Link>
-                        <Link className={"navRight"} to={"/cart"}>Cart</Link>
+                        <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
                     </div>
                 </div>
                 {/* 

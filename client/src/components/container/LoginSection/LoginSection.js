@@ -4,13 +4,12 @@ import { Link, useNavigate } from "react-router-dom";
 
 import apiClient from "../../../services/apiClient";
 
-
 const LoginSection = () => {
     let navigate = useNavigate();
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
     const [userId, setUserId] = useCookie('user','');
-    const [error,setError] = useState({});
+    const [error, setError] = useState({});
 
     const inputRefEmail = useRef();
     const inputRefPassword = useRef();
@@ -36,8 +35,6 @@ const LoginSection = () => {
                         if(res.data.data.token) {
                             setUserToken(res.data.data.token);
                             setUserId(res.data.data.user.id);
-                            console.log(userId);
-                            navigate("/checkout");
                         }
                     });
             });
@@ -52,8 +49,8 @@ const LoginSection = () => {
                     Authorization: `Bearer ${userToken}`,
                 }
             })
-            .then((res) => {
-                    navigate("/login");
+                .then((res) => {
+                    navigate("/products");
                 })
                 .catch((err) => {
                     if (err.response && err.response.status === 401) {
