@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { 
     LandingPage, 
     ProductsPage, 
@@ -20,6 +20,7 @@ function App() {
                 <Route path="sign-up" element={ <SignUpPage /> } />
                 <Route path="checkout" element={ <CheckoutPage /> } />
                 <Route path="add" element={ <AddListingPage /> } />
+                <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </BrowserRouter>
     );
