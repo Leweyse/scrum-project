@@ -1,17 +1,8 @@
 #productCard {
-    &:hover .description_container > * {
-        color: var(--clr-white);
-        transition: 0.4s;
-    }
-
-    &:hover {
-        border: 1px solid var(--clr-white);
-    }
-
     position: relative;
     display: grid;
     margin: 0 auto;
-    padding: 4rem;
+    padding: 2rem;
     text-decoration: none;
 
     border: 1px solid var(--clr-darkgray);
@@ -19,6 +10,27 @@
 
     grid-template-rows: repeat(2, 1fr);
     place-items: center;
+
+    transition: 0.2s;
+
+    &:hover .description_container > * {
+        color: var(--clr-white);
+    }
+
+    &:hover {
+        border: 1px solid var(--clr-white);
+        transition: 0.2s;
+    }
+
+    &:focus-visible .description_container > * {
+        color: var(--clr-white);
+    }
+
+    &:focus-visible {
+        outline: none;
+        border: 1px solid var(--clr-white);
+        transition: 0.2s;
+    }
 
     .image_container {
         width: 100%;
@@ -32,6 +44,9 @@
         place-items: center;
         gap: 1rem;
 
+        & > * {
+            transition: 0.2s;
+        }
 
         .productTitle {
             font-size: 1.25rem;

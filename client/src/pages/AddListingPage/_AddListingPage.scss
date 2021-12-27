@@ -5,10 +5,14 @@
     align-content: center;
 
     .title {
-        margin: 60px 0 90px 0;
-        width: 100%;
-        font-size: 30px;
-        text-align: center
+        padding: 2rem;
+        padding-bottom: 3rem;
+        
+        & > * {
+            font-size: 3.75rem;
+            color: var(--clr-white);
+            -webkit-text-stroke: 1px var(--clr-darkgray);
+        }
     }
 
     .main-container {
