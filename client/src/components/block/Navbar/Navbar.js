@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import {useRef, useEffect, useState} from "react";
-import {gsap} from "gsap";
+import { useRef, useEffect, useState } from "react";
+import { gsap } from "gsap";
 import UserIconSVG from "../SVGs/UserIconSVG/UserIconSVG";
 
 export default function Navbar () {
