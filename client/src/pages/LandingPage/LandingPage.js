@@ -51,7 +51,7 @@ const LandingPage = () => {
             <Navbar />
             <main id={"landingPage"}>
                 <div id={"landingPageLogoContainer"}>
-                    <p className={"mainLogo"}>B-Bay</p>
+                    <p className={"mainLogo"}>G-Bay</p>
                 </div>
                 <div id={"landingPageCarouselContainer"}>
                     <CarouselSlider />
