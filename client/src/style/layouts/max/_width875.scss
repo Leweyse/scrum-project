@@ -1,0 +1,20 @@
+@media (max-width: 875px) {
+    #stockSection {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #loginPage {
+        #loginContainer {
+            width: 60%;
+            height:70%;
+
+            #loginForm {
+                width: 33%;
+            }
+        }
+    }
+
+    #suPage .suContainer {
+        width: 50%;
+    }
+}

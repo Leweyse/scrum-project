@@ -427,6 +427,11 @@ body,
   border-radius: 11px;
 }
 
+@media (min-width: 1500px) {
+  #stockSection {
+    grid-template-columns: repeat(5, 1fr);
+  }
+}
 @media (max-width: 1200px) {
   #stockSection {
     grid-template-columns: repeat(3, 1fr);
@@ -449,7 +454,6 @@ body,
     width: 60%;
     height: 70%;
   }
-
   #loginPage #loginContainer #loginForm {
     width: 33%;
   }
@@ -467,7 +471,6 @@ body,
     width: 70%;
     height: 70%;
   }
-
   #loginPage #loginContainer #loginForm {
     width: 50%;
   }
