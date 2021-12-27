@@ -4340,6 +4340,11 @@ graceful-fs@^4.1.2, graceful-fs@^4.1.6, graceful-fs@^4.2.0, graceful-fs@^4.2.4, 
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.8.tgz#e412b8d33f5e006593cbd3cee6df9f2cebbe802a"
   integrity sha512-qkIilPUYcNhJpd33n0GBXTB1MMPp14TxEsEs0pTrsSVucApsYzW5V+Q8Qxhik6KU3evy+qkAAowTByymK0avdg==
 
+gsap@^3.9.1:
+  version "3.9.1"
+  resolved "https://registry.yarnpkg.com/gsap/-/gsap-3.9.1.tgz#d4c7443540497afee9ddc0824fd0180224e33360"
+  integrity sha512-JSGVYoC6da4pIjdF/yxFU6Rz8OojOIDkbooveZlfNg0+JIoFoRruyfWAEi6R/gUeNcuOiTqUIb0gi1nCNrHf8w==
+
 gzip-size@^6.0.0:
   version "6.0.0"
   resolved "https://registry.yarnpkg.com/gzip-size/-/gzip-size-6.0.0.tgz#065367fd50c239c0671cbcbad5be3e2eeb10e462"
@@ -7112,11 +7117,6 @@ react-scripts@5.0.0:
   optionalDependencies:
     fsevents "^2.3.2"
 
-react-use-cookie@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.yarnpkg.com/react-use-cookie/-/react-use-cookie-1.2.1.tgz#c14690217bd9f1e17c5cca0921653feb1ef48719"
-  integrity sha512-3StMDEL5TbwfX0KqbgtNcC+FD7hSE2DZpgvxz1jXrwBS2gsnb2W8EgkJoVgu+MxjFMKrW4wDBuGlf/jXLXb2cQ==
-
 react-transition-group@^4.4.1:
   version "4.4.2"
   resolved "https://registry.yarnpkg.com/react-transition-group/-/react-transition-group-4.4.2.tgz#8b59a56f09ced7b55cbd53c36768b922890d5470"
@@ -7126,6 +7126,11 @@ react-transition-group@^4.4.1:
     dom-helpers "^5.0.1"
     loose-envify "^1.4.0"
     prop-types "^15.6.2"
+
+react-use-cookie@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/react-use-cookie/-/react-use-cookie-1.2.1.tgz#c14690217bd9f1e17c5cca0921653feb1ef48719"
+  integrity sha512-3StMDEL5TbwfX0KqbgtNcC+FD7hSE2DZpgvxz1jXrwBS2gsnb2W8EgkJoVgu+MxjFMKrW4wDBuGlf/jXLXb2cQ==
 
 react@^17.0.2:
   version "17.0.2"
