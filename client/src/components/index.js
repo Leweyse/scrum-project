@@ -1,6 +1,6 @@
 import { Navbar, ProductCard, Footer, } from './block';
 
-import { StockSection, SingleProductSection } from './container';
+import { StockSection, SingleProductSection, LoginSection } from './container';
 
 export {
     // BLOCK
@@ -11,4 +11,5 @@ export {
     // CONTAINER
     StockSection,
     SingleProductSection,
+    LoginSection
 }
