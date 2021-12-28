@@ -183,6 +183,11 @@ body,
   shape-rendering: auto;
 }
 
+button {
+  background-color: inherit;
+  border: none;
+}
+
 #stockSection {
   width: 100%;
   display: grid;
