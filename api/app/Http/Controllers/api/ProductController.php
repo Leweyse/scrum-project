@@ -19,9 +19,9 @@ class ProductController extends Controller
         $products = Product::orderBy('id','desc')->get();
         $data = [];
         foreach($products as $product) {
-            $data = $product;
             $user = User::findOrFail($product->users_id);
-            $data['user'] = $user->first_name . ' ' . $user->last_name; 
+            $product['user'] = $user->first_name . ' ' . $user->last_name; 
+            $data[] = $product;
         }
         $response = [
             'status' => 'success',
