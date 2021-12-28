@@ -8,7 +8,8 @@ import {
     CheckoutPage,
     AddListingPage,
     ResetPasswordPage,
-    EditListingPage
+    EditListingPage,
+    CartPage,
 } from './pages';
 
 function App() {
@@ -23,8 +24,11 @@ function App() {
                 <Route path="checkout" element={ <CheckoutPage /> } />
                 <Route path="add" element={ <AddListingPage /> } />
                 <Route path="edit" element={ <EditListingPage /> } />
-                <Route path="*" element={<Navigate to="/" />} />
                 <Route path="reset-password" element={ <ResetPasswordPage /> } />
+                <Route path="cart" element={ <CartPage /> } />
+
+                {/* Default Route */}
+                <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </BrowserRouter>
     );

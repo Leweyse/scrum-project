@@ -30,8 +30,7 @@ const StockSection = () => {
                             // title={product.title}
                             title={'Vinyl Ex:Re'}
                             price={`${product.price / 100} $`}
-                            // seller={product.users_id}
-                            seller={product.users_id}
+                            seller={product.user}
                         />
                     )}
                 )}
