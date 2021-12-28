@@ -1,12 +1,13 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-import { 
-    LandingPage, 
-    ProductsPage, 
-    LoginPage, 
-    SignUpPage, 
-    SingleProductPage, 
+import {
+    LandingPage,
+    ProductsPage,
+    LoginPage,
+    SignUpPage,
+    SingleProductPage,
     CheckoutPage,
-    AddListingPage
+    AddListingPage,
+    ResetPasswordPage
 } from './pages';
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
                 <Route path="checkout" element={ <CheckoutPage /> } />
                 <Route path="add" element={ <AddListingPage /> } />
                 <Route path="*" element={<Navigate to="/" />} />
+                <Route path="reset-password" element={ <ResetPasswordPage /> } />
             </Routes>
         </BrowserRouter>
     );

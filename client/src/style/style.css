@@ -469,6 +469,74 @@ body,
   border-radius: 11px;
 }
 
+#title {
+  margin-top: 5%;
+  position: center;
+  text-align: center;
+  font-size: 3rem;
+  font-weight: 600;
+}
+
+#resetPasswordPage {
+  display: flex;
+  width: 100%;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+#resetPasswordPage #resetPasswordContainer {
+  display: flex;
+  width: 40%;
+  height: 95%;
+  flex-direction: column;
+  place-items: center;
+  overflow-x: hidden;
+}
+#resetPasswordPage #resetPasswordForm {
+  position: absolute;
+  display: flex;
+  height: 42.5%;
+  width: 20%;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#resetPasswordPage label {
+  margin-top: 12%;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+#resetPasswordPage label span {
+  color: var(--clr-red);
+}
+#resetPasswordPage input {
+  height: 5vh;
+  font-size: 1rem;
+}
+#resetPasswordPage #resetPasswordSubmit {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+#resetPasswordPage button {
+  margin-left: 20%;
+  margin-top: 10%;
+  width: 60%;
+  padding: 0.5rem;
+  color: var(--clr-darkgray);
+  font-size: 1.1rem;
+  background: var(--clr-white);
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 8px;
+  outline: none;
+  transition: 0.3s;
+}
+#resetPasswordPage button:hover, #resetPasswordPage button:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-white);
+  cursor: pointer;
+}
+
 @media (min-width: 1500px) {
   #stockSection {
     grid-template-columns: repeat(5, 1fr);
