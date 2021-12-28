@@ -6,7 +6,8 @@ import {
     SignUpPage, 
     SingleProductPage, 
     CheckoutPage,
-    AddListingPage
+    AddListingPage,
+    EditListingPage
 } from './pages';
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
                 <Route path="sign-up" element={ <SignUpPage /> } />
                 <Route path="checkout" element={ <CheckoutPage /> } />
                 <Route path="add" element={ <AddListingPage /> } />
+                <Route path="edit" element={ <EditListingPage /> } />
                 <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </BrowserRouter>
