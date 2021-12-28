@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class Stat extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'products_id',
+        'old_price',
+        'new_price'
+    ];
 }
