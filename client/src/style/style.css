@@ -218,6 +218,12 @@ body,
     transform: rotate(360deg);
   }
 }
+
+button {
+  background-color: inherit;
+  border: none;
+}
+
 #stockSection {
   width: 100%;
   display: grid;
