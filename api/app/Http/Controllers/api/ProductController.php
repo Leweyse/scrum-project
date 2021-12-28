@@ -7,6 +7,7 @@ use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Stat;
+use App\Models\User;
 use Validator;
 use Auth;
 
@@ -16,10 +17,16 @@ class ProductController extends Controller
     public function all()
     {
         $products = Product::orderBy('id','desc')->get();
+        $data = [];
+        foreach($products as $product) {
+            $data = $product;
+            $user = User::findOrFail($product->users_id);
+            $data['user'] = $user->first_name . ' ' . $user->last_name; 
+        }
         $response = [
             'status' => 'success',
             'data' => [
-                'products' => $products
+                'products' => $data
             ]
         ];
         return response($response, 200);
@@ -146,6 +153,8 @@ class ProductController extends Controller
             ];
             return response($response, 200);
         }
+        $user = User::findOrFail($product->users_id);
+        $product['user'] = $user->first_name . ' ' . $user->last_name; 
         $stats = Stat::where('products_id',$id)->get();
         $product['stats'] = $stats;
         $response = [
