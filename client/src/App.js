@@ -8,7 +8,7 @@ import {
     CheckoutPage,
     AddListingPage,
     ResetPasswordPage,
-    EditListingPage
+    EditListingPage, ProfilePage
 } from './pages';
 
 function App() {
@@ -25,6 +25,8 @@ function App() {
                 <Route path="edit" element={ <EditListingPage /> } />
                 <Route path="*" element={<Navigate to="/" />} />
                 <Route path="reset-password" element={ <ResetPasswordPage /> } />
+                <Route path="profile" element={ <ProfilePage /> } />
+
             </Routes>
         </BrowserRouter>
     );
