@@ -9,7 +9,7 @@ const ProductCard = (props) => {
     useEffect(() => {
         cardHoverEffect.current = gsap.to(productCardRef.current,
             {
-                duration: 0.2, 
+                duration: 0.15,
                 scale: 1.05, 
                 backgroundImage: "linear-gradient(#EAD637, #DF2935, #006D77)", 
                 paused: true
