@@ -25,14 +25,23 @@
         }
 
         button {
+            width: 30px;
+
             font-size: 1.2rem;
             font-weight: 600;
+
+            border: 1px solid var(--clr-darkgray);
+            border-radius: 15px;
 
             transition: all 0.2s ease;
 
             &:hover,
             &:focus-visible {
                 color: var(--clr-red);
+
+                border: 1px solid var(--clr-red);
+
+                outline: none;
             }
         }
     }
