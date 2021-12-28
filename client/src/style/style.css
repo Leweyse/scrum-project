@@ -128,90 +128,6 @@ body,
   place-items: center;
 }
 
-#productCard {
-  position: relative;
-  display: grid;
-  margin: 0 auto;
-  padding: 2rem;
-  text-decoration: none;
-  border: 1px solid var(--clr-darkgray);
-  border-radius: 5px;
-  grid-template-rows: repeat(2, 1fr);
-  place-items: center;
-  transition: 0.2s;
-}
-#productCard:hover .description_container > * {
-  color: var(--clr-white);
-}
-#productCard:hover {
-  border: 1px solid var(--clr-white);
-  transition: 0.2s;
-}
-#productCard:focus-visible .description_container > * {
-  color: var(--clr-white);
-}
-#productCard:focus-visible {
-  outline: none;
-  border: 1px solid var(--clr-white);
-  transition: 0.2s;
-}
-#productCard .image_container {
-  width: 100%;
-  height: 100%;
-}
-#productCard .description_container {
-  display: grid;
-  padding: 2rem 2rem 0 2rem;
-  place-items: center;
-  gap: 1rem;
-}
-#productCard .description_container > * {
-  transition: 0.2s;
-}
-#productCard .description_container .productTitle {
-  font-size: 1.25rem;
-}
-#productCard .description_container .productPrice {
-  font-size: 1rem;
-}
-#productCard .description_container .productSeller {
-  font-size: 1rem;
-}
-
-#productRow {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-}
-#productRow > * {
-  margin: 0;
-}
-#productRow .productTitle {
-  width: 100%;
-  padding-left: 2vw;
-}
-#productRow .productQuantity {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  place-items: center;
-  gap: 1rem;
-}
-#productRow .productQuantity p {
-  margin: 0;
-}
-#productRow .productQuantity button {
-  width: 30px;
-  font-size: 1.2rem;
-  font-weight: 600;
-  border: 1px solid var(--clr-darkgray);
-  border-radius: 15px;
-  transition: all 0.2s ease;
-}
-#productRow .productQuantity button:hover, #productRow .productQuantity button:focus-visible {
-  color: var(--clr-red);
-  border: 1px solid var(--clr-red);
-  outline: none;
-
 #carousel {
   position: relative;
   width: 90%;
@@ -304,6 +220,91 @@ body,
   margin: 0 12px;
 }
 
+#productCard {
+  position: relative;
+  display: grid;
+  margin: 0 auto;
+  padding: 2rem;
+  text-decoration: none;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 5px;
+  grid-template-rows: repeat(2, 1fr);
+  place-items: center;
+  transition: 0.2s;
+}
+#productCard:hover .description_container > * {
+  color: var(--clr-white);
+}
+#productCard:hover {
+  border: 1px solid var(--clr-white);
+  transition: 0.2s;
+}
+#productCard:focus-visible .description_container > * {
+  color: var(--clr-white);
+}
+#productCard:focus-visible {
+  outline: none;
+  border: 1px solid var(--clr-white);
+  transition: 0.2s;
+}
+#productCard .image_container {
+  width: 100%;
+  height: 100%;
+}
+#productCard .description_container {
+  display: grid;
+  padding: 2rem 2rem 0 2rem;
+  place-items: center;
+  gap: 1rem;
+}
+#productCard .description_container > * {
+  transition: 0.2s;
+}
+#productCard .description_container .productTitle {
+  font-size: 1.25rem;
+}
+#productCard .description_container .productPrice {
+  font-size: 1rem;
+}
+#productCard .description_container .productSeller {
+  font-size: 1rem;
+}
+
+#productRow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+}
+#productRow > * {
+  margin: 0;
+}
+#productRow .productTitle {
+  width: 100%;
+  padding-left: 2vw;
+}
+#productRow .productQuantity {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  place-items: center;
+  gap: 1rem;
+}
+#productRow .productQuantity p {
+  margin: 0;
+}
+#productRow .productQuantity button {
+  width: 30px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 15px;
+  transition: all 0.2s ease;
+}
+#productRow .productQuantity button:hover, #productRow .productQuantity button:focus-visible {
+  color: var(--clr-red);
+  border: 1px solid var(--clr-red);
+  outline: none;
+}
+
 button {
   background-color: inherit;
   border: none;
@@ -329,6 +330,15 @@ button {
   border-right: 3px solid transparent;
   -webkit-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes rotation {
@@ -406,6 +416,10 @@ button {
   font-size: 6rem;
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
 }
 #cartSection .totalSection footer div {
   grid-column: 4/5;
@@ -813,6 +827,4 @@ button {
   #suPage .suContainer {
     width: 70%;
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
