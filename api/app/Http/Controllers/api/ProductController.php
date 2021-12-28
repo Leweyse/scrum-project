@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
-//use Illuminate\Support\Collection;
+use Illuminate\Support\Collection;
 use Illuminate\Http\Request;
 use App\Models\Product;
+use App\Models\Stat;
 use Validator;
+use Auth;
 
 class ProductController extends Controller
 {
@@ -76,6 +78,15 @@ class ProductController extends Controller
                 'message' => 'This product doesn\'t exixt in database'
             ], 401);
         }
+        if(Auth::id() != $product->users_id) {
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'message' => 'You don\'t have permission for this'
+                ]
+            ];
+            return response($response, 200);
+        }
         $validator = Validator::make($request->all(), [
             'categories_id' => 'required|Numeric',
             'title' => 'required',
@@ -104,6 +115,13 @@ class ProductController extends Controller
             ];
             return response($response, 401);
         }
+        if($product->price != $request->price) {
+            Stat::create([
+                'products_id' => $id,
+                'old_price' => $product->price,
+                'new_price' => $request->price,
+            ]);
+        }
         $response = [
             'status' => 'success'
         ];
@@ -128,6 +146,8 @@ class ProductController extends Controller
             ];
             return response($response, 200);
         }
+        $stats = Stat::where('products_id',$id)->get();
+        $product['stats'] = $stats;
         $response = [
             'status' => 'success',
             'data' => [
@@ -144,9 +164,32 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function delete($id)
     {
-
+        $product = Product::where('id', $id)->first();
+        if(!$product) {
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'message' => 'this is product is either already deleted or never exist in our database'
+                ]
+            ];
+            return response($response, 200);
+        }
+        if(Auth::id() != $product->users_id) {
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'message' => 'You don\'t have permission for this'
+                ]
+            ];
+            return response($response, 200);
+        }
+        Product::destroy($id);
+        $response = [
+            'status' => 'success'
+        ];
+        return response($response, 200);
     }
 
     private function errorMessages()

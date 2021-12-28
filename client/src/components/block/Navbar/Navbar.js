@@ -1,9 +1,15 @@
-import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import {getCookie} from "react-use-cookie";
 import { gsap } from "gsap";
-import UserIconSVG from "../SVGs/UserIconSVG/UserIconSVG";
+
+import apiClient from "../../../services/apiClient";
+
+import { UserIconSVG } from "../SVGs";
+import LogoutButton from "../LogoutButton/LogoutButton";
 
 export default function Navbar () {
+    const [tkn, setTkn] = useState(getCookie('token'));
     const navDropdownButton = useRef(null);
     const userIconSvg = useRef(null);
     const navDropdownContent = useRef(null);
@@ -53,8 +59,18 @@ export default function Navbar () {
                         <UserIconSVG fill={"#474044"} ref={userIconSvg}/>
                     </button>
                     <div id={"navDropdownContent"} ref={navDropdownContent}>
-                        <Link className={"navRight"} to={"/login"}>Login</Link>
-                        <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
+                        {tkn === "0" ? (
+                            <>
+                                <Link className={"navRight"} to={"/login"}>Login</Link>
+                                <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
+                            </>) : (
+                            <>
+                                <Link className={"navRight"} to={"/profile"}>Profile</Link>
+                                <Link className={"navRight"} to={"/cart"}>Cart</Link>
+                                <LogoutButton className={"navRight"}/>
+                                {/* implement middleware for verifying tokens and redefine this conditional */}
+                            </>
+                        )}
                     </div>
                 </div>
                 {/* 

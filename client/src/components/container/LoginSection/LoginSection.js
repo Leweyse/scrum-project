@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from 'react';
 import useCookie, { getCookie } from 'react-use-cookie';
 import { Link, useNavigate } from "react-router-dom";
+import { Spinner } from '../../block';
 
 import apiClient from "../../../services/apiClient";
 
@@ -10,6 +11,7 @@ const LoginSection = () => {
     const [userToken, setUserToken] = useCookie('token','0');
     const [userId, setUserId] = useCookie('user','');
     const [error, setError] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     const inputRefEmail = useRef();
     const inputRefPassword = useRef();
@@ -35,6 +37,7 @@ const LoginSection = () => {
                         if(res.data.data.token) {
                             setUserToken(res.data.data.token);
                             setUserId(res.data.data.user.id);
+                            navigate("/products");
                         }
                     });
             });
@@ -57,13 +60,55 @@ const LoginSection = () => {
                         setTkn('0');
                         setUserToken('0');
                         setUserId('');
+                        setIsLoading(false);
                     }
                 });
         }
+        else {
+            setIsLoading(false);
+        }
     });
 
+    function LoadView() {
+        if(isLoading) {
+          return <>Loading</>;
+        }
+        return <div id={"loginPage"}>
+        <div id={"loginContainer"}>
+            <p id={"loginLogo"}>G-bay</p>
+            <p id={"loginLogoCropped"}>G-bay</p>
+            <form id={"loginForm"} onSubmit={handleSubmit}>
+                <input
+                    ref={inputRefEmail}
+                    id={"loginEmail"}
+                    type={"text"}
+                    placeholder={"E-mail address"}
+                />
+                {error.email ? error.email : null}
+                <input
+                    id={"loginPassword"}
+                    ref={inputRefPassword}
+                    type={"password"}
+                    placeholder={"Password"}
+                />
+                {error.password ? error.password : null}
+                <div id={"loginFormButtonContainer"}>
+                    <button type={'submit'} id={"loginSubmit"}>Submit</button>
+                </div>
+            </form>
+            <div id={"loginLinks"}>
+                <Link id={"signUp"} to={'/sign-up'}>Sign up</Link>
+                <Link id={"passwordReset"} to={'/reset-password'}>Forgot password?</Link>
+            </div>
+        </div>
+    </div>
+        
+      }
+     
     return (
-        <div id={"loginPage"}>
+        <>
+        { !isLoading ? 
+            <div id={"loginPage"}>
             <div id={"loginContainer"}>
                 <p id={"loginLogo"}>G-bay</p>
                 <p id={"loginLogoCropped"}>G-bay</p>
@@ -92,6 +137,8 @@ const LoginSection = () => {
                 </div>
             </div>
         </div>
+        : <Spinner /> }
+    </>
     )
 }
 

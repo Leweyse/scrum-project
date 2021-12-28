@@ -4,13 +4,16 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+
 
 class Product extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'user_id',
+        'user_ip',
+        'users_id',
         'categories_id',
         'sku',
         'title',
@@ -20,4 +23,16 @@ class Product extends Model
         'stock_unit',
         'sold_unit'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($Product)
+        {
+            $Product->user_ip =  \Request::ip();
+            $Product->users_id =  \Auth::id();
+            $Product->sku =  Str::upper(Str::random(8));
+        });
+    }
 }
