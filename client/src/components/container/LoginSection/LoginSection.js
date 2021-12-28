@@ -18,7 +18,6 @@ const LoginSection = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        console.log(userId);
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
                 apiClient.post( '/login', {
@@ -68,42 +67,6 @@ const LoginSection = () => {
             setIsLoading(false);
         }
     });
-
-    function LoadView() {
-        if(isLoading) {
-          return <>Loading</>;
-        }
-        return <div id={"loginPage"}>
-        <div id={"loginContainer"}>
-            <p id={"loginLogo"}>G-bay</p>
-            <p id={"loginLogoCropped"}>G-bay</p>
-            <form id={"loginForm"} onSubmit={handleSubmit}>
-                <input
-                    ref={inputRefEmail}
-                    id={"loginEmail"}
-                    type={"text"}
-                    placeholder={"E-mail address"}
-                />
-                {error.email ? error.email : null}
-                <input
-                    id={"loginPassword"}
-                    ref={inputRefPassword}
-                    type={"password"}
-                    placeholder={"Password"}
-                />
-                {error.password ? error.password : null}
-                <div id={"loginFormButtonContainer"}>
-                    <button type={'submit'} id={"loginSubmit"}>Submit</button>
-                </div>
-            </form>
-            <div id={"loginLinks"}>
-                <Link id={"signUp"} to={'/sign-up'}>Sign up</Link>
-                <Link id={"passwordReset"} to={'/reset-password'}>Forgot password?</Link>
-            </div>
-        </div>
-    </div>
-        
-      }
      
     return (
         <>
