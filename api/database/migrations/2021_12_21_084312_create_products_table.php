@@ -21,9 +21,9 @@ class CreateProductsTable extends Migration
             $table->string('sku');
             $table->string('title');
             $table->text('description');
-            $table->string('image');
+            $table->string('image')->default('default.jpg');
             $table->integer('price');
-            $table->integer('stock_unit');
+            $table->integer('stock_unit')->nullable();
             $table->integer('sold_unit')->default(0);
             $table->timestamps();
         });
