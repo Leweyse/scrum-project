@@ -1,4 +1,7 @@
-@forward './ProductCard/ProductCard';
+@forward "./ProductCard/ProductCard";
 @forward "./Navbar/Navbar";
 @forward "./Footer/Footer";
-@forward "./SVGs/UserIconSVG/UserIconSvg";
+
+@forward "./SVGs";
+
+@forward "./Loading";

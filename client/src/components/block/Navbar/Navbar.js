@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap";
-import UserIconSVG from "../SVGs/UserIconSVG/UserIconSVG";
+import { UserIconSVG } from "../SVGs";
 
 export default function Navbar () {
     const navDropdownButton = useRef(null);
