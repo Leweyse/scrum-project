@@ -83,14 +83,12 @@ class ProductController extends Controller
             return response([
                 'status' => 'failed',
                 'message' => 'This product doesn\'t exixt in database'
-            ], 401);
+            ], 200);
         }
         if(Auth::id() != $product->users_id) {
             $response = [
                 'status' => 'fail',
-                'data' => [
-                    'message' => 'You don\'t have permission for this'
-                ]
+                'message' => 'You don\'t have permission for this'
             ];
             return response($response, 200);
         }
@@ -120,7 +118,7 @@ class ProductController extends Controller
                     'message' => 'Unknown error'
                 ]
             ];
-            return response($response, 401);
+            return response($response, 201);
         }
         if($product->price != $request->price) {
             Stat::create([
