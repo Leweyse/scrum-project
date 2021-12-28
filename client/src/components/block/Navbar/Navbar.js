@@ -1,9 +1,11 @@
-import { Link } from "react-router-dom";
 import { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap";
-import UserIconSVG from "../SVGs/UserIconSVG/UserIconSVG";
-import apiClient from "../../../services/apiClient";
+import { Link } from "react-router-dom";
 import {getCookie} from "react-use-cookie";
+import { gsap } from "gsap";
+
+import apiClient from "../../../services/apiClient";
+
+import { UserIconSVG } from "../SVGs";
 import LogoutButton from "../LogoutButton/LogoutButton";
 
 export default function Navbar () {
