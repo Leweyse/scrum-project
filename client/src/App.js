@@ -10,6 +10,7 @@ import {
     ResetPasswordPage,
     EditListingPage,
     CartPage,
+    ProfilePage,
 } from './pages';
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
                 <Route path="add" element={ <AddListingPage /> } />
                 <Route path="edit" element={ <EditListingPage /> } />
                 <Route path="reset-password" element={ <ResetPasswordPage /> } />
+                <Route path="profile" element={ <ProfilePage /> } />
                 <Route path="cart" element={ <CartPage /> } />
 
                 {/* Default Route */}

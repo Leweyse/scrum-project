@@ -8,6 +8,7 @@ import AddListingPage from "./AddListingPage/AddListingPage";
 import ResetPasswordPage from "./ResetPasswordPage/ResetPasswordPage";
 import EditListingPage from "./EditListingPage/EditListingPage";
 import CartPage from "./CartPage/CartPage";
+import ProfilePage from "./ProfilePage/ProfilePage";
 
 export {
     LoginPage,
@@ -19,5 +20,6 @@ export {
     AddListingPage,
     ResetPasswordPage,
     EditListingPage,
-    CartPage
+    CartPage,
+    ProfilePage
 }
