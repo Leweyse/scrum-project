@@ -65,8 +65,8 @@ export default function Navbar () {
                                 <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
                             </>) : (
                             <>
-                                <Link className={"navRight"} to={"/login"}>Profile</Link>
-                                <Link className={"navRight"} to={"/sign-up"}>Cart</Link>
+                                <Link className={"navRight"} to={"/profile"}>Profile</Link>
+                                <Link className={"navRight"} to={"/cart"}>Cart</Link>
                                 <LogoutButton className={"navRight"}/>
                                 {/* implement middleware for verifying tokens and redefine this conditional */}
                             </>

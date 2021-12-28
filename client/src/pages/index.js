@@ -5,6 +5,7 @@ import LandingPage from './LandingPage/LandingPage';
 import ProductsPage from './ProductsPage/ProductsPage';
 import SingleProductPage from "./SingleProductPage/SingleProductPage";
 import AddListingPage from "./AddListingPage/AddListingPage";
+import EditListingPage from "./EditListingPage/EditListingPage";
 
 export {
     LoginPage,
@@ -13,5 +14,6 @@ export {
     LandingPage,
     ProductsPage,
     SingleProductPage,
-    AddListingPage
+    AddListingPage,
+    EditListingPage
 }
