@@ -3,8 +3,8 @@ import Footer from './Footer/Footer';
 import ProductCard from './ProductCard/ProductCard';
 import ProductRow from './ProductRow/ProductRow';
 import LogoutButton from "./LogoutButton/LogoutButton";
-
-import { UserIconSVG } from './SVGs';
+import Carousel from "./Carousel/Carousel";
+import { UserIconSVG, ButtonLeftSVG, ButtonRightSVG } from './SVGs';
 import { Spinner } from './Loading';
 
 export {
@@ -13,8 +13,11 @@ export {
     ProductRow,
     ProductCard,
     LogoutButton,
+    Carousel,
   
     UserIconSVG,
+    ButtonLeftSVG,
+    ButtonRightSVG,
   
     Spinner,
 }

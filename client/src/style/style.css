@@ -211,6 +211,97 @@ body,
   color: var(--clr-red);
   border: 1px solid var(--clr-red);
   outline: none;
+
+#carousel {
+  position: relative;
+  width: 90%;
+  height: 40vh;
+}
+#carousel .carouselButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  cursor: pointer;
+  z-index: 5;
+}
+#carousel .carouselButton .carouselButtonSvg {
+  transform: scale(1.5);
+}
+#carousel .carouselButtonLeft {
+  left: -3%;
+}
+#carousel .carouselButtonRight {
+  right: -3%;
+}
+#carousel #carouselTrackContainer {
+  height: 100%;
+  position: relative;
+}
+#carousel #carouselTrackContainer .carouselTrack {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+#carousel #carouselTrackContainer .carouselTrack .slideActive {
+  opacity: 1;
+  transition-duration: 0.75s;
+  transform: scale(1.02);
+}
+#carousel #carouselTrackContainer .carouselTrack .slide {
+  opacity: 0;
+  transition-duration: 0.75s;
+}
+#carousel #carouselTrackContainer .carouselTrack .carouselSlide {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+#carousel #carouselTrackContainer .carouselTrack .carouselSlide .carouselSlideElement {
+  width: 30%;
+  height: 80%;
+  background-color: #fffcff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 11px;
+  border: 1px solid var(--clr-darkgray);
+  text-align: center;
+}
+#carousel #carouselTrackContainer .carouselTrack .carouselSlide .carouselSlideElement .carouselElementInnerText {
+  position: relative;
+  font-size: 14.5vw;
+  overflow-x: hidden;
+  z-index: 0;
+}
+#carousel #carouselTrackContainer .carouselTrack .carouselSlide .carouselSlideElement .carouselBuySlideElement {
+  color: var(--clr-red);
+  -webkit-text-stroke: 2px var(--clr-yellow);
+}
+#carousel #carouselTrackContainer .carouselTrack .carouselSlide .carouselSlideElement .carouselSellSlideElement {
+  color: var(--clr-yellow);
+  -webkit-text-stroke: 2px var(--clr-cyan);
+}
+#carousel #carouselTrackContainer .carouselTrack .carouselSlide .carouselSlideElement .carouselMiscSlideElement {
+  color: var(--clr-cyan);
+  -webkit-text-stroke: 2px var(--clr-darkgray);
+}
+#carousel .carouselNav {
+  display: flex;
+  justify-content: center;
+  padding: 0.05% 0;
+}
+#carousel .carouselNav .carouselIndicator {
+  border: 0;
+  border-radius: 50%;
+  width: 0.75vw;
+  height: 0.75vw;
+  background: rgba(0, 0, 0, 0.3);
+  margin: 0 12px;
 }
 
 button {
@@ -238,15 +329,6 @@ button {
   border-right: 3px solid transparent;
   -webkit-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
-}
-
-@-webkit-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes rotation {
@@ -571,17 +653,8 @@ button {
 }
 #landingPage .mainLogo {
   top: 0;
-  font-family: var(--ff-montserrat);
   font-size: 7vw;
   z-index: 2;
-}
-#landingPage #landingPageCarouselContainer {
-  width: 100%;
-  height: 44vh;
-}
-#landingPage .carouselCaption h3,
-#landingPage .carouselCaption p {
-  color: var(--clr-white);
 }
 
 #checkoutPage {
@@ -740,4 +813,6 @@ button {
   #suPage .suContainer {
     width: 70%;
   }
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
