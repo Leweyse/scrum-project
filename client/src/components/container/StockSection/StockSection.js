@@ -29,7 +29,7 @@ const StockSection = () => {
                             src={'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg'}
                             // title={product.title}
                             title={'Vinyl Ex:Re'}
-                            price={`${product.price / 100}`}
+                            price={`${product.price / 100} $`}
                             // seller={product.users_id}
                             seller={product.users_id}
                         />
