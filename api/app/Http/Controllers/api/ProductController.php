@@ -50,7 +50,8 @@ class ProductController extends Controller
         $response = [
             'status' => 'success',
             'data' => [
-                'products' => $filtered_products
+                'products' => $data,
+                'totalLength' => count($products)
             ]
         ];
         return response($response, 200);
