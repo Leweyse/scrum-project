@@ -8,19 +8,27 @@ const StockSection = () => {
     const [data, setData] = useState(null);
 
     useEffect(() => {
+        // Cleanup issue in useEffect: https://dev.to/pallymore/clean-up-async-requests-in-useeffect-hooks-90h
+        const abortController = new AbortController();
+
         const getProducts = async () => {
             const res = await apiClient.get('products');
             setData(res.data.data);
         }
 
         getProducts();
+
+        // Cleanup issue in useEffect
+        return () => {
+            abortController.abort();
+        }
     }, []);
 
     return (
         <>
             { data !== null ? 
                 <main id={'stockSection'}>
-                {data.products.map((product, idx) => {
+                { data.products.map((product, idx) => {
                     return (
                         <ProductCard
                             key={idx}
