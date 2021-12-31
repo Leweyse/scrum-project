@@ -37,6 +37,16 @@ class ProductController extends Controller
         $products = $products->reverse();
         $skip = ($page - 1 ) * $take;
         $filtered_products =  $products->skip($skip)->take($take);
+
+        $data = [];
+
+        foreach ($filtered_products as $key => $product) {
+            $user = User::findOrFail($product->users_id);
+            $product['user'] = $user->first_name . ' ' . $user->last_name;
+
+            $data[] = $product;
+        }
+
         $response = [
             'status' => 'success',
             'data' => [
