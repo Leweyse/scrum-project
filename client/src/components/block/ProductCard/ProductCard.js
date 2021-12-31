@@ -37,19 +37,11 @@ const ProductCard = (props) => {
             onFocus={onMouseEnterHandler}
             onBlur={onMouseLeaveHandler}
         >
-            <div className={"image_container"}
-                 style={{
-                     background: `
-                        url(${props.src}) 
-                        50% 50% / 
-                        cover no-repeat
-                    `
-                 }}
-            ></div>
+            <img className={"image_container"} src={props.src} alt={"Product"} />
             <section className={"description_container"}>
-                <p className="productTitle">{props.title}</p>
-                <p className="productPrice">{props.price}</p>
-                <p className="productSeller">{props.seller}</p>
+                <div className={"productTitle"}>{props.title}</div>
+                <div className={"productPrice"}>{props.price}</div>
+                <div className={"productSeller"}>{props.seller}</div>
             </section>
         </Link>
     )
