@@ -7,6 +7,22 @@ const ProductCard = (props) => {
     const cardHoverEffect = useRef(null);
 
     useEffect(() => {
+        productCardRef.current.addEventListener('mouseenter', () => {
+            cardHoverEffect.current.play();
+        })
+
+        productCardRef.current.addEventListener('mouseleave', () => {
+            cardHoverEffect.current.reverse();
+        })
+
+        productCardRef.current.addEventListener('focus', () => {
+            cardHoverEffect.current.play();
+        })
+        
+        productCardRef.current.addEventListener('blur', () => {
+            cardHoverEffect.current.reverse();
+        })
+
         cardHoverEffect.current = gsap.to(productCardRef.current,
             {
                 duration: 0.2, 
@@ -17,25 +33,11 @@ const ProductCard = (props) => {
         );
     }, []);
 
-    const onMouseEnterHandler = () => {
-        cardHoverEffect.current.play();
-    };
-
-    const onMouseLeaveHandler = () => {
-        cardHoverEffect.current.reverse();
-    };
-
     return (
         <Link
             id={"productCard"}
             ref={productCardRef}
             to={`/products/${props.toId}`}
-
-            onMouseEnter={onMouseEnterHandler}
-            onMouseLeave={onMouseLeaveHandler}
-
-            onFocus={onMouseEnterHandler}
-            onBlur={onMouseLeaveHandler}
         >
             <img className={"image_container"} src={props.src} alt={"Product"} />
             <section className={"description_container"}>
