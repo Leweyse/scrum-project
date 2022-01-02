@@ -1,16 +1,18 @@
 import LandingSection from './LandingSection/LandingSection';
-import StockSection from './StockSection/StockSection';
-import SingleProductSection from "./SingleProductSection/SingleProductSection";
 import LoginSection from "./LoginSection/LoginSection";
 import SignUpSection from "./SignUpSection/SignUpSection";
+import ProfileSection from "./ProfileSection/ProfileSection";
+import StockSection from './StockSection/StockSection';
 import ListingSection from "./ListingSection/ListingSection";
+import SingleProductSection from "./SingleProductSection/SingleProductSection";
 import CartSection from "./CartSection/CartSection";
 
 export {
     LandingSection,
-    StockSection,
     LoginSection,
     SignUpSection,
+    ProfileSection,
+    StockSection,
     SingleProductSection,
     ListingSection,
     CartSection,

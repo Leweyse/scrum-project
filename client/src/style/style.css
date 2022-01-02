@@ -464,172 +464,6 @@ button:focus-visible {
   z-index: 2;
 }
 
-#stockSection {
-  display: grid;
-  width: 100%;
-  place-items: center;
-  gap: 1rem;
-}
-#stockSection .stockContainer {
-  width: 100%;
-  display: grid;
-  padding: 2vh 4rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 4rem;
-}
-#stockSection .paginationContainer {
-  padding: 1rem;
-}
-#stockSection .paginationContainer button {
-  margin-inline: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-#stockSection .paginationContainer button:hover, #stockSection .paginationContainer button:focus-visible {
-  transform: scale(1.25);
-}
-#stockSection .paginationContainer .currentPage {
-  position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  color: var(--clr-red);
-}
-#stockSection .paginationContainer .currentPage::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--clr-red);
-}
-
-#cartSection {
-  display: flex;
-  width: 70%;
-  flex-direction: column;
-  gap: 1.25rem;
-}
-#cartSection .titleSection h1 {
-  font-size: 4rem;
-}
-#cartSection .totalSection {
-  display: flex;
-  width: 100%;
-  border: 1px solid var(--clr-darkgray);
-  border-radius: 36px;
-  flex-direction: column;
-}
-#cartSection .totalSection header,
-#cartSection .totalSection section,
-#cartSection .totalSection footer {
-  width: 100%;
-}
-#cartSection .totalSection header > *,
-#cartSection .totalSection section > *,
-#cartSection .totalSection footer > * {
-  margin: 0;
-}
-#cartSection .totalSection header {
-  display: grid;
-  padding: 1.5rem;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-  border-bottom: 1px solid var(--clr-darkgray);
-}
-#cartSection .totalSection header p {
-  font-weight: 600;
-  font-size: 1.2rem;
-}
-#cartSection .totalSection header .itemsColumn {
-  width: 100%;
-  padding-left: 2vw;
-}
-#cartSection .totalSection section {
-  display: grid;
-  padding: 1.5rem;
-  gap: 1.25rem;
-}
-#cartSection .totalSection footer {
-  position: relative;
-  display: grid;
-  padding: 1.5rem;
-  grid-template-columns: repeat(4, 1fr);
-  place-items: center;
-}
-#cartSection .totalSection footer #bgText {
-  grid-column: 1/3;
-  position: absolute;
-  left: 1vw;
-  font-size: 6rem;
-  color: var(--clr-white);
-  -webkit-text-stroke: 1px var(--clr-darkgray);
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
-#cartSection .totalSection footer div {
-  grid-column: 4/5;
-  display: grid;
-  width: 60%;
-  gap: 1.25rem;
-}
-#cartSection .totalSection footer div button {
-  padding: 0.5rem;
-  text-align: center;
-  border: 1px solid var(--clr-darkgray);
-  border-radius: 15px;
-  transition: all 0.2s ease;
-}
-#cartSection .totalSection footer div button:hover, #cartSection .totalSection footer div button:focus-visible {
-  color: var(--clr-white);
-  background: var(--clr-cyan);
-  border: 1px solid var(--clr-white);
-  outline: none;
-}
-
-#productPage {
-  display: grid;
-  width: 100%;
-  padding: 1rem;
-  align-items: center;
-  grid-template-columns: repeat(2, 1fr);
-}
-#productPage .productPageLeft {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#productPage .productPageLeft .productImage {
-  padding: 5%;
-  width: 60%;
-}
-#productPage .productPageRight {
-  padding: 0 5%;
-  font-size: 1.25vw;
-}
-#productPage .productPageRight .productRightElements {
-  padding-bottom: 2vh;
-}
-#productPage .productPageRight .productPageBold {
-  font-weight: bold;
-}
-#productPage .productPageRight .productPriceStatistics {
-  display: grid;
-  width: 50%;
-  height: 8rem;
-  place-items: center;
-  border: 1px solid var(--clr-darkgray);
-}
-#productPage .productPageRight .productPageAddToCart {
-  width: 25%;
-  margin-left: 65%;
-  font-size: 2vh;
-  background: var(--clr-white);
-}
-
 #loginPage {
   display: flex;
   width: 100%;
@@ -770,6 +604,183 @@ button:focus-visible {
   padding: 0.25rem;
 }
 
+#profileSection {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: 0.2fr 1fr;
+  place-items: center;
+  align-items: baseline;
+  gap: 1rem;
+}
+#profileSection #profileSectionTitle {
+  grid-column: 1/3;
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+#profileSection #infoFieldsLeft {
+  display: grid;
+  width: 50%;
+  gap: 1.5rem;
+}
+#profileSection #infoFieldsLeft .infoFields {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  border-bottom: 1px solid var(--clr-darkgray);
+}
+#profileSection #infoFieldsLeft .infoFields span {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+#profileSection #infoFieldsLeft .infoFields .infoText {
+  font-size: 1.1rem;
+}
+#profileSection #infoFieldsRight {
+  display: grid;
+  width: 50%;
+  gap: 1.5rem;
+}
+#profileSection #infoFieldsRight .infoFields {
+  display: grid;
+  width: 100%;
+  gap: 1rem;
+  border-bottom: 1px solid var(--clr-darkgray);
+}
+#profileSection #infoFieldsRight .infoFields .link {
+  text-decoration: none;
+}
+#profileSection #infoFieldsRight .infoFields .infoText {
+  font-size: 1.1rem;
+}
+
+#stockSection {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  gap: 1rem;
+}
+#stockSection .stockContainer {
+  width: 100%;
+  display: grid;
+  padding: 2vh 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 4rem;
+}
+#stockSection .paginationContainer {
+  padding: 1rem;
+}
+#stockSection .paginationContainer button {
+  margin-inline: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#stockSection .paginationContainer button:hover, #stockSection .paginationContainer button:focus-visible {
+  transform: scale(1.25);
+}
+#stockSection .paginationContainer .currentPage {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: var(--clr-red);
+}
+#stockSection .paginationContainer .currentPage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-red);
+}
+
+#cartSection {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+#cartSection .titleSection h1 {
+  font-size: 4rem;
+}
+#cartSection .totalSection {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 36px;
+  flex-direction: column;
+}
+#cartSection .totalSection header,
+#cartSection .totalSection section,
+#cartSection .totalSection footer {
+  width: 100%;
+}
+#cartSection .totalSection header > *,
+#cartSection .totalSection section > *,
+#cartSection .totalSection footer > * {
+  margin: 0;
+}
+#cartSection .totalSection header {
+  display: grid;
+  padding: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+  border-bottom: 1px solid var(--clr-darkgray);
+}
+#cartSection .totalSection header p {
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+#cartSection .totalSection header .itemsColumn {
+  width: 100%;
+  padding-left: 2vw;
+}
+#cartSection .totalSection section {
+  display: grid;
+  padding: 1.5rem;
+  gap: 1.25rem;
+}
+#cartSection .totalSection footer {
+  position: relative;
+  display: grid;
+  padding: 1.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  place-items: center;
+}
+#cartSection .totalSection footer #bgText {
+  grid-column: 1/3;
+  position: absolute;
+  left: 1vw;
+  font-size: 6rem;
+  color: var(--clr-white);
+  -webkit-text-stroke: 1px var(--clr-darkgray);
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+#cartSection .totalSection footer div {
+  grid-column: 4/5;
+  display: grid;
+  width: 60%;
+  gap: 1.25rem;
+}
+#cartSection .totalSection footer div button {
+  padding: 0.5rem;
+  text-align: center;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 15px;
+  transition: all 0.2s ease;
+}
+#cartSection .totalSection footer div button:hover, #cartSection .totalSection footer div button:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border: 1px solid var(--clr-white);
+  outline: none;
+}
+
 #listingPage {
   display: flex;
   flex-direction: column;
@@ -815,6 +826,46 @@ button:focus-visible {
   margin: 30px 0;
 }
 
+#productPage {
+  display: grid;
+  width: 100%;
+  padding: 1rem;
+  align-items: center;
+  grid-template-columns: repeat(2, 1fr);
+}
+#productPage .productPageLeft {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#productPage .productPageLeft .productImage {
+  padding: 5%;
+  width: 60%;
+}
+#productPage .productPageRight {
+  padding: 0 5%;
+  font-size: 1.25vw;
+}
+#productPage .productPageRight .productRightElements {
+  padding-bottom: 2vh;
+}
+#productPage .productPageRight .productPageBold {
+  font-weight: bold;
+}
+#productPage .productPageRight .productPriceStatistics {
+  display: grid;
+  width: 50%;
+  height: 8rem;
+  place-items: center;
+  border: 1px solid var(--clr-darkgray);
+}
+#productPage .productPageRight .productPageAddToCart {
+  width: 25%;
+  margin-left: 65%;
+  font-size: 2vh;
+  background: var(--clr-white);
+}
+
 #checkoutPage {
   width: 100%;
   height: 100%;
@@ -850,57 +901,6 @@ button:focus-visible {
 #checkoutPage #checkoutForm .checkoutFormRow button {
   width: 25%;
   border-radius: 11px;
-}
-
-#profilePage {
-  display: grid;
-  width: 100%;
-  height: 100%;
-  grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.2fr 1fr;
-  place-items: center;
-  align-items: baseline;
-  gap: 1rem;
-}
-#profilePage #profilePageTitle {
-  grid-column: 1/3;
-  font-size: 2.5rem;
-  font-weight: 600;
-}
-#profilePage #infoFieldsLeft {
-  display: grid;
-  width: 50%;
-  gap: 1.5rem;
-}
-#profilePage #infoFieldsLeft .infoFields {
-  display: grid;
-  width: 100%;
-  gap: 1rem;
-  border-bottom: 1px solid var(--clr-darkgray);
-}
-#profilePage #infoFieldsLeft .infoFields span {
-  font-size: 1.1rem;
-  font-weight: 600;
-}
-#profilePage #infoFieldsLeft .infoFields .infoText {
-  font-size: 1.1rem;
-}
-#profilePage #infoFieldsRight {
-  display: grid;
-  width: 50%;
-  gap: 1.5rem;
-}
-#profilePage #infoFieldsRight .infoFields {
-  display: grid;
-  width: 100%;
-  gap: 1rem;
-  border-bottom: 1px solid var(--clr-darkgray);
-}
-#profilePage #infoFieldsRight .infoFields .link {
-  text-decoration: none;
-}
-#profilePage #infoFieldsRight .infoFields .infoText {
-  font-size: 1.1rem;
 }
 
 #resetPasswordPage {
