@@ -2,11 +2,12 @@ import { Navbar, ProductCard, Footer, LogoutButton, Carousel } from './block';
 
 import {
     LandingSection,
-    StockSection, 
-    SingleProductSection, 
     LoginSection,
-    SignUpSection, 
-    ListingSection, 
+    SignUpSection,
+    ProfileSection,
+    StockSection,
+    SingleProductSection,
+    ListingSection,
     CartSection,
     CheckoutSection,
 } from './container';
@@ -21,10 +22,11 @@ export {
 
     // CONTAINER
     LandingSection,
-    StockSection,
-    SingleProductSection,
     LoginSection,
     SignUpSection,
+    ProfileSection,
+    StockSection,
+    SingleProductSection,
     ListingSection,
     CartSection,
     CheckoutSection,
