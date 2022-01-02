@@ -6,7 +6,7 @@ use App\Http\Controllers\api\auth\RegisterController;
 use App\Http\Controllers\api\auth\LoginController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\UserController;
-
+use App\Http\Controllers\api\Auth\PasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +30,12 @@ Route::get('/products/page/{page}/{take}', [ProductController::class, 'countPagi
 Route::get('/product/{id}', [ProductController::class, 'product']);
 Route::get('/user/{id}', [UserController::class, 'getUser']);
 
+Route::post('/forgot-password', [PasswordController::class, 'forgotPassword']);
+Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
+
+// Search
+// 
+
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::get('/check/sanctum/token', [LoginController::class, 'checkToken']);
@@ -41,7 +47,15 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // User Routes
     Route::get('/user', [UserController::class, 'user']);
     Route::post('/user', [UserController::class, 'update']);
+
+    // Password reset
+
+
 });
+
+
+// Super Admin 
+// check the sales , delete user, ban user, create update category, edit all products 
 
 
 
