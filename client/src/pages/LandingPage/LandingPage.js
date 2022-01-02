@@ -1,15 +1,10 @@
-import { Navbar, Footer, Carousel } from '../../components';
+import { Navbar, Footer, LandingSection } from '../../components';
 
 const LandingPage = () => {
     return (
         <>
             <Navbar />
-            <main id={"landingPage"}>
-                <div id={"landingPageLogoContainer"}>
-                    <p className={"mainLogo"}>G-Bay</p>
-                </div>
-                <Carousel/>
-            </main>
+            <LandingSection />
             <Footer />
         </>
     )
