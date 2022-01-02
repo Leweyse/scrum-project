@@ -23,8 +23,8 @@ function App() {
                 <Route path="login" element={ <LoginPage /> } />
                 <Route path="sign-up" element={ <SignUpPage /> } />
                 <Route path="checkout" element={ <CheckoutPage /> } />
-                <Route path="add" element={ <AddListingPage /> } />
-                <Route path="edit" element={ <EditListingPage /> } />
+                <Route path="product/add" element={ <AddListingPage /> } />
+                <Route path="product/update/:id" element={ <EditListingPage /> } />
                 <Route path="reset-password" element={ <ResetPasswordPage /> } />
                 <Route path="profile" element={ <ProfilePage /> } />
                 <Route path="cart" element={ <CartPage /> } />

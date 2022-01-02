@@ -8,7 +8,6 @@ const SignUpPage = () => {
     let navigate = useNavigate();
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
-    // const [userId, setUserId] = useCookie('user','');
     const [error, setError] = useState({});
 
     const inputFistNameRef = useRef();
@@ -33,7 +32,6 @@ const SignUpPage = () => {
                     if (err.response && err.response.status === 401) {
                         setTkn('0');
                         setUserToken('0');
-                        // setUserId('');
                     }
                 });
         }
@@ -62,7 +60,6 @@ const SignUpPage = () => {
                         setError(response.data.error);
                     } else if(response.data.token) {
                         setUserToken(response.data.token);
-                        // setUserId(res.data.data.user.id);
                         navigate("/checkout");
                     }
                 });

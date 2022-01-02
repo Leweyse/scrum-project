@@ -48,11 +48,12 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
+        // return $request->image;
         $validator = Validator::make($request->all(), [
             'categories_id' => 'required|Numeric',
             'title' => 'required',
             'description' => 'required',
-            'image' => 'nullable|mimes:jpg,png',
+            'image' => 'nullable|mimes:jpeg,jpg,png',
             'price' => 'required|numeric',
             'stock_unit' => 'required|numeric'
         ], $this->errorMessages());
@@ -81,7 +82,7 @@ class ProductController extends Controller
         $product = Product::where('id', $id)->first();
         if(!$product) {
             return response([
-                'status' => 'failed',
+                'status' => 'fail',
                 'message' => 'This product doesn\'t exixt in database'
             ], 200);
         }
