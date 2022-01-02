@@ -5,6 +5,7 @@ import LoginSection from "./LoginSection/LoginSection";
 import SignUpSection from "./SignUpSection/SignUpSection";
 import ListingSection from "./ListingSection/ListingSection";
 import CartSection from "./CartSection/CartSection";
+import CheckoutSection from "./CheckoutSection/CheckoutSection";
 
 export {
     LandingSection,
@@ -14,4 +15,5 @@ export {
     SingleProductSection,
     ListingSection,
     CartSection,
+    CheckoutSection,
 }

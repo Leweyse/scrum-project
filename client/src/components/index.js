@@ -7,7 +7,8 @@ import {
     LoginSection,
     SignUpSection, 
     ListingSection, 
-    CartSection
+    CartSection,
+    CheckoutSection,
 } from './container';
 
 export {
@@ -26,4 +27,5 @@ export {
     SignUpSection,
     ListingSection,
     CartSection,
+    CheckoutSection,
 }
