@@ -4,7 +4,8 @@ import {
     LandingSection,
     StockSection, 
     SingleProductSection, 
-    LoginSection, 
+    LoginSection,
+    SignUpSection, 
     ListingSection, 
     CartSection
 } from './container';
@@ -22,6 +23,7 @@ export {
     StockSection,
     SingleProductSection,
     LoginSection,
+    SignUpSection,
     ListingSection,
     CartSection,
 }
