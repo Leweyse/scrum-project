@@ -4,6 +4,8 @@
 
     flex-direction: column;
 
+    gap: 1.25rem;
+
     .titleSection {
         h1 {
             font-size: 4rem;
@@ -86,6 +88,8 @@
 
                 display: grid;
                 width: 60%;
+
+                gap: 1.25rem;
 
                 button {
                     padding: 0.5rem;

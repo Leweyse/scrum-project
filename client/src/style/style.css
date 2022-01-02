@@ -33,6 +33,21 @@ body,
   place-items: center;
 }
 
+main {
+  background-color: var(--clr-white);
+}
+
+button {
+  color: var(--clr-darkgray);
+  font-size: 1rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+button:focus-visible {
+  outline: none;
+}
+
 #navbar {
   display: flex;
   width: 100%;
@@ -64,6 +79,39 @@ body,
   align-items: center;
   gap: 5vw;
   height: 100%;
+  z-index: 1111;
+}
+#navbar #navRight #navSearchInput {
+  height: 3vh;
+  padding: 1rem 0.5rem;
+  font-size: 1vw;
+}
+#navbar #navRight #productsLink {
+  position: relative;
+  display: grid;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.25rem 0.5rem;
+  transition: all 0.3s ease;
+}
+#navbar #navRight #productsLink::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-cyan);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+#navbar #navRight #productsLink:hover::after {
+  width: 100%;
+  opacity: 0.7;
+  transform: scale(1);
 }
 #navbar #navRight #navDropdown {
   display: flex;
@@ -81,23 +129,81 @@ body,
   transform: scale(1.5);
 }
 #navbar #navRight #navDropdown #navDropdownContent {
+  position: absolute;
   display: none;
-  opacity: 0;
+  min-width: 6vw;
+  min-height: 12vh;
+  padding: 1rem;
+  place-items: center;
   background-color: var(--clr-white);
   border: 1px solid var(--clr-darkgray);
   border-radius: 11px;
-  min-width: 6vw;
-  min-height: 12vh;
-  transform: translate(0, 90%);
-  position: absolute;
+  opacity: 0;
+  transform: translate(0, 75%);
   z-index: 1;
+}
+#navbar #navRight #navDropdown #navDropdownContent a {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.25rem 0.5rem;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+#navbar #navRight #navDropdown #navDropdownContent a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-cyan);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+#navbar #navRight #navDropdown #navDropdownContent a:hover::after {
+  width: 100%;
+  opacity: 0.7;
+  transform: scale(1);
+}
+#navbar #navRight #navDropdown #navDropdownContent form {
+  position: relative;
+  display: grid;
+  width: 100%;
+  padding: 0.25rem 0.5rem;
+  place-items: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+#navbar #navRight #navDropdown #navDropdownContent form::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--clr-red);
+  opacity: 0;
+  transform: scale(0);
+  transition: all 0.3s ease;
+  z-index: -1;
+}
+#navbar #navRight #navDropdown #navDropdownContent form button {
+  text-align: center;
+}
+#navbar #navRight #navDropdown #navDropdownContent form:hover::after {
+  width: 100%;
+  opacity: 0.7;
+  transform: scale(1);
+}
+#navbar #navRight #navDropdown #navDropdownContent form:hover button {
+  color: var(--clr-white);
 }
 #navbar #navRight .navRight {
   font-size: 1.25vw;
-}
-#navbar #navRight #navSearchInput {
-  height: 3vh;
-  font-size: 1vw;
 }
 
 #footer {
@@ -223,7 +329,6 @@ body,
 #productCard {
   position: relative;
   display: grid;
-  margin: 0 auto;
   padding: 2rem;
   text-decoration: none;
   border: 1px solid var(--clr-darkgray);
@@ -232,32 +337,24 @@ body,
   place-items: center;
   transition: 0.2s;
 }
-#productCard:hover .description_container > * {
-  color: var(--clr-white);
-}
-#productCard:hover {
-  border: 1px solid var(--clr-white);
-  transition: 0.2s;
-}
-#productCard:focus-visible .description_container > * {
-  color: var(--clr-white);
-}
-#productCard:focus-visible {
-  outline: none;
-  border: 1px solid var(--clr-white);
-  transition: 0.2s;
-}
 #productCard .image_container {
   width: 100%;
   height: 100%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #productCard .description_container {
   display: grid;
+  width: 100%;
+  height: 100%;
   padding: 2rem 2rem 0 2rem;
   place-items: center;
   gap: 1rem;
 }
 #productCard .description_container > * {
+  line-height: 1.1;
+  text-align: center;
   transition: 0.2s;
 }
 #productCard .description_container .productTitle {
@@ -268,6 +365,15 @@ body,
 }
 #productCard .description_container .productSeller {
   font-size: 1rem;
+}
+#productCard:hover .description_container > *, #productCard:focus-visible .description_container > * {
+  color: var(--clr-white);
+  outline: none;
+}
+#productCard:hover, #productCard:focus-visible {
+  border: 1px solid var(--clr-white);
+  transition: 0.2s;
+  outline: none;
 }
 
 #productRow {
@@ -303,11 +409,6 @@ body,
   color: var(--clr-red);
   border: 1px solid var(--clr-red);
   outline: none;
-}
-
-button {
-  background-color: inherit;
-  border: none;
 }
 
 #userIconSvg {
@@ -350,17 +451,51 @@ button {
   }
 }
 #stockSection {
+  display: grid;
+  width: 100%;
+  place-items: center;
+  gap: 1rem;
+}
+#stockSection .stockContainer {
   width: 100%;
   display: grid;
-  padding: 2vw 2vw;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 4vw;
+  padding: 2vh 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 4rem;
+}
+#stockSection .paginationContainer {
+  padding: 1rem;
+}
+#stockSection .paginationContainer button {
+  margin-inline: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+#stockSection .paginationContainer button:hover, #stockSection .paginationContainer button:focus-visible {
+  transform: scale(1.25);
+}
+#stockSection .paginationContainer .currentPage {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: var(--clr-red);
+}
+#stockSection .paginationContainer .currentPage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-red);
 }
 
 #cartSection {
   display: flex;
   width: 70%;
   flex-direction: column;
+  gap: 1.25rem;
 }
 #cartSection .titleSection h1 {
   font-size: 4rem;
@@ -425,6 +560,7 @@ button {
   grid-column: 4/5;
   display: grid;
   width: 60%;
+  gap: 1.25rem;
 }
 #cartSection .totalSection footer div button {
   padding: 0.5rem;
@@ -523,7 +659,7 @@ button {
   z-index: 1;
 }
 #loginPage #loginContainer #loginForm input {
-  height: 5vh;
+  padding: 0.5rem;
   font-size: 1rem;
 }
 #loginPage #loginContainer #loginForm #loginFormButtonContainer {
@@ -533,9 +669,17 @@ button {
 }
 #loginPage #loginContainer #loginForm #loginFormButtonContainer button {
   width: 45%;
-  height: 5vh;
+  padding: 0.5rem;
   font-size: 1rem;
+  border: 1px solid var(--clr-darkgray);
   border-radius: 11px;
+  background: var(--clr-white);
+  transition: all 0.2s ease;
+}
+#loginPage #loginContainer #loginForm #loginFormButtonContainer button:hover, #loginPage #loginContainer #loginForm #loginFormButtonContainer button:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-cyan);
 }
 #loginPage #loginContainer #loginLinks {
   display: flex;
@@ -759,39 +903,33 @@ button {
   font-size: 1.1rem;
 }
 
-#title {
-  margin-top: 5%;
-  position: center;
+#resetPasswordPage {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  padding-top: 2rem;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+#resetPasswordPage #title {
   text-align: center;
   font-size: 3rem;
   font-weight: 600;
 }
-
-#resetPasswordPage {
-  display: flex;
-  width: 100%;
-  height: 100vh;
-  justify-content: center;
-  align-items: center;
-}
 #resetPasswordPage #resetPasswordContainer {
-  display: flex;
-  width: 40%;
-  height: 95%;
-  flex-direction: column;
+  display: grid;
   place-items: center;
-  overflow-x: hidden;
 }
 #resetPasswordPage #resetPasswordForm {
-  position: absolute;
   display: flex;
   height: 42.5%;
-  width: 20%;
   flex-direction: column;
   justify-content: space-evenly;
 }
 #resetPasswordPage label {
-  margin-top: 12%;
+  margin-bottom: 0.5rem;
   font-size: 1.1rem;
   font-weight: 600;
 }
@@ -800,6 +938,7 @@ button {
 }
 #resetPasswordPage input {
   height: 5vh;
+  margin-bottom: 1.5rem;
   font-size: 1rem;
 }
 #resetPasswordPage #resetPasswordSubmit {
@@ -808,9 +947,8 @@ button {
   justify-content: center;
 }
 #resetPasswordPage button {
-  margin-left: 20%;
-  margin-top: 10%;
   width: 60%;
+  margin-inline: auto;
   padding: 0.5rem;
   color: var(--clr-darkgray);
   font-size: 1.1rem;
@@ -827,16 +965,7 @@ button {
   cursor: pointer;
 }
 
-@media (min-width: 1500px) {
-  #stockSection {
-    grid-template-columns: repeat(5, 1fr);
-  }
-}
 @media (max-width: 1200px) {
-  #stockSection {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
   #loginPage #loginContainer {
     width: 50%;
     height: 85%;
@@ -846,10 +975,6 @@ button {
   }
 }
 @media (max-width: 875px) {
-  #stockSection {
-    grid-template-columns: 1fr 1fr;
-  }
-
   #loginPage #loginContainer {
     width: 60%;
     height: 70%;
@@ -863,10 +988,6 @@ button {
   }
 }
 @media (max-width: 640px) {
-  #stockSection {
-    grid-template-columns: 1fr;
-  }
-
   #loginPage #loginContainer {
     width: 70%;
     height: 70%;

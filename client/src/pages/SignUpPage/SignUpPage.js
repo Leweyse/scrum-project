@@ -1,21 +1,28 @@
-import {useState, useRef, useEffect} from 'react';
+import {useState, useEffect} from 'react';
 import useCookie, { getCookie } from 'react-use-cookie';
 import { useNavigate } from "react-router-dom";
 
 import apiClient from '../../services/apiClient';
 
+import { Navbar, Footer, Spinner } from '../../components/block';
+
 const SignUpPage = () => {
     let navigate = useNavigate();
+
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
     // const [userId, setUserId] = useCookie('user','');
-    const [error, setError] = useState({});
 
-    const inputFistNameRef = useRef();
-    const inputLastnameRef = useRef();
-    const inputEmailRef = useRef();
-    const inputPhoneRef = useRef();
-    const inputPasswordRef = useRef();
+    const [error, setError] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
+
+    const [info, setInfo] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        phone: '',
+        password: ''
+    })
 
     useEffect(() => {
         if(tkn && tkn !== '0') {
@@ -41,14 +48,17 @@ const SignUpPage = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
+
+        setIsLoading(true);
+
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
                 apiClient.post( '/register', {
-                    first_name: inputFistNameRef.current.value,
-                    last_name: inputLastnameRef.current.value,
-                    email: inputEmailRef.current.value,
-                    phone: inputPhoneRef.current.value,
-                    password: inputPasswordRef.current.value
+                    first_name: info.firstName,
+                    last_name: info.lastName,
+                    email: info.email,
+                    phone: info.phone,
+                    password: info.password
                 },
                 {
                     headers: {
@@ -60,6 +70,7 @@ const SignUpPage = () => {
 
                     if(response.data.error) {
                         setError(response.data.error);
+                        setIsLoading(false);
                     } else if(response.data.token) {
                         setUserToken(response.data.token);
                         // setUserId(res.data.data.user.id);
@@ -70,64 +81,96 @@ const SignUpPage = () => {
     }
 
     return (
-        <main id={"suPage"}>
-            <section className={"suContainer"}>
-                <p className={"suLogoCropped"}>Sign Up</p>
-                <form className={"suForm"} onSubmit={handleSubmit}>
-                    <span className={"suInput"}>
-                        <label htmlFor={"suFirstName"}>First name <span>*</span></label>
-                        <input
-                            ref={inputFistNameRef}
-                            id={"suFirstName"}
-                            type={"text"}
-                            placeholder={"First name"}
-                        />
-                        {error.first_name ? error.first_name : null}
-                    </span>
-                    <span className={"suInput"}>
-                        <label htmlFor={"suLastName"}>Last name <span>*</span></label>
-                        <input
-                            ref={inputLastnameRef}
-                            id={"suLastName"}
-                            type={"text"}
-                            placeholder={"Last name"}
-                        />
-                        {error.last_name ? error.last_name : null}
-                    </span>
-                    <span className={"suInput"}>
-                        <label htmlFor={"suEmail"}>Email address <span>*</span></label>
-                        <input
-                            ref={inputEmailRef}
-                            id={"suEmail"}
-                            type={"email"}
-                            placeholder={"Email address"}
-                        />
-                        {error.email ? error.email : null}
-                    </span>
-                    <span className={"suInput"}>
-                        <label htmlFor={"suPhone"}>Phone Number <span>*</span></label>
-                        <input
-                            ref={inputPhoneRef}
-                            id={"suPhone"}
-                            type={"text"}
-                            placeholder={"Phone Number"}
-                        />
-                        {error.phone ? error.phone : null}
-                    </span>
-                    <span className={"suInput"}>
-                        <label htmlFor={"suPassword"}>Password <span>*</span></label>
-                        <input
-                            ref={inputPasswordRef}
-                            id={"suPassword"}
-                            type={"password"}
-                            placeholder={"Password"}
-                        />
-                        {error.password ? error.password : null}
-                    </span>
-                    <button name={"signup"} className={"suBtn"}>Submit</button>
-                </form>
-            </section>
-        </main>
+        <>
+            <Navbar />
+            { !isLoading ? 
+            <main id={"suPage"}>
+                <section className={"suContainer"}>
+                    <p className={"suLogoCropped"}>Sign Up</p>
+                    <form className={"suForm"} onSubmit={handleSubmit}>
+                        <span className={"suInput"}>
+                            <label htmlFor={"suFirstName"}>First name <span>*</span></label>
+                            <input
+                                id={"suFirstName"}
+                                type={"text"}
+                                placeholder={"First name"}
+    
+                                value={info.firstName}
+                                onChange={e => setInfo((prevState) => ({
+                                    ...prevState,
+                                    firstName: e.target.value
+                                }))}
+                            />
+                            {error.first_name ? error.first_name : null}
+                        </span>
+                        <span className={"suInput"}>
+                            <label htmlFor={"suLastName"}>Last name <span>*</span></label>
+                            <input
+                                id={"suLastName"}
+                                type={"text"}
+                                placeholder={"Last name"}
+    
+                                value={info.lastName}
+                                onChange={e => setInfo((prevState) => ({
+                                    ...prevState,
+                                    lastName: e.target.value
+                                }))}
+                            />
+                            {error.last_name ? error.last_name : null}
+                        </span>
+                        <span className={"suInput"}>
+                            <label htmlFor={"suEmail"}>Email address <span>*</span></label>
+                            <input
+                                id={"suEmail"}
+                                type={"email"}
+                                placeholder={"Email address"}
+    
+                                value={info.email}
+                                onChange={e => setInfo((prevState) => ({
+                                    ...prevState,
+                                    email: e.target.value
+                                }))}
+                            />
+                            {error.email ? error.email : null}
+                        </span>
+                        <span className={"suInput"}>
+                            <label htmlFor={"suPhone"}>Phone Number <span>*</span></label>
+                            <input
+                                id={"suPhone"}
+                                type={"text"}
+                                placeholder={"Phone Number"}
+    
+                                value={info.phone}
+                                onChange={e => setInfo((prevState) => ({
+                                    ...prevState,
+                                    phone: e.target.value
+                                }))}
+                            />
+                            {error.phone ? error.phone : null}
+                        </span>
+                        <span className={"suInput"}>
+                            <label htmlFor={"suPassword"}>Password <span>*</span></label>
+                            <input
+                                id={"suPassword"}
+                                type={"password"}
+                                placeholder={"Password"}
+    
+                                value={info.password}
+                                onChange={e => setInfo((prevState) => ({
+                                    ...prevState,
+                                    password: e.target.value
+                                }))}
+                            />
+                            {error.password ? error.password : null}
+                        </span>
+                        <button name={"signup"} className={"suBtn"}>Submit</button>
+                    </form>
+                </section>
+            </main>
+            :
+            <Spinner /> }
+            <Footer />
+        </>
     )
 }
 

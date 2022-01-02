@@ -1,27 +1,48 @@
 import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import {getCookie} from "react-use-cookie";
+import { getCookie } from "react-use-cookie";
 import { gsap } from "gsap";
 
-import apiClient from "../../../services/apiClient";
-
 import { UserIconSVG } from "../SVGs";
-import LogoutButton from "../LogoutButton/LogoutButton";
+import { LogoutButton } from "../";
 
 export default function Navbar () {
-    const [tkn, setTkn] = useState(getCookie('token'));
+    const userToken = getCookie('token');
+
+    const [clicked, setClicked] = useState(false);
+
     const navDropdownButton = useRef(null);
     const userIconSvg = useRef(null);
     const navDropdownContent = useRef(null);
     const navDropdownContentAnimation = useRef(null);
     const userIconSvgAnimation = useRef(null);
     const navDropdownButtonAnimation = useRef(null);
-    const [clicked, setClicked] = useState(false);
 
     useEffect(() => {
-        navDropdownContentAnimation.current = gsap.to(navDropdownContent.current, {display: "flex", duration: 0.2, opacity: 1, flexDirection: "column", textAlign: "center", justifyContent: "space-evenly", paused: true});
-        navDropdownButtonAnimation.current = gsap.to(navDropdownButton.current, {scale: 2, rotateY: 180, duration: 0.5, paused: true});
-        userIconSvgAnimation.current = gsap.to(userIconSvg.current, {fill: "url(#userIconFillGradient)", duration: 0.5, paused: true});
+        navDropdownContentAnimation.current = gsap.to(
+            navDropdownContent.current, 
+            {
+                display: "grid", 
+                gap: "1rem",
+                opacity: 1, 
+                duration: 0.2, 
+                paused: true
+            });
+        navDropdownButtonAnimation.current = gsap.to(
+            navDropdownButton.current, 
+            {
+                scale: 2, 
+                rotateY: 180, 
+                duration: 0.5, 
+                paused: true
+            });
+        userIconSvgAnimation.current = gsap.to(
+            userIconSvg.current, 
+            {
+                fill: "url(#userIconFillGradient)", 
+                duration: 0.5, 
+                paused: true
+            });
     }, [])
 
     const expand = () => {
@@ -53,32 +74,31 @@ export default function Navbar () {
                     />
                 </form>
 
-                <Link className={"navRight"} to={"/products"}>Products</Link>
+                <Link id={"productsLink"} to={"/products"}>Products</Link>
+                
                 <div id={"navDropdown"} className={"navRight"}>
-                    <button id={"navDropdownButton"} ref={navDropdownButton} onClick={!clicked ? expand : retract}>
+                    <button 
+                        id={"navDropdownButton"} 
+                        ref={navDropdownButton} 
+                        onClick={!clicked ? expand : retract}
+                    >
                         <UserIconSVG fill={"#474044"} ref={userIconSvg}/>
                     </button>
                     <div id={"navDropdownContent"} ref={navDropdownContent}>
-                        {tkn === "0" ? (
-                            <>
-                                <Link className={"navRight"} to={"/login"}>Login</Link>
-                                <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
-                            </>) : (
+                        { userToken && userToken !== "0" ? (
                             <>
                                 <Link className={"navRight"} to={"/profile"}>Profile</Link>
                                 <Link className={"navRight"} to={"/cart"}>Cart</Link>
+                                <Link className={"navRight"} to={"/add"}>Sell</Link>
                                 <LogoutButton className={"navRight"}/>
-                                {/* implement middleware for verifying tokens and redefine this conditional */}
+                            </>) : (
+                            <>
+                                <Link className={"navRight"} to={"/login"}>Login</Link>
+                                <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
                             </>
                         )}
                     </div>
                 </div>
-                {/* 
-                    If user is logged, display Profile Route
-                        <Link className={"navRight"} to={"/profile"}>{props.username}</Link>
-
-                    If not, display Login Route 
-                */}
             </div>
         </nav>
     )

@@ -1,61 +1,65 @@
-
-
 export const SlidesData = [
     {
-        div: (<>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselBuySlideElement"}>
-                    Buy
+        div: (
+            <>
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselBuySlideElement"}>
+                        Buy
+                    </div>
                 </div>
-            </div>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselBuySlideElement"}>
-                    Buy
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselBuySlideElement"}>
+                        Buy
+                    </div>
                 </div>
-            </div>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselBuySlideElement"}>
-                    Buy
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselBuySlideElement"}>
+                        Buy
+                    </div>
                 </div>
-            </div>
-        </>)
+            </>
+        )
     },
     {
-        div: (<li className={"carouselSlide"}>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselSellSlideElement"}>
-                    Sell
+        div: (
+            <>
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselSellSlideElement"}>
+                        Sell
+                    </div>
                 </div>
-            </div>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselSellSlideElement"}>
-                    Sell
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselSellSlideElement"}>
+                        Sell
+                    </div>
                 </div>
-            </div>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselSellSlideElement"}>
-                    Sell
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselSellSlideElement"}>
+                        Sell
+                    </div>
                 </div>
-            </div>
-        </li>)
+            </>
+        )
     },
     {
-        div: (<li className={"carouselSlide"}>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselMiscSlideElement"}>
-                    Misc
+        div: (
+            <>
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselMiscSlideElement"}>
+                        Misc
+                    </div>
                 </div>
-            </div>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselMiscSlideElement"}>
-                    Misc
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselMiscSlideElement"}>
+                        Misc
+                    </div>
                 </div>
-            </div>
-            <div className={"carouselSlideElement"}>
-                <div className={"carouselElementInnerText carouselMiscSlideElement"}>
-                    Misc
+                <div className={"carouselSlideElement"}>
+                    <div className={"carouselElementInnerText carouselMiscSlideElement"}>
+                        Misc
+                    </div>
                 </div>
-            </div>
-        </li>)
+            </>
+        )
     }
 ]

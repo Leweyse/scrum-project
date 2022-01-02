@@ -1,0 +1,12 @@
+button {
+    color: var(--clr-darkgray);
+    font-size: 1rem;
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+
+    &:focus-visible {
+        outline: none;
+    }
+}

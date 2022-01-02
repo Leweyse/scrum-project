@@ -1,7 +1,9 @@
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import apiClient from "../../../services/apiClient";
 import { useState } from 'react';
 import useCookie, { getCookie } from 'react-use-cookie';
+
+import { Spinner } from '../';
 
 export default function LogoutButton () {
 
@@ -12,18 +14,21 @@ export default function LogoutButton () {
     
     const handleSubmit = (event) => {
         event.preventDefault();
+
         setIsLoading(true);
+
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
-                apiClient.post( '/logout', {},
-                    {
-                        headers: {
-                            Accept: 'application/json',
-                            Authorization: `Bearer ${userToken}`,
-                        }
-                    })
+                apiClient.post( '/logout', 
+                {},
+                {
+                    headers: {
+                        Accept: 'application/json',
+                        Authorization: `Bearer ${userToken}`,
+                    }
+                })
                     .then(res => {
-                        if(res.data.status == 'success') {
+                        if(res.data.status === 'success') {
                             setUserToken('0');
                             setUserId('');
                             setIsLoading(false);
@@ -34,8 +39,14 @@ export default function LogoutButton () {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <button name={"Logout"}>{ isLoading ? 'processing' : 'Logout' }</button>
-        </form>
+        <>
+            { !isLoading ? 
+                <form onSubmit={handleSubmit}>
+                    <button name={"Logout"}>Logout</button>
+                </form>
+                :
+                <Spinner size={30} /> 
+            }
+        </>
     )
 }
