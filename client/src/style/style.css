@@ -450,6 +450,20 @@ button:focus-visible {
     transform: rotate(360deg);
   }
 }
+#landingSection {
+  position: relative;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+#landingSection .mainLogo {
+  top: 0;
+  font-size: 7vw;
+  z-index: 2;
+}
+
 #stockSection {
   display: grid;
   width: 100%;
@@ -799,20 +813,6 @@ button:focus-visible {
 #suPage .suContainer .suForm .suInput input {
   width: 100%;
   padding: 0.25rem;
-}
-
-#landingPage {
-  position: relative;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-}
-#landingPage .mainLogo {
-  top: 0;
-  font-size: 7vw;
-  z-index: 2;
 }
 
 #checkoutPage {
