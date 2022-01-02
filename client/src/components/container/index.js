@@ -6,6 +6,7 @@ import StockSection from './StockSection/StockSection';
 import ListingSection from "./ListingSection/ListingSection";
 import SingleProductSection from "./SingleProductSection/SingleProductSection";
 import CartSection from "./CartSection/CartSection";
+import CheckoutSection from "./CheckoutSection/CheckoutSection";
 
 export {
     LandingSection,
@@ -16,4 +17,5 @@ export {
     SingleProductSection,
     ListingSection,
     CartSection,
+    CheckoutSection,
 }

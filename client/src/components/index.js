@@ -8,7 +8,8 @@ import {
     StockSection,
     SingleProductSection,
     ListingSection,
-    CartSection
+    CartSection,
+    CheckoutSection,
 } from './container';
 
 export {
@@ -28,4 +29,5 @@ export {
     SingleProductSection,
     ListingSection,
     CartSection,
+    CheckoutSection,
 }
