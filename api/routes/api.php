@@ -2,6 +2,7 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
 use App\Http\Controllers\api\auth\RegisterController;
 use App\Http\Controllers\api\auth\LoginController;
 use App\Http\Controllers\api\ProductController;
@@ -55,8 +56,4 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 // Super Admin 
-// check the sales , delete user, ban user, create update category, edit all products 
-
-
-
-
+// check the sales , delete user, ban user, create update category, edit all products
