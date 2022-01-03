@@ -1,5 +1,5 @@
 import { Navbar, Footer, ProfileSection } from '../../components';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import useCookie, { getCookie } from 'react-use-cookie';
 import { Spinner } from '../../components/block';
 import { useState, useEffect } from 'react';
