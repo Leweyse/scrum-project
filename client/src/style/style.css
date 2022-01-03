@@ -701,7 +701,7 @@ button:focus-visible {
   width: 60%;
 }
 #productPage .productPageRight {
-  padding: 0 5%;
+  padding: 0 10% 0 5%;
   font-size: 1.25vw;
 }
 #productPage .productPageRight .productRightElements {

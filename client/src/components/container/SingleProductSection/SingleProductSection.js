@@ -22,7 +22,7 @@ export default function SingleProductSection (props) {
                     {props.description}
                 </p>
                 <div className={"productRightElements productPriceStatistics"}>
-                    <p>Price stats go here.</p>
+                    {props.chart}
                 </div>
                 <button className={"productPageAddToCart"}>Add to Cart</button>
             </div>

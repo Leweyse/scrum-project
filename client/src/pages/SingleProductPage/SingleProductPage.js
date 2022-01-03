@@ -32,11 +32,12 @@ export default function SingleProductPage () {
             <Navbar/>
             {data !== null ?
                 <SingleProductSection
-                src={'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg'}
+                src={data.product.image}
                 name={data.product.title}
-                price={data.product.price / 100}
+                price={`$ ${(data.product.price / 100).toFixed(2)}`}
                 seller={data.product.user}
                 description={data.product.description}
+                chart={"hello moto"}
             /> : <Spinner/> }
             <Footer />
         </>
