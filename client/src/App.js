@@ -8,6 +8,7 @@ import {
     CheckoutPage,
     AddListingPage,
     ResetPasswordPage,
+    ForgotPasswordPage,
     EditListingPage,
     CartPage,
     ProfilePage,
@@ -27,7 +28,8 @@ function App() {
                 {/* User account */}
                 <Route path="login" element={ <LoginPage /> } />
                 <Route path="sign-up" element={ <SignUpPage /> } />
-                <Route path="reset-password" element={ <ResetPasswordPage /> } />
+                <Route path="forgot-password" element={ <ForgotPasswordPage /> } />
+                <Route path="reset-password/:token" element={ <ResetPasswordPage /> } />
 
                 {/* Info user account */}
                 <Route path="profile" element={ <ProfilePage /> } />
