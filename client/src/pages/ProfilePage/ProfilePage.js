@@ -1,6 +1,46 @@
+
 import { Navbar, Footer, ProfileSection } from '../../components';
 
 export default function ProfilePage (props) {
+    let navigate = useNavigate();
+    const [tkn, setTkn] = useState(getCookie('token'));
+    const [userToken, setUserToken] = useCookie('token','0');
+    const [user, setUser] = useState([]);
+    
+    const [isLoading, setIsLoading] = useState(true);
+
+    useEffect(() => {
+        authCheck();
+    },[]);
+
+    const authCheck = () => {
+        if(tkn && tkn !== '0') {
+            setUserToken(tkn);
+            apiClient.get('user', {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${userToken}`,
+                }
+            })
+                .then((res) => {
+                    setUser(res.data.data.user);
+                    setIsLoading(false);
+                })
+                .catch((err) => {
+                    if (err.response && err.response.status === 401) {
+                        setTkn('0');
+                        setUserToken('0');
+                        navigate("/login");
+                    }
+                });
+        }
+        else {
+            setTkn('0');
+            setUserToken('0');
+            navigate("/login");
+        }
+    }
+
     return (
         <>
             <Navbar />
