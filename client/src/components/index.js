@@ -1,6 +1,16 @@
 import { Navbar, ProductCard, Footer, LogoutButton, Carousel } from './block';
 
-import { StockSection, SingleProductSection, LoginSection, ListingSection, CartSection } from './container';
+import {
+    LandingSection,
+    LoginSection,
+    SignUpSection,
+    ProfileSection,
+    StockSection,
+    SingleProductSection,
+    ListingSection,
+    CartSection,
+    CheckoutSection,
+} from './container';
 
 export {
     // BLOCK
@@ -11,9 +21,13 @@ export {
     Carousel,
 
     // CONTAINER
+    LandingSection,
+    LoginSection,
+    SignUpSection,
+    ProfileSection,
     StockSection,
     SingleProductSection,
-    LoginSection,
     ListingSection,
     CartSection,
+    CheckoutSection,
 }

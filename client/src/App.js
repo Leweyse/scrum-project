@@ -18,16 +18,27 @@ function App() {
         <BrowserRouter>
             <Routes>
                 <Route path="/" element={ <LandingPage /> } />
+
+                {/* All Products */}
                 <Route path="products" element={ <ProductsPage /> } />
+                {/* Single Products */}
                 <Route path="products/:id" element={ <SingleProductPage/>} />
+
+                {/* User account */}
                 <Route path="login" element={ <LoginPage /> } />
                 <Route path="sign-up" element={ <SignUpPage /> } />
-                <Route path="checkout" element={ <CheckoutPage /> } />
-                <Route path="product/add" element={ <AddListingPage /> } />
-                <Route path="product/update/:id" element={ <EditListingPage /> } />
                 <Route path="reset-password" element={ <ResetPasswordPage /> } />
+
+                {/* Info user account */}
                 <Route path="profile" element={ <ProfilePage /> } />
+
+                {/* Info user: Buy */}
                 <Route path="cart" element={ <CartPage /> } />
+                <Route path="checkout" element={ <CheckoutPage /> } />
+
+                {/* Add, edit Product */}
+                <Route path="add" element={ <AddListingPage /> } />
+                <Route path="edit" element={ <EditListingPage /> } />
 
                 {/* Default Route */}
                 <Route path="*" element={<Navigate to="/" />} />

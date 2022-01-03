@@ -1,7 +1,6 @@
 #productCard {
     position: relative;
     display: grid;
-    margin: 0 auto;
     padding: 2rem;
     text-decoration: none;
 
@@ -13,38 +12,26 @@
 
     transition: 0.2s;
 
-    &:hover .description_container > * {
-        color: var(--clr-white);
-    }
-
-    &:hover {
-        border: 1px solid var(--clr-white);
-        transition: 0.2s;
-    }
-
-    &:focus-visible .description_container > * {
-        color: var(--clr-white);
-    }
-
-    &:focus-visible {
-        outline: none;
-        border: 1px solid var(--clr-white);
-        transition: 0.2s;
-    }
-
     .image_container {
         width: 100%;
         height: 100%;
+
+        aspect-ratio: 1 / 1;
+        object-fit: cover;
     }
 
     .description_container {
         display: grid;
+        width: 100%;
+        height: 100%;
         padding: 2rem 2rem 0 2rem;
 
         place-items: center;
         gap: 1rem;
 
         & > * {
+            line-height: 1.1;
+            text-align: center;
             transition: 0.2s;
         }
 
@@ -59,5 +46,18 @@
         .productSeller {
             font-size: 1rem;
         }
+    }
+
+    &:hover .description_container > *,
+    &:focus-visible .description_container > * {
+        color: var(--clr-white);
+        outline: none;
+    }
+
+    &:hover,
+    &:focus-visible {
+        border: 1px solid var(--clr-white);
+        transition: 0.2s;
+        outline: none;
     }
 }

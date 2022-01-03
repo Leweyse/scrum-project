@@ -1,8 +1,14 @@
-const Spinner = () => {
+const Spinner = (props) => {
     return (
-        <main id={"spinner-container"}>
-            <span className={"spinner"}></span>
-        </main>
+        <div id={"spinner-container"}>
+            <span 
+                className={"spinner"}
+                style={{
+                    width: `${props.size}px`, 
+                    height: `${props.size}px`
+                }}
+            ></span>
+        </div>
     )
 }
 

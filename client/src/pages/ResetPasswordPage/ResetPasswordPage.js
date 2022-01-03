@@ -11,18 +11,15 @@ const ResetPasswordPage = () => {
     return (
         <>
         <Navbar />
-        <h1 id={"title"}>Password reset</h1>
-        <div id={"resetPasswordPage"}>
-
+        <main id={"resetPasswordPage"}>
+            <h1 id={"title"}>Password reset</h1>
             <div id={"resetPasswordContainer"}>
-
                 <form id={"resetPasswordForm"}>
                     <label id={"resetPassword"}>New password <span>*</span></label>
                     <input
                         id={"resetPassword"}
                         type={"password"}
                     />
-
                     <label id={"repeatPassword"}>Confirm password <span>*</span></label>
                     <input
                         id={"repeatPassword"}
@@ -31,7 +28,7 @@ const ResetPasswordPage = () => {
                     <button type={'submit'} id={"resetPasswordSubmit"}>Submit</button>
                 </form>
             </div>
-        </div>
+        </main>
         <Footer />
         </>
     )

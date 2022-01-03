@@ -1,10 +1,5 @@
-import { Link, useNavigate } from "react-router-dom";
-import { Navbar, Footer } from '../../components';
-import useCookie, { getCookie } from 'react-use-cookie';
-import { Spinner } from '../../components/block';
-import { useState, useEffect } from 'react';
 
-import apiClient from "../../services/apiClient"
+import { Navbar, Footer, ProfileSection } from '../../components';
 
 export default function ProfilePage (props) {
     let navigate = useNavigate();
@@ -49,48 +44,7 @@ export default function ProfilePage (props) {
     return (
         <>
             <Navbar />
-            { !isLoading ? 
-            <main id={"profilePage"}>
-                <p id={"profilePageTitle"}>Profile</p>
-                <section id={"infoFieldsLeft"}>
-                    <div className={"infoFields"}>
-                        <span>Name</span>
-                        <p className={"infoText"}>{`${user.first_name} ${user.last_name}`}</p>
-                    </div>
-
-                    <div className={"infoFields"}>
-                        <span>E-mail</span>
-                        <p className={"infoText"}>{`${user.email}`}</p>
-                    </div>
-
-                    <div className={"infoFields"}>
-                        <span>Phone number</span>
-                        <p className={"infoText"}>{`${user.phone}`}</p>
-                    </div>
-
-                    <div className={"infoFields"}>
-                        <span>Address</span>
-                        <p className={"infoText"}>
-                             {`${user.address_line_1}`}
-                            <br />{`${user.address_line_2}`}
-                            <br />{`${user.postcode}`} {`${user.city}`}
-                            <br />{`${user.country}`}
-                        </p>
-                    </div>
-                </section>
-
-                <section id={"infoFieldsRight"}>
-                    <div className={"infoFields"}>
-                        <Link className={"link"}  to={'/order-history'}>Order history</Link>
-                        <p className={"infoText"}>Little Description</p>
-                    </div>
-                    <div className={"infoFields"}>
-                        <Link className={"link"}  to={'/sales-history'}>Sales history</Link>
-                        <p className={"infoText"}>Little Description</p>
-                    </div>
-                </section>
-            </main>
-            : <Spinner /> }
+            <ProfileSection />
             <Footer />
         </>
     )

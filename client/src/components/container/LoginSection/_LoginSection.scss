@@ -51,7 +51,7 @@
             z-index: 1;
 
             input {
-                height: 5vh;
+                padding: 0.5rem;
                 font-size: 1rem;
             }
 
@@ -62,9 +62,21 @@
 
                 button {
                     width: 45%;
-                    height: 5vh;
+                    padding: 0.5rem;
                     font-size: 1rem;
+                    border: 1px solid var(--clr-darkgray);
                     border-radius: 11px;
+
+                    background: var(--clr-white);
+
+                    transition: all 0.2s ease;
+
+                    &:hover,
+                    &:focus-visible {
+                        color: var(--clr-white);
+                        background: var(--clr-cyan);
+                        border-color: var(--clr-cyan);
+                    }
                 }
             }
         }
