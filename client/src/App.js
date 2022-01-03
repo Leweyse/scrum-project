@@ -37,8 +37,8 @@ function App() {
                 <Route path="checkout" element={ <CheckoutPage /> } />
 
                 {/* Add, edit Product */}
-                <Route path="add" element={ <AddListingPage /> } />
-                <Route path="edit" element={ <EditListingPage /> } />
+                <Route path="product/add" element={ <AddListingPage /> } />
+                <Route path="product/update/:id" element={ <EditListingPage /> } />
 
                 {/* Default Route */}
                 <Route path="*" element={<Navigate to="/" />} />

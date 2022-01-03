@@ -1,5 +1,10 @@
-
 import { Navbar, Footer, ProfileSection } from '../../components';
+import { useNavigate } from "react-router-dom";
+import useCookie, { getCookie } from 'react-use-cookie';
+import { Spinner } from '../../components/block';
+import { useState, useEffect } from 'react';
+
+import apiClient from "../../services/apiClient";
 
 export default function ProfilePage (props) {
     let navigate = useNavigate();
@@ -43,9 +48,16 @@ export default function ProfilePage (props) {
 
     return (
         <>
-            <Navbar />
-            <ProfileSection />
-            <Footer />
+        { !isLoading ? 
+          <>
+             <Navbar />
+             <ProfileSection  user={user} />
+             <Footer />
+          </> 
+        : 
+          <Spinner /> 
+        }
         </>
+       
     )
 }

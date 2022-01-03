@@ -8,22 +8,22 @@ export default function ProfileSection (props) {
                 <section id={"infoFieldsLeft"}>
                     <div className={"infoFields"}>
                         <span>Name</span>
-                        <p className={"infoText"}>{`${props.name} Test`}</p>
+                        <p className={"infoText"}>{`${props.user.first_name} ${props.user.last_name}`}</p>
                     </div>
 
                     <div className={"infoFields"}>
                         <span>E-mail</span>
-                        <p className={"infoText"}>{`${props.email} Test`}</p>
+                        <p className={"infoText"}>{`${props.user.email}`}</p>
                     </div>
 
                     <div className={"infoFields"}>
                         <span>Phone number</span>
-                        <p className={"infoText"}>{`${props.phone} Test`}</p>
+                        <p className={"infoText"}>{`${props.user.phone}`}</p>
                     </div>
 
                     <div className={"infoFields"}>
                         <span>Address</span>
-                        <p className={"infoText"}>{`${props.address} Test`}</p>
+                        <p className={"infoText"}>Address</p>
                     </div>
                 </section>
 
