@@ -2,13 +2,14 @@ import { Navbar, ProductCard, Footer, LogoutButton, Carousel, SlideElement } fro
 
 import {
     LandingSection,
-    StockSection, 
-    SingleProductSection, 
     LoginSection,
-    SignUpSection, 
-    ListingSection, 
+    SignUpSection,
+    ProfileSection,
+    StockSection,
+    SingleProductSection,
+    ListingSection,
     CartSection,
-
+    CheckoutSection,
 } from './container';
 
 export {
@@ -22,10 +23,12 @@ export {
 
     // CONTAINER
     LandingSection,
-    StockSection,
-    SingleProductSection,
     LoginSection,
     SignUpSection,
+    ProfileSection,
+    StockSection,
+    SingleProductSection,
     ListingSection,
     CartSection,
+    CheckoutSection,
 }

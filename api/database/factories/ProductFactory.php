@@ -29,6 +29,4 @@ class ProductFactory extends Factory
             'sold_unit' => 0
         ];
     }
-
-
 }

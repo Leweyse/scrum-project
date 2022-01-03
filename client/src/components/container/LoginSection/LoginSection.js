@@ -10,8 +10,7 @@ const LoginSection = () => {
 
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
-    const [userId, setUserId] = useCookie('user','');
-    
+
     const [error, setError] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
@@ -44,7 +43,6 @@ const LoginSection = () => {
                         }
                         if(res.data.data.token) {
                             setUserToken(res.data.data.token);
-                            setUserId(res.data.data.user.id);
                             navigate("/products");
                         }
                     });
@@ -67,7 +65,6 @@ const LoginSection = () => {
                     if (err.response && err.response.status === 401) {
                         setTkn('0');
                         setUserToken('0');
-                        setUserId('');
                         setIsLoading(false);
                     }
                 });
@@ -115,7 +112,7 @@ const LoginSection = () => {
                     </form>
                     <div id={"loginLinks"}>
                         <Link id={"signUp"} to={'/sign-up'}>Sign up</Link>
-                        <Link id={"passwordReset"} to={'/reset-password'}>Forgot password?</Link>
+                        <Link id={"passwordForgot"} to={'/forgot-password'}>Forgot password?</Link>
                     </div>
                 </div>
             </div>

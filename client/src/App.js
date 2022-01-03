@@ -8,6 +8,7 @@ import {
     CheckoutPage,
     AddListingPage,
     ResetPasswordPage,
+    ForgotPasswordPage,
     EditListingPage,
     CartPage,
     ProfilePage,
@@ -27,7 +28,8 @@ function App() {
                 {/* User account */}
                 <Route path="login" element={ <LoginPage /> } />
                 <Route path="sign-up" element={ <SignUpPage /> } />
-                <Route path="reset-password" element={ <ResetPasswordPage /> } />
+                <Route path="forgot-password" element={ <ForgotPasswordPage /> } />
+                <Route path="reset-password/:token" element={ <ResetPasswordPage /> } />
 
                 {/* Info user account */}
                 <Route path="profile" element={ <ProfilePage /> } />
@@ -37,8 +39,8 @@ function App() {
                 <Route path="checkout" element={ <CheckoutPage /> } />
 
                 {/* Add, edit Product */}
-                <Route path="add" element={ <AddListingPage /> } />
-                <Route path="edit" element={ <EditListingPage /> } />
+                <Route path="product/add" element={ <AddListingPage /> } />
+                <Route path="product/update/:id" element={ <EditListingPage /> } />
 
                 {/* Default Route */}
                 <Route path="*" element={<Navigate to="/" />} />

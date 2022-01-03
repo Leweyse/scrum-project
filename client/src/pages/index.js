@@ -5,6 +5,7 @@ import LandingPage from './LandingPage/LandingPage';
 import ProductsPage from './ProductsPage/ProductsPage';
 import SingleProductPage from "./SingleProductPage/SingleProductPage";
 import AddListingPage from "./AddListingPage/AddListingPage";
+import ForgotPasswordPage from "./ForgotPasswordPage/ForgotPasswordPage";
 import ResetPasswordPage from "./ResetPasswordPage/ResetPasswordPage";
 import EditListingPage from "./EditListingPage/EditListingPage";
 import CartPage from "./CartPage/CartPage";
@@ -18,6 +19,7 @@ export {
     ProductsPage,
     SingleProductPage,
     AddListingPage,
+    ForgotPasswordPage,
     ResetPasswordPage,
     EditListingPage,
     CartPage,
