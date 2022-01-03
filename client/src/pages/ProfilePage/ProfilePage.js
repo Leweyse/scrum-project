@@ -6,7 +6,7 @@ import { useState, useEffect } from 'react';
 
 import apiClient from "../../services/apiClient";
 
-export default function ProfilePage (props) {
+export default function ProfilePage () {
     let navigate = useNavigate();
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');

@@ -1,16 +1,43 @@
 import { Footer, Navbar, SingleProductSection } from "../../components";
+import {useParams} from "react-router-dom";
+import apiClient from "../../services/apiClient";
+import {useEffect, useState} from "react";
+import {Spinner} from "../../components/block";
 
 export default function SingleProductPage () {
+
+    const [data, setData] = useState(null);
+    let {id} = useParams()
+
+    const getProduct = async () => {
+        const res = await apiClient.get(`product/${id}`);
+        setData(res.data.data)
+        console.log(res.data.data);
+    }
+
+    useEffect(() => {
+
+        const abortController = new AbortController();
+
+        getProduct();
+
+        return () => {
+            abortController.abort();
+        }
+
+    }, [])
+
     return (
         <>
             <Navbar/>
-            <SingleProductSection
+            {data !== null ?
+                <SingleProductSection
                 src={'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg'}
-                name={'Vinyl Ex:Re'}
-                price={'30.00 $'}
-                seller={'Daryl Castro'}
-                description={"Sick vinyl bro, pls buy so I can pay my rent!"}
-            />
+                name={data.product.title}
+                price={data.product.price / 100}
+                seller={data.product.user}
+                description={data.product.description}
+            /> : <Spinner/> }
             <Footer />
         </>
     )
