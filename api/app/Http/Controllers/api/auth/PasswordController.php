@@ -16,7 +16,7 @@ class PasswordController extends Controller
 {
     public function forgotPassword(Request $request) {
         $validator = Validator::make($request->all(), [
-            'email' => 'required|email'
+            'email' => 'required|email|exists:users'
         ], $this->errorMessages());
 
         if ($validator->fails()) {
@@ -72,24 +72,46 @@ class PasswordController extends Controller
 
             return response($response, 200);
         }
+   
+        // $status = Password::reset(
+        //     $request->only('email','password','password_confirmation','token'),
+        //     function ($user) use($request) {
+        //         $user->forceFill([
+        //             'password' => $request->password,
+        //             'remember_token' =>Str::random(60)
+        //         ])->save();
+                
+        //         $user()->tokens()->delete(); 
+        //         event(new PasswordReset($user));
+        //     }
+        // );
 
         $status = Password::reset(
-            $request->only('email','password','password_confirmation','token'),
-            function ($user) use($request) {
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
                 $user->forceFill([
-                    'password' => $request->password,
-                    'remember_token' =>Str::random(60)
-                ])->save();
+                    'password' => $password
+                ])->setRememberToken(Str::random(60));
                 
-                $user()->tokens()->delete(); 
+                $user->save();
+                // $user()->tokens()->delete(); 
                 event(new PasswordReset($user));
             }
         );
+    
 
         if($status == Password::PASSWORD_RESET) {
             $response = [
                 'status' => 'success',
                 'message' => 'You reset successfully'
+            ];
+
+            return response($response, 200);
+        }
+        else {
+            $response = [
+                'status' => 'fail',
+                'message' => 'There was some issue'
             ];
 
             return response($response, 200);
@@ -102,6 +124,7 @@ class PasswordController extends Controller
             'token.required' => 'Invalid token applied',
             'email.required' => 'Your Email Please',
             'email.email' => 'Valid Email Please',
+            'email.exists' => 'We can\'t find this email in our database',
             'password.required' => 'Password please',
             'password.min'   => 'Minimum :min characters password',
             'form.password.confirmed'   => 'Two passwords does not match',

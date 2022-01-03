@@ -112,7 +112,7 @@ const LoginSection = () => {
                     </form>
                     <div id={"loginLinks"}>
                         <Link id={"signUp"} to={'/sign-up'}>Sign up</Link>
-                        <Link id={"passwordReset"} to={'/reset-password'}>Forgot password?</Link>
+                        <Link id={"passwordForgot"} to={'/forgot-password'}>Forgot password?</Link>
                     </div>
                 </div>
             </div>
