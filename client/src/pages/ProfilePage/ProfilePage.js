@@ -48,15 +48,13 @@ export default function ProfilePage () {
 
     return (
         <>
-        { !isLoading ? 
-          <>
-             <Navbar />
-             <ProfileSection  user={user} />
-             <Footer />
-          </> 
+            <Navbar />
+        { !isLoading ?
+            <ProfileSection  user={user} />
         : 
-          <Spinner /> 
+            <Spinner />
         }
+            <Footer />
         </>
        
     )

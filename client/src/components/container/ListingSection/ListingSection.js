@@ -88,7 +88,7 @@ const ListingSection = (props) => {
     return (
         <main id={"listingPage"}>
             <section className="title">
-                {type == 'create' ? <h1>Add Listing</h1> : <h1>Edit Listing</h1>}
+                {type == 'create' ? <p>Add Listing</p> : <p>Edit Listing</p>}
             </section>
             { successMsg ?
                 <section>
@@ -118,7 +118,7 @@ const ListingSection = (props) => {
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
-                        {error.title ? error.title : null}
+                    {error.title ? error.title : null}
 
                     <input
                         type={"text"}
