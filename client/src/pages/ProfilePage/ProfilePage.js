@@ -7,7 +7,6 @@ import { useState, useEffect } from 'react';
 import apiClient from "../../services/apiClient";
 
 export default function ProfilePage (props) {
-
     let navigate = useNavigate();
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
@@ -50,12 +49,13 @@ export default function ProfilePage (props) {
     return (
         <>
         { !isLoading ? 
-         <>
-         <Navbar />
-         <ProfileSection  user={user} />
-         <Footer />
-        </> 
-        : <Spinner /> 
+          <>
+             <Navbar />
+             <ProfileSection  user={user} />
+             <Footer />
+          </> 
+        : 
+          <Spinner /> 
         }
         </>
        

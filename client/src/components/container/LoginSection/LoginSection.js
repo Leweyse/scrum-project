@@ -10,7 +10,7 @@ const LoginSection = () => {
 
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
-    
+
     const [error, setError] = useState({});
     const [isLoading, setIsLoading] = useState(true);
 
