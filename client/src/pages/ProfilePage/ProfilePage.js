@@ -9,7 +9,7 @@ export default function ProfilePage (props) {
                 <p id={"profilePageTitle"}>Profile</p>
                 <section id={"infoFieldsLeft"}>
                     <div className={"infoFields"}>
-                        <span>Name</span>
+                        <span id={"profilePageName"}>Name</span>
                         <p className={"infoText"}>{`${props.name} Test`}</p>
                     </div>
 

@@ -1,4 +1,4 @@
-import { Navbar, ProductCard, Footer, LogoutButton, Carousel } from './block';
+import { Navbar, ProductCard, Footer, LogoutButton, Carousel, SlideElement } from './block';
 
 import {
     LandingSection,
@@ -7,7 +7,8 @@ import {
     LoginSection,
     SignUpSection, 
     ListingSection, 
-    CartSection
+    CartSection,
+
 } from './container';
 
 export {
@@ -17,6 +18,7 @@ export {
     Footer,
     LogoutButton,
     Carousel,
+    SlideElement,
 
     // CONTAINER
     LandingSection,

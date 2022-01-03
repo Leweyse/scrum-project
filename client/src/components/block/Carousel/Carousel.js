@@ -1,10 +1,12 @@
 import { useState } from "react";
-import { SlidesData } from "../../../assets/slidesdata/SlidesData";
 import { ButtonLeftSVG, ButtonRightSVG } from "../SVGs";
+import {SlidesData} from "./SlidesData";
+
 
 export default function Carousel () {
 
     const slides = SlidesData;
+
     const [current, setCurrent] = useState(0)
     const length = slides.length
 
