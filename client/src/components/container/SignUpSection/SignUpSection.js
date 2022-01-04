@@ -162,6 +162,15 @@ const SignUpSection = () => {
                             />
                             {error.password ? error.password : null}
                         </span>
+                        <span className={"suInput"}>
+                            <div id={"suRadio"} >
+                                <button id={"tAC"}> Terms and conditions <span>*</span></button>
+                                <input type={"checkbox"} id={"suTerms"}/>
+                            </div>
+                            <div id={"tACText"}>
+                                <label  htmlFor={"suTerms"}>By clicking this checkbox you agree to our terms and conditions</label>
+                            </div>
+                        </span>
                         <button name={"signup"} className={"suBtn"}>Submit</button>
                     </form>
                 </section>

@@ -8,7 +8,8 @@ use Illuminate\Support\Str;
 
 class ProductFactory extends Factory
 {
-    private $length = [3,4,5,6,7,8,9];
+    private $descLength = [3,4,5,6,7];
+    private $titleLength = [1,2,3];
     /**
      * Define the model's default state.
      *
@@ -21,9 +22,9 @@ class ProductFactory extends Factory
             'user_ip' => '217.0.0.1',
             'categories_id' => $this->faker->numberBetween($min = 1, $max = 7),
             'sku' => Str::upper(Str::random(8)),
-            'title' => $this->faker->sentence($nbWords = Arr::random($this->length), $variableNbWords = true),
-            'description' => $this->faker->paragraph($nbSentences = Arr::random($this->length), $variableNbSentences = true) ,
-            'image' => 'default.jpg',
+            'title' => $this->faker->sentence($nbWords = Arr::random($this->titleLength), $variableNbWords = true),
+            'description' => $this->faker->paragraph($nbSentences = Arr::random($this->descLength), $variableNbSentences = true) ,
+            'image' => 'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg',
             'price' => $this->faker->numberBetween($min = 1000, $max = 10000),
             'stock_unit' => $this->faker->numberBetween($min = 10, $max = 500),
             'sold_unit' => 0
