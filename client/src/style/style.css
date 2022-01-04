@@ -737,10 +737,9 @@ button:focus-visible {
   font-weight: bold;
 }
 #productPage .productPageRight .productPriceStatistics {
-  padding-top: 2.5%;
   display: grid;
-  width: 70%;
-  height: 15rem;
+  width: 25rem;
+  height: 12.5rem;
   place-items: center;
   font-size: 0.75rem;
 }

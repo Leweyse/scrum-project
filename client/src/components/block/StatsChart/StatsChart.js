@@ -3,7 +3,7 @@ import {LineChart, Line, CartesianGrid, XAxis, YAxis, ResponsiveContainer, Legen
 export default function StatsChart (props) {
 
     const formatY = (tick) => {
-        return `$ ${(tick / 100).toFixed(2)}`
+        return `$${(tick / 100).toFixed(2)}`
     }
 
     const formatX = (tick) => {
@@ -12,7 +12,7 @@ export default function StatsChart (props) {
 
     return (
         <ResponsiveContainer width={"100%"} height={"100%"}>
-            <LineChart data={props.data} margin={{right: 50}}>
+            <LineChart data={props.data} margin={{top: 20}}>
                 <Line type={"monotone"} name={"price"} dataKey={'new_price'} stroke={"#006d77"} />
                 <Legend/>
                 <Tooltip formatter={(price) => formatY(price)} labelFormatter={(date) => formatX(date)}/>

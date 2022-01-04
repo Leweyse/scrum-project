@@ -76,7 +76,7 @@ const StockSection = () => {
                                 toId={product.id}
                                 src={product.image}
                                 title={product.title}
-                                price={`$ ${(product.price / 100).toFixed(2)}`}
+                                price={`$${(product.price / 100).toFixed(2)}`}
                                 seller={product.user}
                             />
                         )}
