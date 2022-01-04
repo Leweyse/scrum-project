@@ -2,10 +2,10 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 use App\Http\Controllers\api\auth\RegisterController;
 use App\Http\Controllers\api\auth\LoginController;
 use App\Http\Controllers\api\ProductController;
+use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\Auth\PasswordController;
 
@@ -29,7 +29,12 @@ Route::post('/login', [LoginController::class, 'login']);
 Route::get('/products', [ProductController::class, 'all']);
 Route::get('/products/page/{page}/{take}', [ProductController::class, 'countPaginate']);
 Route::get('/product/{id}', [ProductController::class, 'product']);
+Route::get('/product/category/{id}', [ProductController::class, 'productFromCategory']);
+
 Route::get('/user/{id}', [UserController::class, 'getUser']);
+
+Route::get('/categories', [CategoryController::class, 'all']);
+Route::get('/category/{id}', [CategoryController::class, 'category']);
 
 Route::post('/forgot-password', [PasswordController::class, 'forgotPassword']);
 Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
@@ -56,4 +61,18 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
 
 
 // Super Admin 
-// check the sales , delete user, ban user, create update category, edit all products
+// check the sales , delete user, ban user, create update category, edit all products 
+
+Route::group(['prefix' => 'admin', 'middleware' => ['auth:sanctum']], function() {
+    Route::post('/category/create', [CategoryController::class, 'create']);
+    Route::post('/category/update/{id}', [CategoryController::class, 'update']);
+    Route::post('/category/delete/{id}', [CategoryController::class, 'delete']);
+});
+
+
+// Super Admin 
+// check the sales , delete user, ban user, create update category, edit all products 
+
+
+
+

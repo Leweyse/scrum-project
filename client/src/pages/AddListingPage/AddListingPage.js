@@ -15,7 +15,7 @@ export default function AddListingPage () {
 
     useEffect(() => {
         authCheck();
-    },[]);
+    });
 
     const authCheck = () => {
         if(tkn && tkn !== '0') {
@@ -47,13 +47,13 @@ export default function AddListingPage () {
 
     return (
         <>
-        { !isLoading ? 
-        <>
             <Navbar/>
-            <ListingSection type={"create"} userId={userId}/>
+            { !isLoading ? 
+                <ListingSection type={"create"} userId={userId}/>
+            : 
+                <Spinner /> 
+            }
             <Footer/>
-        </>
-            : <Spinner /> }
         </>
     )
 };

@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import useCookie, { getCookie } from 'react-use-cookie';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import apiClient from "../../../services/apiClient";
 
@@ -81,102 +81,105 @@ const SignUpSection = () => {
     }
 
     return (
-        !isLoading ? 
-            // Sign-Up = su
-            <main id={"suSection"}>
-                <section className={"suContainer"}>
-                    <p className={"suLogoCropped"}>Sign Up</p>
-                    <form className={"suForm"} onSubmit={handleSubmit}>
-                        <span className={"suInput"}>
-                            <label htmlFor={"suFirstName"}>First name <span>*</span></label>
-                            <input
-                                id={"suFirstName"}
-                                type={"text"}
-                                placeholder={"First name"}
-    
-                                value={info.firstName}
-                                onChange={e => setInfo((prevState) => ({
-                                    ...prevState,
-                                    firstName: e.target.value
-                                }))}
-                            />
-                            {error.first_name ? error.first_name : null}
-                        </span>
-                        <span className={"suInput"}>
-                            <label htmlFor={"suLastName"}>Last name <span>*</span></label>
-                            <input
-                                id={"suLastName"}
-                                type={"text"}
-                                placeholder={"Last name"}
-    
-                                value={info.lastName}
-                                onChange={e => setInfo((prevState) => ({
-                                    ...prevState,
-                                    lastName: e.target.value
-                                }))}
-                            />
-                            {error.last_name ? error.last_name : null}
-                        </span>
-                        <span className={"suInput"}>
-                            <label htmlFor={"suEmail"}>Email address <span>*</span></label>
-                            <input
-                                id={"suEmail"}
-                                type={"email"}
-                                placeholder={"Email address"}
-    
-                                value={info.email}
-                                onChange={e => setInfo((prevState) => ({
-                                    ...prevState,
-                                    email: e.target.value
-                                }))}
-                            />
-                            {error.email ? error.email : null}
-                        </span>
-                        <span className={"suInput"}>
-                            <label htmlFor={"suPhone"}>Phone Number <span>*</span></label>
-                            <input
-                                id={"suPhone"}
-                                type={"text"}
-                                placeholder={"Phone Number"}
-    
-                                value={info.phone}
-                                onChange={e => setInfo((prevState) => ({
-                                    ...prevState,
-                                    phone: e.target.value
-                                }))}
-                            />
-                            {error.phone ? error.phone : null}
-                        </span>
-                        <span className={"suInput"}>
-                            <label htmlFor={"suPassword"}>Password <span>*</span></label>
-                            <input
-                                id={"suPassword"}
-                                type={"password"}
-                                placeholder={"Password"}
-    
-                                value={info.password}
-                                onChange={e => setInfo((prevState) => ({
-                                    ...prevState,
-                                    password: e.target.value
-                                }))}
-                            />
-                            {error.password ? error.password : null}
-                        </span>
-                        <span className={"suInput"}>
-                            <div>
-                                <button id={"tAC"}> Terms and conditions <span>*</span></button>
-                                <input type={"checkbox"} id={"suTerms"}/>
-                            </div>
-                            <div>
-                                <label  htmlFor={"suTerms"}>By clicking this checkbox you agree to our terms and conditions</label>
-                            </div>
-                        </span>
-                        <button name={"signup"} className={"suBtn"}>Submit</button>
-                    </form>
-                </section>
-            </main>
+        <>
+            { !isLoading ? 
+                // Sign-Up = su
+                <main id={"suSection"}>
+                    <section className={"suContainer"}>
+                        <p className={"suLogoCropped"}>Sign Up</p>
+                        <form className={"suForm"} onSubmit={handleSubmit}>
+                            <span className={"suInput"}>
+                                <label htmlFor={"suFirstName"}>First name <span>*</span></label>
+                                <input
+                                    id={"suFirstName"}
+                                    type={"text"}
+                                    placeholder={"First name"}
+        
+                                    value={info.firstName}
+                                    onChange={e => setInfo((prevState) => ({
+                                        ...prevState,
+                                        firstName: e.target.value
+                                    }))}
+                                />
+                                {error.first_name ? error.first_name : null}
+                            </span>
+                            <span className={"suInput"}>
+                                <label htmlFor={"suLastName"}>Last name <span>*</span></label>
+                                <input
+                                    id={"suLastName"}
+                                    type={"text"}
+                                    placeholder={"Last name"}
+        
+                                    value={info.lastName}
+                                    onChange={e => setInfo((prevState) => ({
+                                        ...prevState,
+                                        lastName: e.target.value
+                                    }))}
+                                />
+                                {error.last_name ? error.last_name : null}
+                            </span>
+                            <span className={"suInput"}>
+                                <label htmlFor={"suEmail"}>Email address <span>*</span></label>
+                                <input
+                                    id={"suEmail"}
+                                    type={"email"}
+                                    placeholder={"Email address"}
+        
+                                    value={info.email}
+                                    onChange={e => setInfo((prevState) => ({
+                                        ...prevState,
+                                        email: e.target.value
+                                    }))}
+                                />
+                                {error.email ? error.email : null}
+                            </span>
+                            <span className={"suInput"}>
+                                <label htmlFor={"suPhone"}>Phone Number <span>*</span></label>
+                                <input
+                                    id={"suPhone"}
+                                    type={"text"}
+                                    placeholder={"Phone Number"}
+        
+                                    value={info.phone}
+                                    onChange={e => setInfo((prevState) => ({
+                                        ...prevState,
+                                        phone: e.target.value
+                                    }))}
+                                />
+                                {error.phone ? error.phone : null}
+                            </span>
+                            <span className={"suInput"}>
+                                <label htmlFor={"suPassword"}>Password <span>*</span></label>
+                                <input
+                                    id={"suPassword"}
+                                    type={"password"}
+                                    placeholder={"Password"}
+        
+                                    value={info.password}
+                                    onChange={e => setInfo((prevState) => ({
+                                        ...prevState,
+                                        password: e.target.value
+                                    }))}
+                                />
+                                {error.password ? error.password : null}
+                            </span>
+                            <span className={"suCheckbox"}>
+                                <div id={"suRadio"} >
+                                    <Link id={"tAC"} to={'terms-and-conditions'}> Terms and conditions <span>*</span></Link>
+                                    <input type={"checkbox"} id={"suTerms"}/>
+                                </div>
+                                <div id={"tACText"}>
+                                    <label  htmlFor={"suTerms"}>By clicking this checkbox you agree to our terms and conditions</label>
+                                </div>
+                            </span>
+                            <button name={"signup"} className={"suBtn"}>Submit</button>
+                        </form>
+                    </section>
+                </main>
             :
-            <Spinner /> 
+                <Spinner /> 
+            }
+        </>
     )
 }
 

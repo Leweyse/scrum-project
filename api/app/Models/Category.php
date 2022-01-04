@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
@@ -13,6 +14,22 @@ class Category extends Model
     protected $fillable = [
         'name',
         'image',
-        'description'
+        'description',
+        'slug'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($Category)
+        {
+            $Category->slug = Str::slug($Category->name);
+        });
+
+        static::updating(function($Category)
+        {
+            $Category->slug = Str::slug($Category->name);
+        });
+    }
 }

@@ -63,9 +63,9 @@
                 }
 
                 label {
+                    width: 100%;
                     font-size: 1.1rem;
                     font-weight: 600;
-
 
                     span {
                         color: var(--clr-red);
@@ -74,7 +74,39 @@
 
                 input {
                     width: 100%;
-                    padding: 0.25rem;
+                    padding: 0.25rem 0.5rem;
+                }
+            }
+
+            .suCheckbox {
+                display: grid;
+                place-items: center;
+
+                gap: 1rem;
+              
+                #suRadio {
+                    display: flex;
+                    align-items: center;
+                    gap: 2rem;
+
+                    #tAC {
+                        font-size: 1.1rem;
+                        font-weight: 600;
+                        text-align: left;
+    
+                        span {
+                            color: var(--clr-red);
+                        }
+                    }
+
+                    input {
+                        zoom: 1.5;
+                    }
+                }
+
+                #tACText {
+                    width: 45%;
+                    text-align: center;
                 }
             }
         }
