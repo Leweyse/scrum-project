@@ -8,11 +8,14 @@ import apiClient from "../../../services/apiClient";
 const LoginSection = () => {
     let navigate = useNavigate();
 
+    const [errorMsg, setErrorMsg] = useState(null);
+
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
 
     const [error, setError] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     const [info, setInfo] = useState({
         email: '',
@@ -22,7 +25,7 @@ const LoginSection = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        setIsLoading(true);
+        setIsProcessing(true);
 
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
@@ -37,9 +40,12 @@ const LoginSection = () => {
                     }
                 })
                     .then(res => {
+                        setIsProcessing(false)
+                        if(res.data.status === 'fail' && res.data.message !== null) {
+                            setErrorMsg("Your login credentials do no match")
+                        }
                         if(res.data.data.error) {
                             setError(res.data.data.error);
-                            setIsLoading(false);
                         }
                         if(res.data.data.token) {
                             setUserToken(res.data.data.token);
@@ -81,6 +87,7 @@ const LoginSection = () => {
                 <div id={"loginContainer"}>
                     <p id={"loginLogo"}>G-bay</p>
                     <p id={"loginLogoCropped"}>G-bay</p>
+                    {errorMsg ? errorMsg : null}
                     <form id={"loginForm"} onSubmit={handleSubmit}>
                         <input
                             id={"loginEmail"}
@@ -107,7 +114,7 @@ const LoginSection = () => {
                         />
                         {error.password ? error.password : null}
                         <div id={"loginFormButtonContainer"}>
-                            <button type={'submit'} id={"loginSubmit"}>Submit</button>
+                            <button type={'submit'} id={"loginSubmit"}>{isProcessing ? <Spinner size={20}/>: "Submit"}</button>
                         </div>
                     </form>
                     <div id={"loginLinks"}>
