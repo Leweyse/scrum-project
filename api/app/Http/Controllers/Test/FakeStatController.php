@@ -13,7 +13,7 @@ class FakeStatController extends Controller
             for($i=0;$i<100;$i++) {
                 $product_id = rand(1,500);
 
-                if($product === Product::find($product_id)) {
+                if($product = Product::find($product_id)) {
                     $new_price = rand($product->price - 40,$product->price + 100);
                     Stat::create([
                         'products_id' => $product_id,
