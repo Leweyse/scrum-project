@@ -35,7 +35,7 @@ class LoginController extends Controller
             $response = [
                 'status' => 'fail',
                 'data' => [
-                    'message' => 'The credentials does not match'
+                    'message' => 'Your login credentials do not match'
                 ]
             ];
             return response($response, 200);
@@ -67,9 +67,9 @@ class LoginController extends Controller
     private function errorMessages()
     {
         return [
-            'email.required' => 'Your Email Please',
-            'email.email' => 'Valid Email Please',
-            'password.required' => 'Password please'
+            'email.required' => 'Please enter your e-mail address',
+            'email.email' => 'Invalid e-mail address',
+            'password.required' => 'Please enter your password'
         ];
     }
 }

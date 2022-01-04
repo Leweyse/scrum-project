@@ -573,7 +573,12 @@ button:focus-visible {
   cursor: pointer;
 }
 #suSection .suContainer .suForm .suInput {
-  display: grid;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  text-align: left;
+  width: 45%;
   gap: 0.25rem;
 }
 #suSection .suContainer .suForm .suInput > * {
@@ -582,13 +587,38 @@ button:focus-visible {
 #suSection .suContainer .suForm .suInput label {
   font-size: 1.1rem;
   font-weight: 600;
+  width: 100%;
 }
 #suSection .suContainer .suForm .suInput label span {
   color: var(--clr-red);
 }
+#suSection .suContainer .suForm .suInput #suRadio {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+#suSection .suContainer .suForm .suInput #tAC {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+  width: 100%;
+}
+#suSection .suContainer .suForm .suInput #tAC span {
+  color: var(--clr-red);
+}
+#suSection .suContainer .suForm .suInput #tACText {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 #suSection .suContainer .suForm .suInput input {
   width: 100%;
   padding: 0.25rem;
+}
+#suSection .suContainer .suForm .suInput .suBtn {
+  width: 100%;
 }
 
 #profileSection {

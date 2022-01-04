@@ -33,7 +33,7 @@ class PasswordController extends Controller
         if(!$user) {
             $response = [
                 'status' => 'fail',
-                'message' => 'We can\'t find this email in our database'
+                'message' => 'This e-mail address isn\'t registered to our database'
             ];
 
             return response($response, 200);
@@ -43,9 +43,9 @@ class PasswordController extends Controller
         if($status == Password::RESET_LINK_SENT) {
                 $response = [
                     'status' => 'success',
-                    'message' => 'Reset link sent in email'
+                    'message' => 'A password reset link has been sent to your e-mail address'
                 ];
-    
+
                 return response($response, 200);
         }
 
@@ -72,7 +72,7 @@ class PasswordController extends Controller
 
             return response($response, 200);
         }
-   
+
         // $status = Password::reset(
         //     $request->only('email','password','password_confirmation','token'),
         //     function ($user) use($request) {
@@ -80,8 +80,8 @@ class PasswordController extends Controller
         //             'password' => $request->password,
         //             'remember_token' =>Str::random(60)
         //         ])->save();
-                
-        //         $user()->tokens()->delete(); 
+
+        //         $user()->tokens()->delete();
         //         event(new PasswordReset($user));
         //     }
         // );
@@ -92,18 +92,18 @@ class PasswordController extends Controller
                 $user->forceFill([
                     'password' => $password
                 ])->setRememberToken(Str::random(60));
-                
+
                 $user->save();
-                // $user()->tokens()->delete(); 
+                // $user()->tokens()->delete();
                 event(new PasswordReset($user));
             }
         );
-    
+
 
         if($status == Password::PASSWORD_RESET) {
             $response = [
                 'status' => 'success',
-                'message' => 'You reset successfully'
+                'message' => 'Password reset successfully'
             ];
 
             return response($response, 200);
@@ -111,7 +111,7 @@ class PasswordController extends Controller
         else {
             $response = [
                 'status' => 'fail',
-                'message' => 'There was some issue'
+                'message' => 'There was an issue while resetting your password'
             ];
 
             return response($response, 200);

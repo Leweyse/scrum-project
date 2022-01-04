@@ -20,7 +20,7 @@ class ProductController extends Controller
         $data = [];
         foreach($products as $product) {
             $user = User::findOrFail($product->users_id);
-            $product['user'] = $user->first_name . ' ' . $user->last_name; 
+            $product['user'] = $user->first_name . ' ' . $user->last_name;
             $data[] = $product;
         }
         $response = [
@@ -94,13 +94,13 @@ class ProductController extends Controller
         if(!$product) {
             return response([
                 'status' => 'fail',
-                'message' => 'This product doesn\'t exixt in database'
+                'message' => 'This listing is not in our database'
             ], 200);
         }
         if(Auth::id() != $product->users_id) {
             $response = [
                 'status' => 'fail',
-                'message' => 'You don\'t have permission for this'
+                'message' => 'You don\'t have permission for that'
             ];
             return response($response, 200);
         }
@@ -158,13 +158,13 @@ class ProductController extends Controller
             $response = [
                 'status' => 'fail',
                 'data' => [
-                    'message' => 'this is product is either deleted or never exist in our database'
+                    'message' => 'This listing is not in our database'
                 ]
             ];
             return response($response, 200);
         }
         $user = User::findOrFail($product->users_id);
-        $product['user'] = $user->first_name . ' ' . $user->last_name; 
+        $product['user'] = $user->first_name . ' ' . $user->last_name;
         $stats = Stat::where('products_id',$id)->get();
         $product['stats'] = $stats;
         $response = [
@@ -190,7 +190,7 @@ class ProductController extends Controller
             $response = [
                 'status' => 'fail',
                 'data' => [
-                    'message' => 'this is product is either already deleted or never exist in our database'
+                    'message' => 'This listing is not in our database'
                 ]
             ];
             return response($response, 200);
@@ -199,7 +199,7 @@ class ProductController extends Controller
             $response = [
                 'status' => 'fail',
                 'data' => [
-                    'message' => 'You don\'t have permission for this'
+                    'message' => 'You don\'t have permission for that'
                 ]
             ];
             return response($response, 200);
@@ -214,15 +214,15 @@ class ProductController extends Controller
     private function errorMessages()
     {
         return [
-            'first_name.required' => 'Your Name Please',
-            'last_name.required' => 'Last Name Please',
-            'email.required' => 'Your Email Please',
-            'email.email' => 'Valid Email Please',
-            'email.unique' => 'Email already registered',
-            'password.required' => 'Password please',
-            'password.min'   => 'Minimum :min characters password',
-            'form.password.confirmed'   => 'Two passwords does not match',
-            'form.agree.required' => 'You must agree the terms',
+            'first_name.required' => 'Please enter your first name',
+            'last_name.required' => 'Please enter your last name',
+            'email.required' => 'Please enter your e-mail address',
+            'email.email' => 'Invalid e-mail address',
+            'email.unique' => 'This e-mail address is already in use',
+            'password.required' => 'Please enter your password',
+            'password.min'   => 'Password requires a minimum of :min characters',
+            'form.password.confirmed'   => 'The entered passwords do not match',
+            'form.agree.required' => 'You must agree to the terms and conditions to proceed',
         ];
     }
 
