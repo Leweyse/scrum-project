@@ -59,7 +59,6 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        // return $request->image;
         $validator = Validator::make($request->all(), [
             'categories_id' => 'required|Numeric',
             'title' => 'required',
@@ -211,6 +210,16 @@ class ProductController extends Controller
         return response($response, 200);
     }
 
+    public function productByUser(Request $request, $user_id) {
+        $products = Product::where('users_id',$user_id)->get();
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'products' => $products
+            ]
+        ];
+        return response($response, 200);
+    }
     private function errorMessages()
     {
         return [
