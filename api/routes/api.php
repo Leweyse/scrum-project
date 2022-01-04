@@ -7,6 +7,7 @@ use App\Http\Controllers\api\auth\LoginController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\api\Auth\PasswordController;
 
 /*
@@ -54,7 +55,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/user', [UserController::class, 'user']);
     Route::post('/user', [UserController::class, 'update']);
 
-    // Password reset
+    // Password change
+
+    // Bidding
+
+    // Ordering
+    Route::post('/order', [OrderController::class, 'order']);
 
 
 });
