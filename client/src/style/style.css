@@ -89,6 +89,8 @@ button:focus-visible {
 #navbar #navRight #productsLink {
   position: relative;
   display: grid;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   transition: all 0.3s ease;
@@ -142,6 +144,8 @@ button:focus-visible {
 }
 #navbar #navRight #navDropdown #navDropdownContent a {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   text-align: center;
@@ -338,7 +342,8 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #productCard .description_container {
   display: grid;
@@ -427,6 +432,15 @@ button:focus-visible {
   border-right: 3px solid transparent;
   -webkit-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes rotation {
@@ -575,11 +589,9 @@ button:focus-visible {
 #suSection .suContainer .suForm .suInput {
   display: flex;
   flex-direction: column;
-  justify-content: space-evenly;
   align-items: center;
   text-align: left;
-  width: 45%;
-  gap: 0.25rem;
+  gap: 0.5rem;
 }
 #suSection .suContainer .suForm .suInput > * {
   font-size: 1rem;
@@ -592,33 +604,34 @@ button:focus-visible {
 #suSection .suContainer .suForm .suInput label span {
   color: var(--clr-red);
 }
-#suSection .suContainer .suForm .suInput #suRadio {
+#suSection .suContainer .suForm .suInput input {
   width: 100%;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  padding: 0.25rem 0.5rem;
 }
-#suSection .suContainer .suForm .suInput #tAC {
+#suSection .suContainer .suForm .suCheckbox {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+}
+#suSection .suContainer .suForm .suCheckbox #suRadio {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+#suSection .suContainer .suForm .suCheckbox #suRadio #tAC {
   font-size: 1.1rem;
   font-weight: 600;
   text-align: left;
-  width: 100%;
 }
-#suSection .suContainer .suForm .suInput #tAC span {
+#suSection .suContainer .suForm .suCheckbox #suRadio #tAC span {
   color: var(--clr-red);
 }
-#suSection .suContainer .suForm .suInput #tACText {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#suSection .suContainer .suForm .suCheckbox #suRadio input {
+  zoom: 1.5;
 }
-#suSection .suContainer .suForm .suInput input {
-  width: 100%;
-  padding: 0.25rem;
-}
-#suSection .suContainer .suForm .suInput .suBtn {
-  width: 100%;
+#suSection .suContainer .suForm .suCheckbox #tACText {
+  width: 45%;
+  text-align: center;
 }
 
 #profileSection {
@@ -701,6 +714,8 @@ button:focus-visible {
 }
 #stockSection .paginationContainer .currentPage {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   color: var(--clr-red);
 }
@@ -815,7 +830,6 @@ button:focus-visible {
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
   -moz-user-select: none;
-  -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -1018,6 +1032,4 @@ button:focus-visible {
   #suPage .suContainer {
     width: 70%;
   }
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */
