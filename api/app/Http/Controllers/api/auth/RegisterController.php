@@ -16,7 +16,8 @@ class RegisterController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-            'phone' => 'required'
+            'phone' => 'required',
+            'agree' =>'accepted'
         ], $this->errorMessages());
 
 
@@ -47,15 +48,16 @@ class RegisterController extends Controller
     private function errorMessages()
     {
         return [
-            'first_name.required' => 'Please enter your first name',
-            'last_name.required' => 'Please enter your last name',
-            'email.required' => 'Please enter your e-mail address',
-            'email.email' => 'Invalid e-mail address',
-            'email.unique' => 'This e-mail address is already in use',
-            'password.required' => 'Please enter your password',
-            'password.min'   => 'Password requires a minimum of :min characters',
-            'form.password.confirmed'   => 'The entered passwords do not match',
-            'form.agree.required' => 'You must agree to the terms and conditions to proceed',
+            'first_name.required' => 'Your Name Please',
+            'last_name.required' => 'Last Name Please',
+            'email.required' => 'Your Email Please',
+            'email.email' => 'Valid Email Please',
+            'email.unique' => 'Email already registered',
+            'password.required' => 'Password please',
+            'password.min'   => 'Minimum :min characters password',
+            'form.password.confirmed'   => 'Two passwords does not match',
+            'form.agree.required' => 'You must agree the terms',
+            'agree.accepted' => 'You must agree terms and condition to register'
         ];
     }
 }
