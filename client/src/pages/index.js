@@ -10,6 +10,7 @@ import ResetPasswordPage from "./ResetPasswordPage/ResetPasswordPage";
 import EditListingPage from "./EditListingPage/EditListingPage";
 import CartPage from "./CartPage/CartPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
+import ReturnCancellationPage from "./ReturnCancellationPage/ReturnCancellationPage";
 
 export {
     LoginPage,
@@ -23,5 +24,6 @@ export {
     ResetPasswordPage,
     EditListingPage,
     CartPage,
-    ProfilePage
+    ProfilePage,
+    ReturnCancellationPage
 }
