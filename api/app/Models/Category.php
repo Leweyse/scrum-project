@@ -13,6 +13,22 @@ class Category extends Model
     protected $fillable = [
         'name',
         'image',
-        'description'
+        'description',
+        'slug'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($Category)
+        {
+            $Category->slug = Str::slug($Category->name);
+        });
+
+        static::updating(function($Category)
+        {
+            $Category->slug = Str::slug($Category->name);
+        });
+    }
 }
