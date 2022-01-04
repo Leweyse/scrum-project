@@ -12,6 +12,9 @@ class Order extends Model
     protected $fillable = [
         'users_id',
         'user_ip',
+        'full_name',
+        'email',
+        'phone',
         'sub_total',
         'postcode',
         'city',
@@ -21,4 +24,15 @@ class Order extends Model
         'status',
         'shipped_date'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($Product)
+        {
+            $Product->user_ip =  \Request::ip();
+            $Product->users_id =  \Auth::id();
+        });
+    }
 }
