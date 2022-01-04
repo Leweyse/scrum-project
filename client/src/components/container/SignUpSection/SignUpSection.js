@@ -34,7 +34,7 @@ const SignUpSection = () => {
                 }
             })
                 .then((res) => {
-                    navigate("/checkout");
+                    navigate("/profile");
                 })
                 .catch((err) => {
                     if (err.response && err.response.status === 401) {
