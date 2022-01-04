@@ -1,6 +1,6 @@
 import {useState, useEffect} from 'react';
 import useCookie, { getCookie } from 'react-use-cookie';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import apiClient from "../../../services/apiClient";
 
@@ -162,9 +162,9 @@ const SignUpSection = () => {
                             />
                             {error.password ? error.password : null}
                         </span>
-                        <span className={"suInput"}>
+                        <span className={"suCheckbox"}>
                             <div id={"suRadio"} >
-                                <button id={"tAC"}> Terms and conditions <span>*</span></button>
+                                <Link id={"tAC"} to={'terms-and-conditions'}> Terms and conditions <span>*</span></Link>
                                 <input type={"checkbox"} id={"suTerms"}/>
                             </div>
                             <div id={"tACText"}>
