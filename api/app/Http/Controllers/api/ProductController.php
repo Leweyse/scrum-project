@@ -214,15 +214,14 @@ class ProductController extends Controller
     private function errorMessages()
     {
         return [
-            'first_name.required' => 'Please enter your first name',
-            'last_name.required' => 'Please enter your last name',
-            'email.required' => 'Please enter your e-mail address',
-            'email.email' => 'Invalid e-mail address',
-            'email.unique' => 'This e-mail address is already in use',
-            'password.required' => 'Please enter your password',
-            'password.min'   => 'Password requires a minimum of :min characters',
-            'form.password.confirmed'   => 'The entered passwords do not match',
-            'form.agree.required' => 'You must agree to the terms and conditions to proceed',
+            'categories_id.required' => 'You must choose a category',
+            'categories_id.numeric' => 'Must be a number',
+            'title.required' => 'name or title of the product',
+            'description.required' => 'Please give some description',
+            'image.mimes' => 'Only jpg or png images are accepted',
+            'price.required' => 'What is the price for the product',
+            'stock_unit.required' => 'How many units are available',
+            'stock_unit.numeric' => 'must be a number'
         ];
     }
 
