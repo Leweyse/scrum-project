@@ -11,12 +11,13 @@ const SignUpSection = () => {
 
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
-    // const [userId, setUserId] = useCookie('user','');
 
     const [error, setError] = useState({});
     const [isLoading, setIsLoading] = useState(false);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     const [info, setInfo] = useState({
+        terms: false,
         firstName: '',
         lastName: '',
         email: '',
@@ -48,9 +49,7 @@ const SignUpSection = () => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-
-        setIsLoading(true);
-
+        setIsProcessing(true);
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
                 apiClient.post( '/register', {
@@ -58,7 +57,8 @@ const SignUpSection = () => {
                     last_name: info.lastName,
                     email: info.email,
                     phone: info.phone,
-                    password: info.password
+                    password: info.password,
+                    agree: info.terms
                 },
                 {
                     headers: {
@@ -66,14 +66,13 @@ const SignUpSection = () => {
                     }
                 })
                 .then(res => {
+                    setIsProcessing(false);
                     const response = res.data;
 
                     if(response.data.error) {
                         setError(response.data.error);
-                        setIsLoading(false);
                     } else if(response.data.token) {
                         setUserToken(response.data.token);
-                        // setUserId(res.data.data.user.id);
                         navigate("/checkout");
                     }
                 });
@@ -166,13 +165,22 @@ const SignUpSection = () => {
                             <span className={"suCheckbox"}>
                                 <div id={"suRadio"} >
                                     <Link id={"tAC"} to={'terms-and-conditions'}> Terms and conditions <span>*</span></Link>
-                                    <input type={"checkbox"} id={"suTerms"}/>
+                                    <input 
+                                        type={"checkbox"} 
+                                        id={"suTerms"}
+                                        value={info.terms}
+                                        checked={info.terms}
+                                        onChange={e => setInfo((prevState) => ({
+                                            ...prevState,
+                                            terms: !info.terms
+                                }))}/>
                                 </div>
                                 <div id={"tACText"}>
                                     <label  htmlFor={"suTerms"}>By clicking this checkbox you agree to our terms and conditions</label>
                                 </div>
+                                {error.agree ? error.agree : null}
                             </span>
-                            <button name={"signup"} className={"suBtn"}>Submit</button>
+                            <button name={"signup"} className={"suBtn"}>{isProcessing ? <Spinner size={20}/>: "Submit"}</button>
                         </form>
                     </section>
                 </main>
