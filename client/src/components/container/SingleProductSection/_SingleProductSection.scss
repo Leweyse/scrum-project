@@ -32,12 +32,11 @@
         }
 
         .productPriceStatistics {
+            padding-top: 2.5%;
             display: grid;
-            width: 50%;
-            height: 8rem;
+            width: 70%;
+            height: 15rem;
             place-items: center;
-
-            border: 1px solid var(--clr-darkgray);
         }
 
         .productPageAddToCart {

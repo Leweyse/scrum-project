@@ -34,7 +34,7 @@ const SignUpSection = () => {
                 }
             })
                 .then((res) => {
-                    navigate("/checkout");
+                    navigate("/profile");
                 })
                 .catch((err) => {
                     if (err.response && err.response.status === 401) {
@@ -163,11 +163,11 @@ const SignUpSection = () => {
                             {error.password ? error.password : null}
                         </span>
                         <span className={"suInput"}>
-                            <div id={"suRadio"} >
+                            <div>
                                 <button id={"tAC"}> Terms and conditions <span>*</span></button>
                                 <input type={"checkbox"} id={"suTerms"}/>
                             </div>
-                            <div id={"tACText"}>
+                            <div>
                                 <label  htmlFor={"suTerms"}>By clicking this checkbox you agree to our terms and conditions</label>
                             </div>
                         </span>

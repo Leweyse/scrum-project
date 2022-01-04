@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {StatsChart} from "../../block";
 
 import apiClient from "../../../services/apiClient";
 
@@ -8,6 +9,7 @@ import { Spinner } from "../../block";
 export default function SingleProductSection() {
     let { id } = useParams();
     const [data, setData] = useState(null);
+    const stats = [{name: "Pizza", price: 50, date: 1000}, {name: "Pizza", price: 90, date: 5000}, {name: "Pizza", price: 40, date: 5000}, {name: "Pizza", price: 40, date: 5000}]
 
     const getProduct = async () => {
         const res = await apiClient.get(`product/${id}`);
@@ -53,7 +55,7 @@ export default function SingleProductSection() {
                             {data.product.description}
                         </p>
                         <div className={"productRightElements productPriceStatistics"}>
-                            <p>Price stats go here.</p>
+                            <StatsChart data={stats}/>
                         </div>
                         <button className={"productPageAddToCart"}>Add to Cart</button>
                     </div>

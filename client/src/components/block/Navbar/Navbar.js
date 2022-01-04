@@ -89,7 +89,7 @@ export default function Navbar () {
                             <>
                                 <Link className={"navRight"} to={"/profile"}>Profile</Link>
                                 <Link className={"navRight"} to={"/cart"}>Cart</Link>
-                                <Link className={"navRight"} to={"/add"}>Sell</Link>
+                                <Link className={"navRight"} to={"/product/add"}>Sell</Link>
                                 <LogoutButton className={"navRight"}/>
                             </>) : (
                             <>
