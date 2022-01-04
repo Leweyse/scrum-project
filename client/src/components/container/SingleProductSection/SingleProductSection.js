@@ -48,7 +48,7 @@ export default function SingleProductSection() {
                         </p>
                         <p className={"productRightElements"}>
                             <span className={"productPageBold"}>Price: </span>
-                            {`$ ${(data.product.price / 100).toFixed(2)}`}
+                            {`$${(data.product.price / 100).toFixed(2)}`}
                         </p>
                         <p className={"productRightElements"}>
                             <span className={"productPageBold"}>Seller: </span>
