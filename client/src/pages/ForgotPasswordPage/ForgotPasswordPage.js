@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useCookie, { getCookie } from 'react-use-cookie';
-import { useParams, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import apiClient from "../../services/apiClient";
 import { Spinner } from '../../components/block';
 
@@ -8,9 +8,9 @@ import {Navbar} from "../../components";
 import {Footer} from "../../components";
 
 
-const ResetPasswordPage = () => {
+const ForgotPasswordPage = () => {
     let navigate = useNavigate();
-    let { token } = useParams();
+
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
     
@@ -20,9 +20,7 @@ const ResetPasswordPage = () => {
     const [successMsg, setSuccessMsg] = useState(null);
 
     const [info, setInfo] = useState({
-        email: '',
-        password: '',
-        confirm_password: ''
+        email: ''
     })
 
     const handleSubmit = (event) => {
@@ -32,12 +30,9 @@ const ResetPasswordPage = () => {
 
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
-                apiClient.post( `/reset-password`, 
+                apiClient.post( '/forgot-password', 
                 {
-                    token: token,
-                    email: info.email,
-                    password: info.password,
-                    password_confirmation: info.confirm_password
+                    email: info.email
                 },
                 {
                     headers: {
@@ -51,11 +46,10 @@ const ResetPasswordPage = () => {
                         }
                         if(res.data.status === 'success') {
                             setError({});
-                            setSuccessMsg('Password updates successfully. You can login with new password');
+                            setSuccessMsg('Password reset link sent to your email');
                             setIsProcessing(false);
                         }
                     });
-                    
             });
     }
 
@@ -89,11 +83,11 @@ const ResetPasswordPage = () => {
             <Navbar />
             { !isLoading ?
                 <main id={"resetPasswordPage"}>
-                    <h1 id={"title"}>Password reset</h1>
+                    <h1 id={"title"}>Forgot Password</h1>
                     <div id={"resetPasswordContainer"}>
                         <form id={"resetPasswordForm"} onSubmit={handleSubmit}>
-                        { successMsg ? successMsg : null}
-                        <label id={"resetPassword"}>Email Address <span>*</span></label>
+                            { successMsg ? successMsg : null}
+                            <label id={"resetPassword"}>Email Address <span>*</span></label>
                             <input
                                 id={"resetPassword"}
                                 type={"text"}
@@ -104,32 +98,11 @@ const ResetPasswordPage = () => {
                                 }))}
                             />
                             {error.email ? error.email : null}
-
-                            <label id={"resetPassword"}>New password <span>*</span></label>
-                            <input
-                                id={"resetPassword"}
-                                type={"password"}
-                                value={info.password}
-                                onChange={e => setInfo((prevState) => ({
-                                    ...prevState,
-                                    password: e.target.value
-                                }))}
-                            />
-                            {error.password ? error.password : null}
-                            <label id={"repeatPassword"}>Confirm password <span>*</span></label>
-                            <input
-                                id={"repeatPassword"}
-                                type={"password"}
-                                value={info.confirm_password}
-                                onChange={e => setInfo((prevState) => ({
-                                    ...prevState,
-                                    confirm_password: e.target.value
-                                }))}
-                            />
                             <button type={'submit'} id={"resetPasswordSubmit"}>
-                                { isProcessing  ?  <Spinner size={20} />
+                                { isProcessing  ?  <Spinner size={30} />
                                     : <>Reset</>
-                                } 
+                                }
+                                
                             </button>
                         </form>
                     </div>
@@ -141,5 +114,5 @@ const ResetPasswordPage = () => {
         </>
     )
 }
-export default ResetPasswordPage;
+export default ForgotPasswordPage;
 

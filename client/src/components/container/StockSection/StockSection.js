@@ -74,11 +74,9 @@ const StockSection = () => {
                             <ProductCard
                                 key={idx}
                                 toId={product.id}
-                                // src={product.image}
-                                src={'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg'}
-                                // title={product.title}
-                                title={'Vinyl Ex:Re'}
-                                price={`${(product.price / 100).toFixed(2)} $`}
+                                src={product.image}
+                                title={product.title}
+                                price={`$ ${(product.price / 100).toFixed(2)}`}
                                 seller={product.user}
                             />
                         )}

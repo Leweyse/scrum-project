@@ -19,9 +19,18 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'level',
+        'agree',
+        'first_name',
+        'last_name',
         'email',
         'password',
+        'phone',
+        'postcode',
+        'city',
+        'address_line_1',
+        'address_line_2',
+        'country'
     ];
 
     /**
@@ -54,7 +63,7 @@ class User extends Authenticatable
     }
 
     public function sendPasswordResetNotification($token) {
-        $url = 'http://127.0.0.1:8000/api/reset-password?token=' . $token;
+        $url = 'http://localhost:3000/reset-password/' . $token;
         $this->notify(new ResetPasswordNotification($url));
     }
 }
