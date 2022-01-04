@@ -1,6 +1,6 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useCookie, { getCookie } from 'react-use-cookie';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import apiClient from "../../services/apiClient";
 import { Spinner } from '../../components/block';
 
@@ -40,11 +40,11 @@ const ForgotPasswordPage = () => {
                     }
                 })
                     .then(res => {
-                        if(res.data.status == 'fail' && res.data.data.hasOwnProperty('error')) {
+                        if(res.data.status === 'fail' && res.data.data.hasOwnProperty('error')) {
                             setError(res.data.data.error);
                             setIsProcessing(false);
                         }
-                        if(res.data.status == 'success') {
+                        if(res.data.status === 'success') {
                             setError({});
                             setSuccessMsg('Password reset link sent to your email');
                             setIsProcessing(false);
@@ -76,43 +76,41 @@ const ForgotPasswordPage = () => {
         else {
             setIsLoading(false);
         }
-    }, []);
+    }, [navigate, setUserToken, tkn, userToken]);
 
     return (
         <>
-         { !isLoading ?
-        <>
-        <Navbar />
-        <main id={"resetPasswordPage"}>
-            <h1 id={"title"}>Forgot Password</h1>
-            <div id={"resetPasswordContainer"}>
-                <form id={"resetPasswordForm"} onSubmit={handleSubmit}>
-                    { successMsg ? successMsg : null}
-                    <label id={"resetPassword"}>Email Address <span>*</span></label>
-                    <input
-                        id={"resetPassword"}
-                        type={"text"}
-                        value={info.email}
-                        onChange={e => setInfo((prevState) => ({
-                            ...prevState,
-                            email: e.target.value
-                        }))}
-                    />
-                    {error.email ? error.email : null}
-                    <button type={'submit'} id={"resetPasswordSubmit"}>
-                        { isProcessing  ?  <Spinner size={30} />
-                            : <>Reset</>
-                        }
-                        
-                    </button>
-                </form>
-            </div>
-        </main>
-        <Footer />
-        </>
-        :
-            <Spinner /> 
-        }
+            <Navbar />
+            { !isLoading ?
+                <main id={"resetPasswordPage"}>
+                    <h1 id={"title"}>Forgot Password</h1>
+                    <div id={"resetPasswordContainer"}>
+                        <form id={"resetPasswordForm"} onSubmit={handleSubmit}>
+                            { successMsg ? successMsg : null}
+                            <label id={"resetPassword"}>Email Address <span>*</span></label>
+                            <input
+                                id={"resetPassword"}
+                                type={"text"}
+                                value={info.email}
+                                onChange={e => setInfo((prevState) => ({
+                                    ...prevState,
+                                    email: e.target.value
+                                }))}
+                            />
+                            {error.email ? error.email : null}
+                            <button type={'submit'} id={"resetPasswordSubmit"}>
+                                { isProcessing  ?  <Spinner size={30} />
+                                    : <>Reset</>
+                                }
+                                
+                            </button>
+                        </form>
+                    </div>
+                </main>
+            :
+                <Spinner /> 
+            }
+            <Footer />
         </>
     )
 }

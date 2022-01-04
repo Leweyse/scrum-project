@@ -16,7 +16,7 @@ export default function ProfilePage () {
 
     useEffect(() => {
         authCheck();
-    },[]);
+    });
 
     const authCheck = () => {
         if(tkn && tkn !== '0') {
@@ -49,11 +49,11 @@ export default function ProfilePage () {
     return (
         <>
             <Navbar />
-        { !isLoading ?
-            <ProfileSection  user={user} />
-        : 
-            <Spinner />
-        }
+            { !isLoading ?
+                <ProfileSection  user={user} />
+            : 
+                <Spinner />
+            }
             <Footer />
         </>
        

@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
 import useCookie, { getCookie } from 'react-use-cookie';
 import { ListingSection, Navbar, Footer } from "../../components";
@@ -17,25 +17,25 @@ export default function EditListingPage () {
 
     useEffect(() => {
         authCheck();
-        }, []);
+    });
 
 
-    const getProduct = () => {
-        apiClient.get(`product/${id}`, {
-            headers: {
-                Accept: 'application/json'
-            }
-        })
-        .then((res) => {
-            if(res.data.data.product) {
-                setProduct(res.data.data.product);
-            }
-            else {
-                navigate("/products");
-            }
+    // const getProduct = () => {
+    //     apiClient.get(`product/${id}`, {
+    //         headers: {
+    //             Accept: 'application/json'
+    //         }
+    //     })
+    //     .then((res) => {
+    //         if(res.data.data.product) {
+    //             setProduct(res.data.data.product);
+    //         }
+    //         else {
+    //             navigate("/products");
+    //         }
             
-        });
-    }
+    //     });
+    // }
 
     const authCheck = () => {
         if(tkn && tkn !== '0') {
@@ -54,7 +54,7 @@ export default function EditListingPage () {
                     })
                     .then((resp) => {
                         if(resp.data.data.product) {
-                            if(res.data.data.user.id != resp.data.data.product.users_id) {
+                            if(res.data.data.user.id !== resp.data.data.product.users_id) {
                                 navigate("/profile");
                             }
                             else{
@@ -89,13 +89,13 @@ export default function EditListingPage () {
 
     return (
         <>
-        { !isLoading ? 
-        <>
             <Navbar/>
-            <ListingSection type={"update"} userId={userId} product={product}/>
+            { !isLoading ? 
+                <ListingSection type={"update"} userId={userId} product={product}/>
+            : 
+                <Spinner /> 
+            }
             <Footer/>
-            </>
-            : <Spinner /> }
         </>
     )
 }
