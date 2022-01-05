@@ -15,6 +15,7 @@ const CartSection = () => {
                 setCart(res.data.data.cart.cartItems);
                 setSubTotal(res.data.data.cart.subTotal);
                 setTotalQuantity(res.data.data.cart.quantity);
+                console.log(res.data.data.cart.cartItems);
              });
         btnRef.current.addEventListener('click', () => {
             localStorage.removeItem('cart');
