@@ -8,6 +8,7 @@ use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\OrderController;
+use App\Http\Controllers\api\ImageController;
 use App\Http\Controllers\api\Auth\PasswordController;
 
 /*
@@ -41,6 +42,9 @@ Route::get('/category/{id}', [CategoryController::class, 'category']);
 
 Route::post('/forgot-password', [PasswordController::class, 'forgotPassword']);
 Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
+
+Route::get('/image/original/{image}', [ImageController::class, 'original']);
+Route::get('/image/thumb/{image}', [ImageController::class, 'thumb']);
 
 // Search
 // 
