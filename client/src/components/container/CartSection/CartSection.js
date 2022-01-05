@@ -1,32 +1,79 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import { ProductRow } from '../../block';
 
-// Comments maybe will be use to display data in this cart
-
-// import apiClient from "../../../services/apiClient";
-
-// import { Spinner } from '../../block';
-
 const CartSection = () => {
-    // const [data, setData] = useState(null);
+    const [cart, setCart] = useState(JSON.parse(localStorage.getItem("cart")));
+    const btnRef = useRef();
+
+    // How to use this function
+    // To add one item: updateItem(1, 1)
+    // To delete one item: updateItem(1, -1)
+    const updateItem = (itemID, amount) => {
+        setCart(JSON.parse(localStorage.getItem("cart")));
+
+        //create a copy of our cart
+        let cartCopy;
+
+        if (cart !== null && Array.isArray(cart)) {
+            cartCopy = [...cart];
+        } else {
+            cartCopy = [];
+        }
+
+        //find if item exists, just in case
+        let existentItem = cartCopy.find(cartItem => cartItem.product.id === itemID);
+
+        //if it doesnt exist simply return
+        if (!existentItem) return
+
+        //continue and update quantity
+        existentItem.quantity += amount;
+
+        //validate result
+        if (existentItem.quantity <= 0) {
+            //remove cartItem  by filtering it from cart array
+            cartCopy = cartCopy.filter(cartItem => cartItem.product.id !== itemID)
+        }
+
+        //again, update state and localState
+        setCart(cartCopy);
+
+        let cartString = JSON.stringify(cartCopy);
+        localStorage.setItem('cart', cartString);
+    }
+
+    // // This function Remove
+    // const removeItem = (itemID) => {
+    //     //create cartCopy
+    //     let cartCopy;
+
+    //     if (cart !== null && Array.isArray(cart)) {
+    //         cartCopy = [...cart];
+    //     } else {
+    //         cartCopy = [];
+    //     }
+
+    //     cartCopy = cartCopy.filter(cartItem => cartItem.product.id !== itemID);
+
+    //     //update cart and local
+    //     cart = cartCopy;
+
+    //     let cartString = JSON.stringify(cartCopy)
+    //     localStorage.setItem('cart', cartString)
+    // }
 
     useEffect(() => {
-        // const getProductsInCart = async () => {
-        //     const res = await apiClient.get('products');
-        //     setData(res.data.data);
-        // }
+        btnRef.current.addEventListener('click', () => {
+            localStorage.removeItem('cart');
+            setCart([]);
 
-        // getProductsInCart();
-    }, []);
+            console.log(cart);
+        })
+    }, [cart])
 
     return (
         <>
-            {/* { data !== null ? 
-                <main id={"cartSection"}>
-                    
-                </main>
-            : <Spinner /> } */}
-
             <main id={"cartSection"}>
                 <div className={"titleSection"}>
                     <h1>Cart</h1>
@@ -39,22 +86,32 @@ const CartSection = () => {
                         <p>Total</p>
                     </header>
                     <section>
-                        { Array.from(Array(5)).map((row, idx) =>
+                        { cart !== [] && cart !== null ?
+                            cart.map((cartItem, idx) =>
+                                <ProductRow
+                                    key={idx}
+                                    title={cartItem.product.title}
+                                    price={`$${(cartItem.product.price / 100).toFixed(2)}`}
+                                    quantity={cartItem.quantity}
+                                    total={`$${((cartItem.product.price / 100) * cartItem.quantity).toFixed(2)}`}
+                                    onClickAdd={() => updateItem(cartItem.product.id, 1)}
+                                    onClickRemove={() => updateItem(cartItem.product.id, -1)}
+                                />
+                            ) :
                             <ProductRow
-                                key={idx}
-                                title={"Title Product"}
-                                price={`34.00 $`}
-                                quantity={"2"}
-                                total={`68.00 $`}
+                                title={"There's no items"}
+                                price={`$00.00`}
+                                quantity={"0"}
+                                total={`$00.00`}
                             />
-                        )}
+                        }
                     </section>
                     <footer>
                         <p id={"bgText"}>G-bay</p>
                         <div>
                             <p>Subtotal</p>
                             <p>68.00 $</p>
-                            <button>Proceed</button>
+                            <button ref={btnRef}>Proceed</button>
                         </div>
                     </footer>
                 </section>
