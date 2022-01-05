@@ -5,9 +5,9 @@ import apiClient from '../../../services/apiClient';
 
 const ListingSection = (props) => {
     const [type, setType] = useState(props.type);
-    const [product, setProduct] = useState(props.product === undefined ? "[]" : props.product);
+    const [product, setProduct] = useState(props.type === 'create' ? "[]" : props.product);
     const [userToken] = useCookie('token','0');
-    const [imagePreview, setImagePreview] = useState(imageUpload);
+    const [imagePreview, setImagePreview] = useState(props.type === 'update' && props.product.image !== 'default.jpg' ? `http://localhost:8000/storage/images/products/thumb/${props.product.image}` : imageUpload);
     const [error, setError] = useState({});
     const [successMsg, setSuccessMsg] = useState(null);
     
@@ -16,33 +16,44 @@ const ListingSection = (props) => {
     const [price, setPrice] = useState(product.price);
     const [stockUnit, setStockUnit] = useState(product.stock_unit);
     const [categoryId, setCategoryId] = useState(product.categories_id);
+    const [image, setImage] = useState('');
     
 
     const handleImagePreview = (e) => {
-        let image_as_base64 = URL.createObjectURL(e.target.files[0])
+        let image_as_base64 = URL.createObjectURL(e.target.files[0]);
         let image_as_files = e.target.files[0];
         setImagePreview(image_as_base64);
+        setImage(image_as_files); 
     }
+
 
     const create = (event) => {
         event.preventDefault();
+
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
-                apiClient.post( '/product/create', {
-                    title: title,
-                    description: description,
-                    categories_id: categoryId,
-                    price: price,
-                    stock_unit: stockUnit
-                },
+                let bodyFormData = new FormData();
+                bodyFormData.append('image',image);
+                bodyFormData.append('title',title);
+                bodyFormData.append('description',description);
+                bodyFormData.append('categories_id',categoryId);
+                bodyFormData.append('price',price);
+                bodyFormData.append('stock_unit',stockUnit);
+                apiClient.post('/product/create',
+                    bodyFormData,
                 {
                     headers: {
                         Accept: 'application/json',
-                        Authorization: `Bearer ${userToken}`
+                        Authorization: `Bearer ${userToken}`,
+                        "Content-Type": "multipart/form-data"
                     }
-                })
-                .then(res => {
-                    if(res.data.status == 'success') {
+                }).catch(
+                    function (err) {
+                      console.log(err);
+                    }
+                  )
+                .then(resp => {
+                    if(resp.data.status === 'success') {
                         setTitle('');
                         setDescription('');
                         setPrice('');
@@ -50,10 +61,10 @@ const ListingSection = (props) => {
                         setStockUnit('');
                         setSuccessMsg('Product is successfully added for sale');
                     }
-                    if(res.data.data.error) {
-                        setError(res.data.data.error);
+                    if(resp.data.status === 'fail' && resp.data.data.error) {
+                        setError(resp.data.data.error);
                     } 
-                });
+                })
             });
     }
 
@@ -74,12 +85,12 @@ const ListingSection = (props) => {
                         Authorization: `Bearer ${userToken}`
                     }
                 })
-                .then(res => {
-                    if(res.data.status == 'success') {
+                .then(resp => {
+                    if(resp.data.status === 'success') {
                         setSuccessMsg('Product is successfully updated');
                     }
-                    if(res.data.data.error) {
-                        setError(res.data.data.error);
+                    if(resp.data.data.error) {
+                        setError(resp.data.data.error);
                     } 
                 });
             });
@@ -88,7 +99,7 @@ const ListingSection = (props) => {
     return (
         <main id={"listingPage"}>
             <section className="title">
-                {type == 'create' ? <p>Add Listing</p> : <p>Edit Listing</p>}
+                {type === 'create' ? <p>Add Listing</p> : <p>Edit Listing</p>}
             </section>
             { successMsg ?
                 <section>
@@ -98,6 +109,7 @@ const ListingSection = (props) => {
             }
             
             <section className="main-container">
+                {/* <img src="http://localhost:8000/storage/images/products/thumb/1234576579987.jpg" /> */}
                 <section className="left">
                     <img id={"uploadImage"}
                         className="uploadImage"
@@ -156,7 +168,7 @@ const ListingSection = (props) => {
                         {error.stock_unit ? error.stock_unit: null}
 
 
-                    {type == 'create' ?
+                    {type === 'create' ?
                         <button name={"addProduct"} className={"listingSubmitButton"}  onClick={create}>Add</button>
                         :
                         <button name={"editProduct"} className={"listingSubmitButton"}  onClick={update}>Submit changes</button>
