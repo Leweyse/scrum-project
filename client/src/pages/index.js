@@ -25,5 +25,5 @@ export {
     EditListingPage,
     CartPage,
     ProfilePage,
-    ReturnCancellationPage
+    ReturnCancellationPage,
 }

@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
+import defaultProductImageUpload from "../../../../src/assets/images/default_product.jpg";
 
 const ProductCard = (props) => {
     const productCardRef = useRef(null);
@@ -39,7 +40,7 @@ const ProductCard = (props) => {
             ref={productCardRef}
             to={`/products/${props.toId}`}
         >
-            <img className={"image_container"} src={props.src} alt={"Product"} />
+            <img className={"image_container"} src={ props.src !==  'default.jpg' ? `http://localhost:8000/storage/images/products/thumb/${props.src}` : defaultProductImageUpload} alt={"Product"} />
             <section className={"description_container"}>
                 <div className={"productTitle"}>{props.title}</div>
                 <div className={"productPrice"}>{props.price}</div>
