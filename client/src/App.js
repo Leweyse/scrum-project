@@ -1,4 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+
+import PrivateRoutes from "./services/PrivateRoutes";
+
 import {
     LandingPage,
     ProductsPage,
@@ -21,34 +24,35 @@ function App() {
             <Routes>
                 <Route path="/" element={ <LandingPage /> } />
 
-                {/* All Products */}
-                <Route path="products" element={ <ProductsPage /> } />
-                {/* Single Products */}
-                <Route path="products/:id" element={ <SingleProductPage/>} />
-
                 {/* User account */}
                 <Route path="login" element={ <LoginPage /> } />
                 <Route path="sign-up" element={ <SignUpPage /> } />
                 <Route path="forgot-password" element={ <ForgotPasswordPage /> } />
                 <Route path="reset-password/:token" element={ <ResetPasswordPage /> } />
 
-                {/* Info user account */}
-                <Route path="profile" element={ <ProfilePage /> } />
+                {/* All Products */}
+                <Route path="products" element={ <ProductsPage /> } />
+                {/* Single Products */}
+                <Route path="products/:id" element={ <SingleProductPage/>} />
+
+                <Route path="/user" element={<PrivateRoutes />}>
+                    {/* Info user account */}
+                    <Route path="/user/profile" element={ <ProfilePage /> } />
+
+                    {/* Add, edit Product */}
+                    <Route path="/user/product/add" element={ <AddListingPage /> } />
+                    <Route path="/user/product/update/:id" element={ <EditListingPage /> } />
+
+                    {/* Orders history */}
+                    <Route path="/user/orders" element={<ReturnCancellationPage />} />
+                </Route>
 
                 {/* Info user: Buy */}
                 <Route path="cart" element={ <CartPage /> } />
                 <Route path="checkout" element={ <CheckoutPage /> } />
 
-                {/* Add, edit Product */}
-                <Route path="product/add" element={ <AddListingPage /> } />
-                <Route path="product/update/:id" element={ <EditListingPage /> } />
-
                 {/* Default Route */}
                 <Route path="*" element={<Navigate to="/" />} />
-
-                {/* Orders history */}
-                <Route path="orders" element={<ReturnCancellationPage />} />
-
             </Routes>
         </BrowserRouter>
     );
