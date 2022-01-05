@@ -11,6 +11,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Validator;
 use Auth;
+use Cart;
 
 class OrderController extends Controller
 {
@@ -36,9 +37,26 @@ class OrderController extends Controller
             return response($response, 200);
         }
 
-        $create = Order::create($request->all());
+        $order = Order::create($request->all());
+        $cart = $this->getCartContent();
+  
+        foreach($cart as $item) {
+          $val['products_id'] = $item->id;
+          $val['orders_id'] = $order->id;
+          $val['quantity'] = $item->qty;
+          $val['price'] = $item->price;
+          OrderItem::create($val);
+        }
+
+        $response = [
+            'status' => 'success',
+        ];
+        
     }
 
+    public function getCartContent() {
+        return Cart::content();
+      }
     private function errorMessages()
     {
         return [
