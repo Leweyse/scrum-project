@@ -28,6 +28,6 @@ export {
     CartPage,
     ProfilePage,
     ReturnCancellationPage,
-    TermsConditionsPage
+    TermsConditionsPage,
     ContactPage,
 }
