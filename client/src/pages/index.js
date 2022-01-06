@@ -11,6 +11,7 @@ import EditListingPage from "./EditListingPage/EditListingPage";
 import CartPage from "./CartPage/CartPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import ReturnCancellationPage from "./ReturnCancellationPage/ReturnCancellationPage";
+import TermsConditionsPage from "./TermsConditionsPage/TermsConditionsPage";
 import ContactPage from "./ContactPage/ContactPage";
 
 export {
@@ -27,5 +28,6 @@ export {
     CartPage,
     ProfilePage,
     ReturnCancellationPage,
+    TermsConditionsPage
     ContactPage,
 }
