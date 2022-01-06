@@ -11,6 +11,7 @@ import EditListingPage from "./EditListingPage/EditListingPage";
 import CartPage from "./CartPage/CartPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import ReturnCancellationPage from "./ReturnCancellationPage/ReturnCancellationPage";
+import UsersListings from "./UsersListings/UsersListings";
 
 export {
     LoginPage,
@@ -25,5 +26,6 @@ export {
     EditListingPage,
     CartPage,
     ProfilePage,
-    ReturnCancellationPage
+    ReturnCancellationPage,
+    UsersListings
 }

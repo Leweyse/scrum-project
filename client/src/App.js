@@ -15,7 +15,8 @@ import {
     EditListingPage,
     CartPage,
     ProfilePage,
-    ReturnCancellationPage
+    ReturnCancellationPage,
+    UsersListings
 } from './pages';
 
 function App() {
@@ -45,6 +46,9 @@ function App() {
 
                     {/* Orders history */}
                     <Route path="/user/orders" element={<ReturnCancellationPage />} />
+
+                    {/* Users listings */}
+                    <Route path="/user/listings" element={<UsersListings />}/>
                 </Route>
 
                 {/* Info user: Buy */}

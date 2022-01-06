@@ -4,21 +4,45 @@ import apiClient from "../../../services/apiClient";
 
 import { ProductCard, Spinner } from '../../block';
 
-const StockSection = () => {
-    const [data, setData] = useState(null);
-    const pageNumber = useRef(1);
+import {useLocation} from "react-router-dom";
 
-    const ITEMS_PER_PAGE = 32;
+const StockSection = (props) => {
+    const [data, setData] = useState(null);
+    const [isProcessing, setIsProcessing] = useState(true);
+    const [error, setError] = useState("");
+    const [iPP, setIPP] = useState(32);
+    const pageNumber = useRef(1);
+    const location = useLocation()
+
 
     const getProducts = async () => {
-        const res = await apiClient.get(`products/page/${pageNumber.current}/${ITEMS_PER_PAGE}`);
-        setData(res.data.data);
+        if (location.pathname === '/products') {
+            const res = await apiClient.get(`products/page/${pageNumber.current}/${iPP}`);
+            setData(res.data.data);
+            setIsProcessing(false);
+            setError(null);
+        } else if (location.pathname === '/user/listings') {
+            const res = await apiClient.get(`product/user/${props.user.id}`)
+            console.log(res.data.data)
+            if (res.data.data.products.length > 0) {
+                if (res.data.data.products.length < iPP) {
+                    setIPP(res.data.data.products.length);
+                }
+                setData(res.data.data);
+                setIsProcessing(false);
+                setError(null);
+            } else {
+                setIsProcessing(false);
+                setError("You do not have any listings in our database");
+
+            }
+        }
     }
 
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        setData(null);
+        setIsProcessing(true);
 
         let value = e.target.value;
         pageNumber.current = parseInt(value) + 1;
@@ -38,79 +62,84 @@ const StockSection = () => {
         }
     }, []);
 
+
     return (
         <>
-        { data !== null ?
+        { isProcessing === false ?
             <main id={"stockSection"}>
-                <section className={"paginationContainer"}>
-                    { Array.from(Array(Math.round(data.totalLength / ITEMS_PER_PAGE))).map((page, idx) => {
-                        if ((pageNumber.current - 1) === idx) {
-                            return (
-                                <button
-                                    key={idx}
-                                    onClick={handleSubmit}
-                                    value={idx}
-                                    className={"currentPage"}
-                                >
-                                    {idx + 1}
-                                </button>
-                            )
-                        } else {
-                            return (
-                                <button
-                                    key={idx}
-                                    onClick={handleSubmit}
-                                    value={idx}
-                                >
-                                    {idx + 1}
-                                </button>
-                            )}
-                        }
-                    )}
-                </section>
-                <section className={'stockContainer'}>
-                    { data.products.map((product, idx) => {
-                        return (
-                            <ProductCard
-                                key={idx}
-                                toId={product.id}
-                                src={product.image}
-                                title={product.title}
-                                price={`$${(product.price / 100).toFixed(2)}`}
-                                seller={product.user}
-                            />
+                { error === null ?
+                <>
+                    <section className={"paginationContainer"}>
+                        { Array.from(Array(Math.ceil(data.totalLength / iPP))).map((page, idx) => {
+                                if ((pageNumber.current - 1) === idx) {
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={handleSubmit}
+                                            value={idx}
+                                            className={"currentPage"}
+                                        >
+                                            {idx + 1}
+                                        </button>
+                                    )
+                                } else {
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={handleSubmit}
+                                            value={idx}
+                                        >
+                                            {idx + 1}
+                                        </button>
+                                    )}
+                            }
                         )}
-                    )}
-                </section>
-                <section className={"paginationContainer"}>
-                    { Array.from(Array(Math.round(data.totalLength / ITEMS_PER_PAGE))).map((page, idx) => {
-                        if ((pageNumber.current - 1) === idx) {
+                    </section>
+                    <section className={'stockContainer'}>
+                        { data.products.map((product, idx) => {
                             return (
-                                <button
+                                <ProductCard
                                     key={idx}
-                                    onClick={handleSubmit}
-                                    value={idx}
-                                    className={"currentPage"}
-                                >
-                                    {idx + 1}
-                                </button>
-                            )
-                        } else {
-                            return (
-                                <button
-                                    key={idx}
-                                    onClick={handleSubmit}
-                                    value={idx}
-                                >
-                                    {idx + 1}
-                                </button>
+                                    toId={product.id}
+                                    src={product.image}
+                                    title={product.title}
+                                    price={`$${(product.price / 100).toFixed(2)}`}
+                                    seller={product.user}
+                                />
                             )}
-                        }
-                    )}
-                </section>
+                        )}
+                    </section>
+                    <section className={"paginationContainer"}>
+                        { Array.from(Array(Math.ceil(data.totalLength / iPP))).map((page, idx) => {
+                                if ((pageNumber.current - 1) === idx) {
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={handleSubmit}
+                                            value={idx}
+                                            className={"currentPage"}
+                                        >
+                                            {idx + 1}
+                                        </button>
+                                    )
+                                } else {
+                                    return (
+                                        <button
+                                            key={idx}
+                                            onClick={handleSubmit}
+                                            value={idx}
+                                        >
+                                            {idx + 1}
+                                        </button>
+                                    )}
+                            }
+                        )}
+                    </section>
+                </>
+                    : error }
             </main>
             :
-            <Spinner />
+            <Spinner/>
         }
         </>
     )
