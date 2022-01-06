@@ -164,7 +164,7 @@ const SignUpSection = () => {
                             </span>
                             <span className={"suCheckbox"}>
                                 <div id={"suRadio"} >
-                                    <Link id={"tAC"} to={'terms-and-conditions'}> Terms and conditions <span>*</span></Link>
+                                    <Link id={"tAC"} to={'/terms-and-conditions'} target={"_blank"}> Terms and conditions <span>*</span></Link>
                                     <input 
                                         type={"checkbox"} 
                                         id={"suTerms"}

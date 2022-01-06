@@ -135,7 +135,7 @@ const ListingSection = (props) => {
                     <input
                         type={"text"}
                         placeholder={"Price"}
-                        value={price}
+                        value={price * 100}
                         onChange={e => setPrice(e.target.value)}
                     />
                         {error.price ? error.price : null}

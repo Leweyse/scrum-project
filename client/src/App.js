@@ -12,7 +12,7 @@ import {
     EditListingPage,
     CartPage,
     ProfilePage,
-    ReturnCancellationPage
+    ReturnCancellationPage, TermsConditionsPage
 } from './pages';
 
 function App() {
@@ -48,6 +48,9 @@ function App() {
 
                 {/* Orders history */}
                 <Route path="orders" element={<ReturnCancellationPage />} />
+
+                {/* Terms and conditions */}
+                <Route path={"terms-and-conditions"} element={<TermsConditionsPage />} />
 
             </Routes>
         </BrowserRouter>
