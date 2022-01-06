@@ -7,27 +7,26 @@ import { ProductCard, Spinner } from '../../block';
 import {useLocation} from "react-router-dom";
 
 const StockSection = (props) => {
+    const location = useLocation();
+    
     const [data, setData] = useState(null);
     const [isProcessing, setIsProcessing] = useState(true);
     const [error, setError] = useState("");
-    const [iPP, setIPP] = useState(32);
-    const pageNumber = useRef(1);
-    const location = useLocation()
 
+    const pageNumber = useRef(1);
+
+    const ITEMS_PER_PAGE = 32;
 
     const getProducts = async () => {
         if (location.pathname === '/products') {
-            const res = await apiClient.get(`products/page/${pageNumber.current}/${iPP}`);
+            const res = await apiClient.get(`products/page/${pageNumber.current}/${ITEMS_PER_PAGE}`);
             setData(res.data.data);
             setIsProcessing(false);
             setError(null);
         } else if (location.pathname === '/user/listings') {
             const res = await apiClient.get(`product/user/${props.user.id}`)
-            console.log(res.data.data)
+
             if (res.data.data.products.length > 0) {
-                if (res.data.data.products.length < iPP) {
-                    setIPP(res.data.data.products.length);
-                }
                 setData(res.data.data);
                 setIsProcessing(false);
                 setError(null);
@@ -60,7 +59,7 @@ const StockSection = (props) => {
         return () => {
             abortController.abort();
         }
-    }, []);
+    });
 
 
     return (
@@ -70,7 +69,7 @@ const StockSection = (props) => {
                 { error === null ?
                 <>
                     <section className={"paginationContainer"}>
-                        { Array.from(Array(Math.ceil(data.totalLength / iPP))).map((page, idx) => {
+                        { Array.from(Array(Math.ceil(data.totalLength / ITEMS_PER_PAGE))).map((page, idx) => {
                                 if ((pageNumber.current - 1) === idx) {
                                     return (
                                         <button
@@ -110,7 +109,7 @@ const StockSection = (props) => {
                         )}
                     </section>
                     <section className={"paginationContainer"}>
-                        { Array.from(Array(Math.ceil(data.totalLength / iPP))).map((page, idx) => {
+                        { Array.from(Array(Math.ceil(data.totalLength / ITEMS_PER_PAGE))).map((page, idx) => {
                                 if ((pageNumber.current - 1) === idx) {
                                     return (
                                         <button
@@ -136,7 +135,7 @@ const StockSection = (props) => {
                         )}
                     </section>
                 </>
-                    : error }
+                : error }
             </main>
             :
             <Spinner/>
