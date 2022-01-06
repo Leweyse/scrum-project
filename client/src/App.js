@@ -12,7 +12,8 @@ import {
     EditListingPage,
     CartPage,
     ProfilePage,
-    ReturnCancellationPage
+    ReturnCancellationPage,
+    ContactPage,
 } from './pages';
 
 function App() {
@@ -48,6 +49,9 @@ function App() {
 
                 {/* Orders history */}
                 <Route path="orders" element={<ReturnCancellationPage />} />
+
+                {/* Contact page */}
+                <Route path="contacts" element={<ContactPage />} />
 
             </Routes>
         </BrowserRouter>

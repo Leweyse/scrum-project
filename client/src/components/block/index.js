@@ -8,6 +8,8 @@ import SlideElement from "./SlideElement/SlideElement";
 import StatsChart from "./StatsChart/StatsChart";
 import { UserIconSVG, ButtonLeftSVG, ButtonRightSVG } from './SVGs';
 import { Spinner } from './Loading';
+import ContactForm from "./ContactForm/ContactForm";
+import AddressBlock from "./AddressBlock/AddressBlock"
 
 export {
     Navbar,
@@ -18,6 +20,9 @@ export {
     Carousel,
     SlideElement,
     StatsChart,
+    ContactForm,
+    AddressBlock,
+
   
     UserIconSVG,
     ButtonLeftSVG,
