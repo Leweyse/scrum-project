@@ -16,7 +16,9 @@ import {
     CartPage,
     ProfilePage,
     ReturnCancellationPage,
-    UsersListings
+    UsersListings,
+    ContactPage,
+    TermsConditionsPage
 } from './pages';
 
 function App() {
@@ -58,6 +60,12 @@ function App() {
 
                 {/* Default Route */}
                 <Route path="*" element={<Navigate to="/" />} />
+
+                {/* Terms and conditions */}
+                <Route path={"terms-and-conditions"} element={<TermsConditionsPage />} />
+
+                {/* Contact page */}
+                <Route path="contacts" element={<ContactPage />} />
             </Routes>
         </BrowserRouter>
     );

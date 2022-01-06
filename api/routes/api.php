@@ -9,6 +9,7 @@ use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\UserController;
 use App\Http\Controllers\api\OrderController;
 use App\Http\Controllers\api\ImageController;
+use App\Http\Controllers\api\CartController;
 use App\Http\Controllers\api\Auth\PasswordController;
 
 /*
@@ -48,6 +49,14 @@ Route::get('/image/thumb/{image}', [ImageController::class, 'thumb']);
 
 // Search
 // 
+
+// // Shopping Cart
+// Route::get('/cart/adds', [CartController::class, 'testCart']);
+// Route::get('/cart', [CartController::class, 'cart']);
+// Route::post('/cart/add', [CartController::class, 'add']);
+// Route::post('/cart/update', [CartController::class, 'update']);
+// Route::post('/cart/remove', [CartController::class, 'remove']);
+// Route::post('/cart/clear', [CartController::class, 'clear']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
 

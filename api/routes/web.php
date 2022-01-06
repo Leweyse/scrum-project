@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Test\FakeStatController;
+use App\Http\Controllers\api\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,4 +19,11 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/fake-stats', [FakeStatController::class, 'fake']);
+//Route::get('/fake-stats', [FakeStatController::class, 'fake']);
+
+// Shopping Cart
+Route::get('/api/cart', [CartController::class, 'cart']);
+Route::post('/api/cart/add', [CartController::class, 'add']);
+Route::post('/api/cart/update', [CartController::class, 'update']);
+Route::post('/api/cart/remove', [CartController::class, 'remove']);
+Route::post('/api/cart/clear', [CartController::class, 'clear']);

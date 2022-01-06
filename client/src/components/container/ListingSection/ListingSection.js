@@ -59,7 +59,7 @@ const ListingSection = (props) => {
                         setPrice('');
                         setCategoryId('');
                         setStockUnit('');
-                        setSuccessMsg('Product is successfully added for sale');
+                        setSuccessMsg(<div className={"success"}>'Product successfully added to listings'</div>);
                     }
                     if(resp.data.status === 'fail' && resp.data.data.error) {
                         setError(resp.data.data.error);
@@ -87,7 +87,7 @@ const ListingSection = (props) => {
                 })
                 .then(resp => {
                     if(resp.data.status === 'success') {
-                        setSuccessMsg('Product is successfully updated');
+                        setSuccessMsg(<div className={"success"}>'Product is successfully updated'</div>);
                     }
                     if(resp.data.data.error) {
                         setError(resp.data.data.error);
@@ -123,14 +123,14 @@ const ListingSection = (props) => {
                         type="file"
                         onChange={handleImagePreview}
                     />
-                        {error.image ? error.image : null}
+                    {error.image ? <div className={"error"}>{error.image}</div> : null}
                     <input
                         type={"text"}
                         placeholder={"Title"}
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
-                    {error.title ? error.title : null}
+                    {error.title ? <div className={"error"}>{error.title}</div> : null}
 
                     <input
                         type={"text"}
@@ -138,7 +138,7 @@ const ListingSection = (props) => {
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                     />
-                        {error.price ? error.price : null}
+                    {error.price ? <div className={"error"}>{error.price}</div> : null}
 
                     <select 
                        value={categoryId}
@@ -157,7 +157,7 @@ const ListingSection = (props) => {
                         onChange={e => setDescription(e.target.value)}
                         placeholder={"Product description"}
                     />
-                        {error.description ? error.description : null}
+                    {error.description ? <div className={"error"}>{error.description}</div> : null}
 
                     <input
                         type={"text"}

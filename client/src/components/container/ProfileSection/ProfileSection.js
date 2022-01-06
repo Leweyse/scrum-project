@@ -64,8 +64,28 @@ export default function ProfileSection (props) {
                         </div>
 
                         <div className={"infoFields profileFormInput"}>
-                            <label>Address</label>
-                            <input name={"profileEditAddress"} className={"infoText"} value={`Address`}/>
+                            <label>Address Line 1</label>
+                            <input name={"profileEditAddressLine1"} className={"infoText"} value={`Address`}/>
+                        </div>
+
+                        <div className={"infoFields profileFormInput"}>
+                            <label>Address Line 2</label>
+                            <input name={"profileEditAddressLine2"} className={"infoText"} value={`Address`}/>
+                        </div>
+
+                        <div className={"infoFields profileFormInput"}>
+                            <label>Postcode</label>
+                            <input name={"profileEditPostcode"} className={"infoText"} value={`Address`}/>
+                        </div>
+
+                        <div className={"infoFields profileFormInput"}>
+                            <label>City</label>
+                            <input name={"profileEditCity"} className={"infoText"} value={`Address`}/>
+                        </div>
+
+                        <div className={"infoFields profileFormInput"}>
+                            <label>Country</label>
+                            <input name={"profileEditCountry"} className={"infoText"} value={`Address`}/>
                         </div>
 
                         <button name={"profileChangesSubmit"} onClick={sendForm}>Submit</button>

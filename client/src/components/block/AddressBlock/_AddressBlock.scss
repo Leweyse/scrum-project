@@ -1,0 +1,26 @@
+#contactsBlock {
+  position: absolute;
+  margin-left: -55%;
+  width: 30%;
+  height: 30%;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #ead637;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+
+  p {
+    padding: 1%;
+  };
+}
+
+span {
+  padding: 1%;
+  font-weight: 600;
+  font-size: 1.5vw;
+}
+
+

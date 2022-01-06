@@ -42,7 +42,7 @@ const LoginSection = () => {
                     .then(res => {
                         setIsProcessing(false)
                         if(res.data.status === 'fail' && res.data.message !== null) {
-                            setErrorMsg("Your login credentials do no match")
+                            setErrorMsg(<div className={"error"}>"Your login credentials do no match"</div>)
                         }
                         if(res.data.data.error) {
                             setError(res.data.data.error);
@@ -100,7 +100,7 @@ const LoginSection = () => {
                                 email: e.target.value
                             }))}
                         />
-                        {error.email ? error.email : null}
+                        {error.email ? <div className={"error"}>{error.email}</div> : null}
                         <input
                             id={"loginPassword"}
                             type={"password"}
@@ -112,7 +112,7 @@ const LoginSection = () => {
                                 password: e.target.value
                             }))}
                         />
-                        {error.password ? error.password : null}
+                        {error.password ? <div className={"error"}>{error.password}</div> : null}
                         <div id={"loginFormButtonContainer"}>
                             <button type={'submit'} id={"loginSubmit"}>{isProcessing ? <Spinner size={20}/>: "Submit"}</button>
                         </div>
