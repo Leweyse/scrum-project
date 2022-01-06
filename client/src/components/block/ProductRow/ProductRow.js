@@ -5,8 +5,8 @@ const ProductRow = (props) => {
             <p className={"productPrice"}>{props.price}</p>
             <span className={"productQuantity"}>
                 <p>{props.quantity}</p>
-                <button onClick={props.onClickAdd}>+</button>
-                <button onClick={props.onClickRemove}>-</button>
+                <button className={props.visibility} onClick={props.onClickAdd}>+</button>
+                <button className={props.visibility} onClick={props.onClickRemove}>-</button>
             </span>
             <p className={"productTotal"}>{props.total}</p>
         </article>

@@ -27,38 +27,17 @@ export const SlidesData = [
             <>
                 <SlideElement
                     parentClassName={"carouselSlideElement"}
-                    childClassName={"carouselElementInnerText carouselSellSlideElement"}
-                    content={"Sell"}
-                />
-                <SlideElement
-                    parentClassName={"carouselSlideElement"}
-                    childClassName={"carouselElementInnerText carouselSellSlideElement"}
-                    content={"Sell"}
-                />
-                <SlideElement
-                    parentClassName={"carouselSlideElement"}
-                    childClassName={"carouselElementInnerText carouselSellSlideElement"}
-                    content={"Sell"}
-                />
-            </>
-        )
-    },
-    {
-        div: (
-            <>
-                <SlideElement
-                    parentClassName={"carouselSlideElement"}
-                    childClassName={"carouselElementInnerText carouselMiscSlideElement"}
+                    childClassName={"carouselElementInnerText"}
                     content={"Misc"}
                 />
                 <SlideElement
                     parentClassName={"carouselSlideElement"}
-                    childClassName={"carouselElementInnerText carouselMiscSlideElement"}
+                    childClassName={"carouselElementInnerText"}
                     content={"Misc"}
                 />
                 <SlideElement
                     parentClassName={"carouselSlideElement"}
-                    childClassName={"carouselElementInnerText carouselMiscSlideElement"}
+                    childClassName={"carouselElementInnerText"}
                     content={"Misc"}
                 />
             </>

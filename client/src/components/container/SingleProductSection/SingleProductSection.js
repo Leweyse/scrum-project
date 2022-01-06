@@ -1,5 +1,6 @@
 import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
+import defaultProductImageUpload from "../../../../src/assets/images/default_product.jpg";
 
 import apiClient from "../../../services/apiClient";
 
@@ -79,7 +80,7 @@ export default function SingleProductSection() {
                     <div className={"productPageLeft"}>
                         <img 
                             className={"productImage"} 
-                            src={'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg'} 
+                            src={data.product.image !==  'default.jpg' ? `http://localhost:8000/storage/images/products/thumb/${data.product.image}` : defaultProductImageUpload}
                             alt={"Product"}
                         />
                     </div>

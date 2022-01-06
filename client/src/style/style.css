@@ -766,6 +766,9 @@ button:focus-visible {
   border-radius: 36px;
   flex-direction: column;
 }
+#cartSection .totalSection .invisible {
+  display: none;
+}
 #cartSection .totalSection header,
 #cartSection .totalSection section,
 #cartSection .totalSection footer {
@@ -1083,6 +1086,13 @@ button:focus-visible {
   #suPage .suContainer {
     width: 70%;
   }
+}
+.error {
+  color: red;
+}
+
+.success {
+  color: limegreen;
 }
 
 /*# sourceMappingURL=style.css.map */

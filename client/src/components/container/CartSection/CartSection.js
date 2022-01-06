@@ -53,10 +53,11 @@ const CartSection = () => {
                            )
                             :
                             <ProductRow
-                                title={"There's no items"}
-                                price={`$00.00`}
-                                quantity={"0"}
-                                total={`$00.00`}
+                                title={"No items in cart"}
+                                price={null}
+                                quantity={null}
+                                total={null}
+                                visibility={"invisible"}
                             />
                         }
                     </section>

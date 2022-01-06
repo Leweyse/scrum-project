@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Route::get('/fake-stats', [FakeStatController::class, 'fake']);
+//Route::get('/fake-stats', [FakeStatController::class, 'fake']);
 
 // Shopping Cart
 Route::get('/api/cart', [CartController::class, 'cart']);
