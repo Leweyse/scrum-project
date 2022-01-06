@@ -41,7 +41,6 @@ const SignUpSection = () => {
                     if (err.response && err.response.status === 401) {
                         setTkn('0');
                         setUserToken('0');
-                        // setUserId('');
                     }
                 });
         }

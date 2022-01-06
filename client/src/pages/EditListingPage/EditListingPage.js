@@ -8,6 +8,7 @@ import apiClient from '../../services/apiClient';
 export default function EditListingPage () {
     let navigate = useNavigate();
     let { id } = useParams();
+    
     const [product, setProduct] = useState(null);
     const [userId, setUserId] = useState(null);
     const [tkn, setTkn] = useState(getCookie('token'));
@@ -18,24 +19,6 @@ export default function EditListingPage () {
     useEffect(() => {
         authCheck();
     });
-
-
-    // const getProduct = () => {
-    //     apiClient.get(`product/${id}`, {
-    //         headers: {
-    //             Accept: 'application/json'
-    //         }
-    //     })
-    //     .then((res) => {
-    //         if(res.data.data.product) {
-    //             setProduct(res.data.data.product);
-    //         }
-    //         else {
-    //             navigate("/products");
-    //         }
-            
-    //     });
-    // }
 
     const authCheck = () => {
         if(tkn && tkn !== '0') {
