@@ -4,12 +4,15 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Stat;
 use App\Models\User;
 use Validator;
 use Auth;
+use Image;
+
 
 class ProductController extends Controller
 {
@@ -59,7 +62,6 @@ class ProductController extends Controller
 
     public function create(Request $request)
     {
-        // return $request->image;
         $validator = Validator::make($request->all(), [
             'categories_id' => 'required|Numeric',
             'title' => 'required',
@@ -78,7 +80,44 @@ class ProductController extends Controller
             ];
             return response($response, 200);
         }
-        $product = Product::create($request->all());
+
+        $image = 'default.jpg';
+        if($request->image) {
+            $new_image = $request->image;
+            $file = $request->image;
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $filename = preg_replace("/[^A-Za-z0-9 ]/", '', $filename);
+            $filename = preg_replace("/\s+/", '-', $filename);
+            $extension = $file->getClientOriginalExtension();
+            $image = $filename.'_'.time().'.'.$extension;
+    
+            $request->image->storeAs('public', 'images/products/original/'.$image); // Original Image
+    
+            $thumb_img = Image::make($new_image->getRealPath())->fit(350, 500, function ($c) {
+                $c->upsize();
+            });
+    
+            $thumb_img->stream();
+    
+            Storage::disk('public')->put('images/products/thumb' . '/' . $image, $thumb_img);
+        }
+
+        $product = Product::create([
+            'categories_id' => $request->categories_id,
+            'title' =>  $request->title,
+            'description' =>  $request->description,
+            'image' => $image,
+            'price' =>  $request->price,
+            'stock_unit' =>  $request->stock_unit,
+        ]);
+        if(!$product) {
+           $response = [
+                'status' => 'fail',
+                'message' => 'There was some error. Try again'
+            ];
+            return response($response, 200);
+        }
         $response = [
             'status' => 'success',
             'data' => [
@@ -86,7 +125,9 @@ class ProductController extends Controller
             ]
         ];
         return response($response, 200);
+
     }
+    
 
     public function update(Request $request, $id)
     {
@@ -108,7 +149,7 @@ class ProductController extends Controller
             'categories_id' => 'required|Numeric',
             'title' => 'required',
             'description' => 'required',
-            'image' => 'nullable|mimes:jpg,png',
+            'image' => 'nullable|mimes:jpeg,jpg,png',
             'price' => 'required|numeric',
             'stock_unit' => 'required|numeric'
         ], $this->errorMessages());
@@ -122,7 +163,35 @@ class ProductController extends Controller
             ];
             return response($response, 200);
         }
-        $update = Product::where('id', $id)->update($request->all());
+        $image = $product->image;
+        if($request->image) {
+            $new_image = $request->image;
+            $file = $request->image;
+            $filenameWithExt = $file->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $filename = preg_replace("/[^A-Za-z0-9 ]/", '', $filename);
+            $filename = preg_replace("/\s+/", '-', $filename);
+            $extension = $file->getClientOriginalExtension();
+            $image = $filename.'_'.time().'.'.$extension;
+    
+            $request->image->storeAs('public', 'images/products/original/'.$image); // Original Image
+    
+            $thumb_img = Image::make($new_image->getRealPath())->fit(350, 500, function ($c) {
+                $c->upsize();
+            });
+    
+            $thumb_img->stream();
+    
+            Storage::disk('public')->put('images/products/thumb' . '/' . $image, $thumb_img);
+        }
+        $update = Product::where('id', $id)->update([
+            'categories_id' => $request->categories_id,
+            'title' =>  $request->title,
+            'description' =>  $request->description,
+            'image' => $image,
+            'price' =>  $request->price,
+            'stock_unit' =>  $request->stock_unit,
+        ]);
         if(!$update) {
             $response = [
                 'status' => 'fail',
@@ -211,6 +280,16 @@ class ProductController extends Controller
         return response($response, 200);
     }
 
+    public function productByUser(Request $request, $user_id) {
+        $products = Product::where('users_id',$user_id)->get();
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'products' => $products
+            ]
+        ];
+        return response($response, 200);
+    }
     private function errorMessages()
     {
         return [

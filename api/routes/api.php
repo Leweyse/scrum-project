@@ -7,6 +7,9 @@ use App\Http\Controllers\api\auth\LoginController;
 use App\Http\Controllers\api\ProductController;
 use App\Http\Controllers\api\CategoryController;
 use App\Http\Controllers\api\UserController;
+use App\Http\Controllers\api\OrderController;
+use App\Http\Controllers\api\ImageController;
+use App\Http\Controllers\api\CartController;
 use App\Http\Controllers\api\Auth\PasswordController;
 
 /*
@@ -30,17 +33,30 @@ Route::get('/products', [ProductController::class, 'all']);
 Route::get('/products/page/{page}/{take}', [ProductController::class, 'countPaginate']);
 Route::get('/product/{id}', [ProductController::class, 'product']);
 Route::get('/product/category/{id}', [ProductController::class, 'productFromCategory']);
+Route::get('/product/user/{id}', [ProductController::class, 'productByUser']);
 
 Route::get('/user/{id}', [UserController::class, 'getUser']);
 
 Route::get('/categories', [CategoryController::class, 'all']);
 Route::get('/category/{id}', [CategoryController::class, 'category']);
 
+
 Route::post('/forgot-password', [PasswordController::class, 'forgotPassword']);
 Route::post('/reset-password', [PasswordController::class, 'resetPassword']);
 
+Route::get('/image/original/{image}', [ImageController::class, 'original']);
+Route::get('/image/thumb/{image}', [ImageController::class, 'thumb']);
+
 // Search
 // 
+
+// // Shopping Cart
+// Route::get('/cart/adds', [CartController::class, 'testCart']);
+// Route::get('/cart', [CartController::class, 'cart']);
+// Route::post('/cart/add', [CartController::class, 'add']);
+// Route::post('/cart/update', [CartController::class, 'update']);
+// Route::post('/cart/remove', [CartController::class, 'remove']);
+// Route::post('/cart/clear', [CartController::class, 'clear']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
@@ -54,7 +70,12 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     Route::get('/user', [UserController::class, 'user']);
     Route::post('/user', [UserController::class, 'update']);
 
-    // Password reset
+    // Password change
+
+    // Bidding
+
+    // Ordering
+    Route::post('/order', [OrderController::class, 'order']);
 
 
 });

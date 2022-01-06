@@ -6,7 +6,9 @@ import LogoutButton from "./LogoutButton/LogoutButton";
 import Carousel from "./Carousel/Carousel";
 import SlideElement from "./SlideElement/SlideElement";
 import StatsChart from "./StatsChart/StatsChart";
+import AddToCartBtn from "./AddToCartBtn/AddToCartBtn";
 import { UserIconSVG, ButtonLeftSVG, ButtonRightSVG } from './SVGs';
+
 import { Spinner } from './Loading';
 import ContactForm from "./ContactForm/ContactForm";
 import AddressBlock from "./AddressBlock/AddressBlock"
@@ -29,4 +31,6 @@ export {
     ButtonRightSVG,
   
     Spinner,
+
+    AddToCartBtn,
 }

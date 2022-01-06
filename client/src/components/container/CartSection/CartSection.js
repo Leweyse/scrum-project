@@ -1,32 +1,25 @@
-import { useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
+
 import { ProductRow } from '../../block';
 
-// Comments maybe will be use to display data in this cart
-
-// import apiClient from "../../../services/apiClient";
-
-// import { Spinner } from '../../block';
+import apiClient from "../../../services/apiClient";
 
 const CartSection = () => {
-    // const [data, setData] = useState(null);
-
+    const [cart, setCart] = useState({});
+    const [subTotal, setSubTotal] = useState('00.00');
+    const [totalQuantity, setTotalQuantity] = useState('0');
     useEffect(() => {
-        // const getProductsInCart = async () => {
-        //     const res = await apiClient.get('products');
-        //     setData(res.data.data);
-        // }
-
-        // getProductsInCart();
-    }, []);
-
+        apiClient.get("cart")
+            .then(res => {
+                setCart(res.data.data.cart.cartItems);
+                setSubTotal(res.data.data.cart.subTotal);
+                setTotalQuantity(res.data.data.cart.quantity);
+             });
+    }, [])
+    
     return (
         <>
-            {/* { data !== null ? 
-                <main id={"cartSection"}>
-                    
-                </main>
-            : <Spinner /> } */}
-
+        { console.log(cart) }
             <main id={"cartSection"}>
                 <div className={"titleSection"}>
                     <h1>Cart</h1>
@@ -39,21 +32,33 @@ const CartSection = () => {
                         <p>Total</p>
                     </header>
                     <section>
-                        { Array.from(Array(5)).map((row, idx) =>
-                            <ProductRow
-                                key={idx}
-                                title={"Title Product"}
-                                price={`34.00 $`}
-                                quantity={"2"}
-                                total={`68.00 $`}
+                        { totalQuantity > 0 ?
+                           
+                           Object.keys(cart).map((key) => 
+                           <ProductRow
+                                key={key}
+                                title={cart[key].name}
+                                price={`$${cart[key].price}`}
+                                quantity={`${cart[key].qty}`}
+                                total={`$${(cart[key].subtotal)}`}
+                                rowId={cart[key].rowId}
                             />
-                        )}
+                           )
+                            :
+                            <ProductRow
+                                title={"There's no items"}
+                                price={`$00.00`}
+                                quantity={"0"}
+                                total={`$00.00`}
+                            />
+                        }
                     </section>
+    
                     <footer>
                         <p id={"bgText"}>G-bay</p>
                         <div>
                             <p>Subtotal</p>
-                            <p>68.00 $</p>
+                            <p>{`$${subTotal}`}</p>
                             <button>Proceed</button>
                         </div>
                     </footer>

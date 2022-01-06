@@ -87,9 +87,9 @@ export default function Navbar () {
                     <div id={"navDropdownContent"} ref={navDropdownContent}>
                         { userToken && userToken !== "0" ? (
                             <>
-                                <Link className={"navRight"} to={"/profile"}>Profile</Link>
                                 <Link className={"navRight"} to={"/cart"}>Cart</Link>
-                                <Link className={"navRight"} to={"/product/add"}>Sell</Link>
+                                <Link className={"navRight"} to={"/user/profile"}>Profile</Link>
+                                <Link className={"navRight"} to={"/user/product/add"}>Sell</Link>
                                 <LogoutButton className={"navRight"}/>
                             </>) : (
                             <>
