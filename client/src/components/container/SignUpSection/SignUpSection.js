@@ -73,7 +73,7 @@ const SignUpSection = () => {
                         setError(response.data.error);
                     } else if(response.data.token) {
                         setUserToken(response.data.token);
-                        navigate("/checkout");
+                        navigate("/");
                     }
                 });
             });
