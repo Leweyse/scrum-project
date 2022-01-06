@@ -1,11 +1,13 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useContext } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import apiClient from "../../../services/apiClient";
 
 import { Spinner, StatsChart } from "../../block";
 
-export default function SingleProductSection() {
+export default function SingleProductSection(props) {
+
     let { id } = useParams();
     const [data, setData] = useState(null);
     const [stats, setStats] = useState(null);
@@ -51,6 +53,7 @@ export default function SingleProductSection() {
         const res = await apiClient.get(`product/${id}`);
         const __data = res.data.data;
         setData(__data)
+        console.log(__data)
 
         if (__data.product.stats.length > 0) {
             setStats(__data.product.stats)
@@ -108,6 +111,7 @@ export default function SingleProductSection() {
                             null
                         }
                         <button ref={addRef} className={"productPageAddToCart"}>Add to Cart</button>
+                        {props.user && (props.user.id === data.product.users_id) ? <Link to={`/user/product/update/${data.product.id}`}>Edit</Link> : null}
                     </div>
                 </main>
             : 

@@ -41,6 +41,7 @@ function App() {
                     <Route path="/user/profile" element={ <ProfilePage /> } />
 
                     {/* Add, edit Product */}
+                    <Route path="/user/products/:id" element={ <SingleProductPage/>} />
                     <Route path="/user/product/add" element={ <AddListingPage /> } />
                     <Route path="/user/product/update/:id" element={ <EditListingPage /> } />
 
