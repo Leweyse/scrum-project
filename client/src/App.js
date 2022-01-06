@@ -15,7 +15,8 @@ import {
     EditListingPage,
     CartPage,
     ProfilePage,
-    ReturnCancellationPage
+    ReturnCancellationPage,
+    ContactPage,
 } from './pages';
 
 function App() {
@@ -53,6 +54,9 @@ function App() {
 
                 {/* Default Route */}
                 <Route path="*" element={<Navigate to="/" />} />
+
+                {/* Contact page */}
+                <Route path="contacts" element={<ContactPage />} />
             </Routes>
         </BrowserRouter>
     );
