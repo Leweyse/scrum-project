@@ -21,6 +21,10 @@
 
         flex-direction: column;
 
+        .invisible {
+            display: none;
+        }
+
         header,
         section,
         footer {
