@@ -437,6 +437,61 @@ button:focus-visible {
     transform: rotate(360deg);
   }
 }
+container {
+  position: absolute;
+  margin-left: 35%;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+input[type=text], input[type=email], textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--clr-darkgray);
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+#contactFormSubmitBtn {
+  width: 30%;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 5px;
+  padding: 1%;
+  text-align: center;
+  font-size: 1.5vw;
+}
+#contactFormSubmitBtn:hover, #contactFormSubmitBtn:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-cyan);
+}
+
+#contactsBlock {
+  position: absolute;
+  margin-left: -55%;
+  width: 30%;
+  height: 30%;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #ead637;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+}
+#contactsBlock p {
+  padding: 1%;
+}
+
+span {
+  padding: 1%;
+  font-weight: 600;
+  font-size: 1.5vw;
+}
+
 #landingSection {
   position: relative;
   display: flex;
@@ -1050,6 +1105,13 @@ button:focus-visible {
   align-items: center;
   height: 100%;
   justify-content: space-evenly;
+}
+#titleContacts {
+  position: relative;
+  margin-left: -70vw;
+  margin-top: -45vh;
+  font-size: 2.5vw;
+  z-index: 3;
 }
 
 @media (max-width: 1200px) {

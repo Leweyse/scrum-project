@@ -8,25 +8,18 @@ const CartSection = () => {
     const [cart, setCart] = useState({});
     const [subTotal, setSubTotal] = useState('00.00');
     const [totalQuantity, setTotalQuantity] = useState('0');
-    const btnRef = useRef();
     useEffect(() => {
         apiClient.get("cart")
             .then(res => {
                 setCart(res.data.data.cart.cartItems);
                 setSubTotal(res.data.data.cart.subTotal);
                 setTotalQuantity(res.data.data.cart.quantity);
-                console.log(res.data.data.cart.cartItems);
              });
-        btnRef.current.addEventListener('click', () => {
-            localStorage.removeItem('cart');
-            setCart([]);
-
-            console.log(cart);
-        })
     }, [])
     
     return (
         <>
+        { console.log(cart) }
             <main id={"cartSection"}>
                 <div className={"titleSection"}>
                     <h1>Cart</h1>
@@ -43,13 +36,13 @@ const CartSection = () => {
                            
                            Object.keys(cart).map((key) => 
                            <ProductRow
-                                //    key={}
-                                   title={cart[key].name}
-                                   price={`$${cart[key].price}`}
-                                   quantity={`${cart[key].qty}`}
-                                   total={`$${(cart[key].subtotal)}`}
-                                   rowId={cart[key].rowId}
-                               />
+                                key={key}
+                                title={cart[key].name}
+                                price={`$${cart[key].price}`}
+                                quantity={`${cart[key].qty}`}
+                                total={`$${(cart[key].subtotal)}`}
+                                rowId={cart[key].rowId}
+                            />
                            )
                             :
                             <ProductRow
@@ -67,7 +60,7 @@ const CartSection = () => {
                         <div>
                             <p>Subtotal</p>
                             <p>{`$${subTotal}`}</p>
-                            <button ref={btnRef}>Proceed</button>
+                            <button>Proceed</button>
                         </div>
                     </footer>
                 </section>

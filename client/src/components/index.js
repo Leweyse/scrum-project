@@ -1,4 +1,4 @@
-import { Navbar, ProductCard, Footer, LogoutButton, Carousel, SlideElement, StatsChart } from './block';
+import { Navbar, ProductCard, Footer, LogoutButton, Carousel, SlideElement, StatsChart, ContactForm, AddressBlock } from './block';
 
 import {
     LandingSection,
@@ -21,6 +21,8 @@ export {
     Carousel,
     SlideElement,
     StatsChart,
+    ContactForm,
+    AddressBlock,
 
     // CONTAINER
     LandingSection,

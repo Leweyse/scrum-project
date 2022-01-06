@@ -12,6 +12,7 @@ import CartPage from "./CartPage/CartPage";
 import ProfilePage from "./ProfilePage/ProfilePage";
 import ReturnCancellationPage from "./ReturnCancellationPage/ReturnCancellationPage";
 import TermsConditionsPage from "./TermsConditionsPage/TermsConditionsPage";
+import ContactPage from "./ContactPage/ContactPage";
 
 export {
     LoginPage,
@@ -27,5 +28,6 @@ export {
     CartPage,
     ProfilePage,
     ReturnCancellationPage,
-    TermsConditionsPage
+    TermsConditionsPage,
+    ContactPage,
 }
