@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import apiClient from "../../../services/apiClient";
 
-import { Spinner, StatsChart } from "../../block";
+import { Spinner, StatsChart,  AddToCartBtn } from "../../block";
 
 export default function SingleProductSection() {
     let { id } = useParams();
@@ -56,10 +56,10 @@ export default function SingleProductSection() {
             setStats(__data.product.stats)
         }
 
-        addRef.current.addEventListener('click', () => {
-            addItem({ product: __data.product, quantity: 1 });
-            console.log(cart.current);
-        })
+        // addRef.current.addEventListener('click', () => {
+        //     addItem({ product: __data.product, quantity: 1 });
+        //     console.log(cart.current);
+        // })
     }
 
     useEffect(() => {
@@ -107,7 +107,11 @@ export default function SingleProductSection() {
                             :
                             null
                         }
-                        <button ref={addRef} className={"productPageAddToCart"}>Add to Cart</button>
+                        <AddToCartBtn 
+                            id={data.product.id}
+                            quantity={1}    
+                        />
+                        {/* <button ref={addRef} className={"productPageAddToCart"}>Add to Cart</button> */}
                     </div>
                 </main>
             : 

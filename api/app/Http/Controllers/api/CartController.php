@@ -10,7 +10,6 @@ use Cart;
 class CartController extends Controller
 {
     public function add(Request $request) {
-
         $id = $request->id;
         $quantity = $request->quantity;
         $supplement = $request->supplement;
@@ -18,24 +17,27 @@ class CartController extends Controller
         $product = Product::findOrFail($id);
 
         if($product) {
-          $added_cart = Cart::add($product->id, $product->title, $quantity, $product->price,1, []);
+          Cart::add($product->id, $product->title, $quantity, ($product->price / 100),1, []);
         }
         $response = [
             'status' => 'success',
             'data' => [
-                'cart' => $cartData
+                'cart' => $this->getCartContent()
             ]
         ];
         return response($response, 200);
-        return Cart::content();
     }
     public function update(Request $request) {
-        $rowId = $request->id;
+        $rowId = $request->rowId;
         $quantity = $request->quantity;
 
         $row = Cart::get($rowId);
         $qty = $row->qty + $quantity;
         Cart::update($rowId, $qty);
+        $response = [
+          'status' => 'success'
+        ];
+        return response($response, 200);
       }
   
       public function clear() {
@@ -45,6 +47,10 @@ class CartController extends Controller
       public function remove(Request $request) {
         $rowId = $request->rowId;
         Cart::remove($rowId);
+        $response = [
+          'status' => 'success'
+        ];
+        return response($response, 200);
       }
 
       public function cart() {

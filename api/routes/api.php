@@ -50,12 +50,13 @@ Route::get('/image/thumb/{image}', [ImageController::class, 'thumb']);
 // Search
 // 
 
-// Shopping Cart
-Route::post('/cart', [CartController::class, 'cart']);
-Route::post('/cart/add', [CartController::class, 'add']);
-Route::post('/cart/update', [CartController::class, 'update']);
-Route::post('/cart/remove', [CartController::class, 'remove']);
-Route::post('/cart/clear', [CartController::class, 'clear']);
+// // Shopping Cart
+// Route::get('/cart/adds', [CartController::class, 'testCart']);
+// Route::get('/cart', [CartController::class, 'cart']);
+// Route::post('/cart/add', [CartController::class, 'add']);
+// Route::post('/cart/update', [CartController::class, 'update']);
+// Route::post('/cart/remove', [CartController::class, 'remove']);
+// Route::post('/cart/clear', [CartController::class, 'clear']);
 
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
