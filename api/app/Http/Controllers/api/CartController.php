@@ -28,12 +28,16 @@ class CartController extends Controller
         return response($response, 200);
     }
     public function update(Request $request) {
-        $rowId = $request->id;
+        $rowId = $request->rowId;
         $quantity = $request->quantity;
 
         $row = Cart::get($rowId);
         $qty = $row->qty + $quantity;
         Cart::update($rowId, $qty);
+        $response = [
+          'status' => 'success'
+        ];
+        return response($response, 200);
       }
   
       public function clear() {
@@ -43,6 +47,10 @@ class CartController extends Controller
       public function remove(Request $request) {
         $rowId = $request->rowId;
         Cart::remove($rowId);
+        $response = [
+          'status' => 'success'
+        ];
+        return response($response, 200);
       }
 
       public function cart() {
