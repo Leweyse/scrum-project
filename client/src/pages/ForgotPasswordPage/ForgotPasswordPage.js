@@ -76,7 +76,7 @@ const ForgotPasswordPage = () => {
         else {
             setIsLoading(false);
         }
-    }, [navigate, setUserToken, tkn, userToken]);
+    }, []);
 
     return (
         <>
