@@ -18,7 +18,8 @@ import {
     ReturnCancellationPage,
     UsersListings,
     ContactPage,
-    TermsConditionsPage
+    TermsConditionsPage,
+    SearchResultPage
 } from './pages';
 
 function App() {
@@ -66,6 +67,9 @@ function App() {
 
                 {/* Contact page */}
                 <Route path="contacts" element={<ContactPage />} />
+
+                {/* Search Result page */}
+                <Route path="search/:q" element={<SearchResultPage />} />
             </Routes>
         </BrowserRouter>
     );
