@@ -292,6 +292,18 @@ class ProductController extends Controller
         ];
         return response($response, 200);
     }
+
+    public function productFromCategory(Request $request, $id) {
+        $products = Product::where('categories_id',$id)->get();
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'products' => $products,
+                'totalLength' => count($products)
+            ]
+        ];
+        return response($response, 200);
+    }
     public function search(Request $request, $q) {
         $products = Product::query()
         ->where('title', 'LIKE', "%{$q}%") 

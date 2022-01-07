@@ -1,14 +1,11 @@
+import { StockSection, Navbar, Footer } from '../../components';
 import { useState, useEffect, useRef } from 'react';
+import { useParams, useNavigate } from "react-router-dom";
+import apiClient from "../../services/apiClient";
+import { ProductCard, Spinner } from '../../components/block';
 
-import apiClient from "../../../services/apiClient";
-
-import { ProductCard, Spinner } from '../../block';
-
-import {useLocation} from "react-router-dom";
-
-const StockSection = (props) => {
-    const location = useLocation();
-    
+const CategoryPage = () => {
+    let { id } = useParams();
     const [data, setData] = useState(null);
     const [isProcessing, setIsProcessing] = useState(true);
     const [error, setError] = useState("");
@@ -18,69 +15,40 @@ const StockSection = (props) => {
 
     const ITEMS_PER_PAGE = 32;
 
-    const getProducts = async () => {
-        if (location.pathname === '/products') {
-            PATH.current = '/products'
-            const res = await apiClient.get(`products/page/${pageNumber.current}/${ITEMS_PER_PAGE}`);
+    useEffect(() => {
+            apiClient.get(`product/category/${id}`, {
+                headers: {
+                    Accept: 'application/json'
+                }
+            })
+                .then((res) => {
+                    setData(res.data.data);
+                    setIsProcessing(false);
+                    setError(null);
+                })
+        }, [])
+
+        const getProducts = async () => {
+            const res = await apiClient.get(`product/category/${id}`)
             setData(res.data.data);
             setIsProcessing(false);
-            setError(null);
-        } else if (location.pathname === '/user/listings') {
-            const res = await apiClient.get(`product/user/${props.user.id}`)
-
-            if (res.data.data.products.length > 0) {
-                PATH.current = '/user/products'
-                setData(res.data.data);
-                setIsProcessing(false);
-                setError(null);
-            } else {
-                setIsProcessing(false);
-                setError("You do not have any listings in our database");
-
-            }
+            setError(null);          
         }
-        // else if (/\search+$/.test(location.pathname)) { 
-        //     const res = await apiClient.get(`product/search/t`)
 
-        //     setData(res.data.data);
-        //     setIsProcessing(false);
-        //     setError(null);
-        // }
-        // else if (location.pathname === '/search/'?'(*)') {
-        //     const res = await apiClient.get(`product/search/t`)
-
-        //     setData(res.data.data);
-        //     setIsProcessing(false);
-        //     setError(null);
-        // }
-    }
-
-    const handleSubmit = (e) => {
-        e.preventDefault();
-
-        setIsProcessing(true);
-
-        let value = e.target.value;
-        pageNumber.current = parseInt(value) + 1;
-
-        getProducts();
-    }
-
-    useEffect(() => {
-        // Cleanup issue in useEffect: https://dev.to/pallymore/clean-up-async-requests-in-useeffect-hooks-90h
-        const abortController = new AbortController();
-
-        getProducts();
-
-        // Cleanup issue in useEffect
-        return () => {
-            abortController.abort();
+        const handleSubmit = (e) => {
+            e.preventDefault();
+    
+            setIsProcessing(true);
+    
+            let value = e.target.value;
+            pageNumber.current = parseInt(value) + 1;
+    
+            getProducts();
         }
-    }, []);
-
-
     return (
         <>
+            <Navbar />
+            <>
         { isProcessing === false ?
             <main id={"stockSection"}>
                 { error === null ?
@@ -158,7 +126,9 @@ const StockSection = (props) => {
             <Spinner/>
         }
         </>
+            <Footer />
+        </>
     )
 }
 
-export default StockSection;
+export default CategoryPage;

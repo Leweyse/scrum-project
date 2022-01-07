@@ -19,7 +19,8 @@ import {
     UsersListings,
     ContactPage,
     TermsConditionsPage,
-    SearchResultPage
+    SearchResultPage,
+    CategoryPage
 } from './pages';
 
 function App() {
@@ -70,6 +71,9 @@ function App() {
 
                 {/* Search Result page */}
                 <Route path="search/:q" element={<SearchResultPage />} />
+
+                {/* Search Result page */}
+                <Route path="category/:id" element={<CategoryPage />} />
             </Routes>
         </BrowserRouter>
     );
