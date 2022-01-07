@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Test\FakeStatController;
 use App\Http\Controllers\api\CartController;
+use App\Http\Controllers\api\OrderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::post('/api/cart/add', [CartController::class, 'add']);
 Route::post('/api/cart/update', [CartController::class, 'update']);
 Route::post('/api/cart/remove', [CartController::class, 'remove']);
 Route::post('/api/cart/clear', [CartController::class, 'clear']);
+
+Route::post('/api/order', [OrderController::class, 'order']);

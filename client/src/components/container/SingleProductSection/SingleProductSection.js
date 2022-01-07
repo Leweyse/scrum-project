@@ -24,7 +24,7 @@ export default function SingleProductSection(props) {
         return () => {
             abortController.abort();
         }
-    })
+    }, [])
     
     return (
         <>

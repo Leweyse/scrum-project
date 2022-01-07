@@ -67,7 +67,7 @@ const StockSection = (props) => {
         return () => {
             abortController.abort();
         }
-    });
+    }, []);
 
 
     return (

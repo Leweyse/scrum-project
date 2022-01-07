@@ -10,14 +10,13 @@ export default function ProfileSection (props) {
 
     const sendForm = () => {
         setClicked(false);
-        //logic for submitting form
     }
 
     return (
         <>
             <main id={"profileSection"}>
                 <p id={"profileSectionTitle"}>Profile</p>
-                {!clicked ?
+                { !clicked ?
                     <section id={"infoFieldsLeft"}>
                         <div className={"infoFields"}>
                             <span>Name</span>
@@ -41,7 +40,7 @@ export default function ProfileSection (props) {
 
                         <button onClick={toForm}>Edit</button>
                     </section>
-                    :
+                :
                     <form id={"infoFieldsLeft"}>
                         <div className={"infoFields profileFormInput"}>
                             <label>First name</label>
@@ -90,14 +89,14 @@ export default function ProfileSection (props) {
 
                         <button name={"profileChangesSubmit"} onClick={sendForm}>Submit</button>
                     </form>
-            }
+                }
                 <section id={"infoFieldsRight"}>
                     <div className={"infoFields"}>
-                        <Link className={"link"}  to={'/order-history'}>Order history</Link>
+                        <Link className={"link"}  to={'/user/orders'}>Order history</Link>
                         <p className={"infoText"}>Little Description</p>
                     </div>
                     <div className={"infoFields"}>
-                        <Link className={"link"}  to={'/sales-history'}>Sales history</Link>
+                        <Link className={"link"}  to={'/user/listings'}>Sales history</Link>
                         <p className={"infoText"}>Little Description</p>
                     </div>
                 </section>

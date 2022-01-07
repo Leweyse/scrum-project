@@ -42,7 +42,7 @@ const LoginSection = () => {
                     .then(res => {
                         setIsProcessing(false)
                         if(res.data.status === 'fail' && res.data.message !== null) {
-                            setErrorMsg(<div className={"error"}>"Your login credentials do no match"</div>)
+                            setErrorMsg("Your login credentials do no match")
                         }
                         if(res.data.data.error) {
                             setError(res.data.data.error);
@@ -87,7 +87,7 @@ const LoginSection = () => {
                 <div id={"loginContainer"}>
                     <p id={"loginLogo"}>G-bay</p>
                     <p id={"loginLogoCropped"}>G-bay</p>
-                    {errorMsg ? errorMsg : null}
+                    { errorMsg ? <span className={"error"}>{errorMsg}</span> : null }
                     <form id={"loginForm"} onSubmit={handleSubmit}>
                         <input
                             id={"loginEmail"}
@@ -100,7 +100,7 @@ const LoginSection = () => {
                                 email: e.target.value
                             }))}
                         />
-                        {error.email ? <div className={"error"}>{error.email}</div> : null}
+                        { error.email ? <span className={"error"}>{error.email}</span> : null }
                         <input
                             id={"loginPassword"}
                             type={"password"}
@@ -112,9 +112,9 @@ const LoginSection = () => {
                                 password: e.target.value
                             }))}
                         />
-                        {error.password ? <div className={"error"}>{error.password}</div> : null}
+                        { error.password ? <span className={"error"}>{error.password}</span> : null }
                         <div id={"loginFormButtonContainer"}>
-                            <button type={'submit'} id={"loginSubmit"}>{isProcessing ? <Spinner size={20}/>: "Submit"}</button>
+                            { !isProcessing ? <button type={'submit'} id={"loginSubmit"}>Submit</button> : <Spinner size={40}/> }
                         </div>
                     </form>
                     <div id={"loginLinks"}>

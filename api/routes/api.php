@@ -73,7 +73,6 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // Bidding
 
     // Ordering
-    Route::post('/order', [OrderController::class, 'order']);
 
 
 });

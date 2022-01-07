@@ -14,39 +14,41 @@ export default function EditListingPage () {
     let { id } = useParams();
     let navigate = useNavigate();
 
-    const [user, setUser] = useState(null);
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getProduct = async () => {
-        const res = await apiClient.get(`product/${id}`, {
+    useEffect(() => {
+        getProducts();
+    });
+
+    const getProducts = () => {
+        apiClient.get(`product/${id}`, {
             headers: {
                 Accept: 'application/json'
             }
         })
-
-        if (res.data.data.product) {
-            if (props.user.id !== res.data.data.product.users_id) {
-                navigate("/profile");
-            } else {
-                setUser(props.user.id);
-                setProduct(res.data.data.product);
-                setIsLoading(false);
+        .then((resp) => {
+            if(resp.data.data.product) {
+                if(props.user.id !== resp.data.data.product.users_id) {
+                    navigate("/profile");
+                }
+                else{
+                    setProduct(resp.data.data.product);
+                    setIsLoading(false);
+                }
             }
-        } else {
-            navigate("/products");
-        }
+            else {
+                navigate("/products");
+            }
+            
+        });
     }
-
-    useEffect(() => {
-        getProduct();
-    });
 
     return (
         <>
             <Navbar/>
             { !isLoading ? 
-                <ListingSection type={"update"} user={user} product={product}/>
+                <ListingSection type={"update"} user={props.user} product={product}/>
             : 
                 <Spinner /> 
             }
