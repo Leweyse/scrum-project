@@ -9,6 +9,7 @@
         width: 100%;
         display: grid;
         padding: 2vh 4rem;
+        place-items: center;
 
         grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
 

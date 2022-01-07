@@ -3,6 +3,7 @@
     display: grid;
     padding: 2rem;
     text-decoration: none;
+    max-width: max(20vw, 15rem);
 
     border: 1px solid var(--clr-darkgray);
     border-radius: 5px;
