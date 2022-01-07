@@ -16,8 +16,6 @@ use Cart;
 class OrderController extends Controller
 {
     public function order(Request $request) {
-        // $subTotal = Cart::subtotal();
-        // return $subTotal;
         $validator = Validator::make($request->all(), [
             'full_name' => 'required',
             'email' => 'required|email',
@@ -40,7 +38,7 @@ class OrderController extends Controller
 
         
         $data = $request->all();
-        $data['sub_total'] = Cart::subtotal() * 100;
+        $data['sub_total'] = intVal(Cart::subtotal()) * 100;
         $data['users_id'] = Cart::subtotal();
         $order = Order::create($data);
         $cart = $this->getCartContent();
@@ -51,8 +49,11 @@ class OrderController extends Controller
           $val['quantity'] = $item->qty;
           $val['price'] = $item->price * 100;
           OrderItem::create($val);
-        }
 
+          $product = Product::find($item->id);
+          $product->stock_units = $product->stock_units - $item->qty;
+          $product->sold_units = $product->sold_units + $item->qty;
+        }
         Cart::destroy(); 
 
         $response = [
