@@ -30,7 +30,7 @@ const AddToCartBtn = (props) => {
             });
     }
     return (
-        <button onClick={addItemTocart}
+        <button className={"addItemBtn"} onClick={addItemTocart}
         >
            {isProcessing ? <Spinner size={20}/>: "Add To cart"}
         </button>

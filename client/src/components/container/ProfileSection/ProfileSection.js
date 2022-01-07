@@ -221,7 +221,7 @@ export default function ProfileSection (props) {
                         <p className={"infoText"}>Little Description</p>
                     </div>
                     <div className={"infoFields"}>
-                        <Link className={"link"}  to={'/user/listings'}>Sales history</Link>
+                        <Link className={"link"}  to={'/user/listings'}>Listings</Link>
                         <p className={"infoText"}>Little Description</p>
                     </div>
                 </section>

@@ -13,20 +13,23 @@ const StockSection = (props) => {
     const [isProcessing, setIsProcessing] = useState(true);
     const [error, setError] = useState("");
 
+    const PATH = useRef(null);
     const pageNumber = useRef(1);
 
     const ITEMS_PER_PAGE = 32;
 
     const getProducts = async () => {
         if (location.pathname === '/products') {
+            PATH.current = '/products'
             const res = await apiClient.get(`products/page/${pageNumber.current}/${ITEMS_PER_PAGE}`);
             setData(res.data.data);
             setIsProcessing(false);
             setError(null);
         } else if (location.pathname === '/user/listings') {
             const res = await apiClient.get(`product/user/${props.user.id}`)
-            console.log(res.data.data);
+
             if (res.data.data.products.length > 0) {
+                PATH.current = '/user/products'
                 setData(res.data.data);
                 setIsProcessing(false);
                 setError(null);
@@ -37,7 +40,7 @@ const StockSection = (props) => {
             }
         }
         else if (location.pathname === '/search/') {
-
+            PATH.current = '/products'
             const res = await apiClient.get(`product/search/test`)
 
             setData(res.data.data);
@@ -107,7 +110,7 @@ const StockSection = (props) => {
                             return (
                                 <ProductCard
                                     key={idx}
-                                    toId={product.id}
+                                    to={`${PATH.current}/${product.id}`}
                                     src={product.image}
                                     title={product.title}
                                     price={`$${(product.price / 100).toFixed(2)}`}
