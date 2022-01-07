@@ -3,7 +3,7 @@ import { useState } from 'react';
 import apiClient from "../../../services/apiClient";
 
 const AddToCartBtn = (props) => {
-
+    const [added, setAdded] = useState(false);
     const [isProcessing, setIsProcessing] = useState(false);
 
     const addItemTocart = (event) => {
@@ -24,16 +24,24 @@ const AddToCartBtn = (props) => {
                     }
                 })
                     .then(res => {
+                        setAdded(true);
                         setIsProcessing(false)
-                       console.log(res.data);
                     });
             });
     }
     return (
-        <button className={"btn"} onClick={addItemTocart}
-        >
-           {isProcessing ? <Spinner size={20}/>: "Add to cart"}
-        </button>
+        isProcessing ? 
+            <Spinner size={40}/>
+        : 
+        <>
+            <button className={"btn"} style={{width: 'max-content'}} onClick={addItemTocart}>
+            { added ? 
+                <>Added</>
+            :
+                <>Add to cart</>
+            }
+            </button>
+        </>
     )
 }
 

@@ -33,77 +33,54 @@ export default function CheckoutSection() {
     useEffect(() => {
         setIsLoading(true);
         cartCheck();
-        authCheck();
-    },[]);
+    }, []);
 
     const cartCheck = () => {
         apiClient.get("cart")
             .then(res => {
+                setIsLoading(false);
 
                 if(res.data.data.cart.quantity < 1) {
                     navigate("/products"); 
                 }
-                
              });
-        }   
+    }
 
     const handleSubmit = (event) => {
         event.preventDefault();
         setIsProcessing(true);
-        apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
-            .then(res => {
-                apiClient.post( '/order', {
-                    full_name: `${user.last_name} ${user.first_name}`,
-                    email: `${user.email}`,
-                    phone: `${user.phone}`,
-                    address_line_1: `${user.address_line_1}`,
-                    address_line_2: `${user.address_line_2}`,
-                    postcode: `${user.postcode}`,
-                    city: `${user.city}`,
-                    country: `${user.country}`
-                },
-                {
-                    headers: {
-                        Accept: 'application/json'
-                    }
-                })
-                .then(resp => {
-                    setIsProcessing(false);
+        apiClient.post( '/order', {
+            full_name: `${user.last_name} ${user.first_name}`,
+            email: `${user.email}`,
+            phone: `${user.phone}`,
+            address_line_1: `${user.address_line_1}`,
+            address_line_2: `${user.address_line_2}`,
+            postcode: `${user.postcode}`,
+            city: `${user.city}`,
+            country: `${user.country}`
+        },
+        {
+            headers: {
+                Accept: 'application/json'
+            }
+        })
+        .then(resp => {
+            setIsProcessing(false);
 
-                    if(resp.data.status === 'success') {
-                        setIsRedirecting(true);
-                        setTimeout(
-                            function(){
-                                navigate("/"); 
-                            },
-                        5000);
-                    } 
+            if(resp.data.status === 'success') {
+                setIsRedirecting(true);
+                setTimeout(
+                    function(){
+                        navigate("/"); 
+                    },
+                5000);
+            } 
 
-                    if(resp.data.status === 'fail') {
-                        setError(res.data.data.error);
-                    }
-                });
-            });
+            if(resp.data.status === 'fail') {
+                setError(resp.data.data.error);
+            }
+        });
     }
-
-    const authCheck = () => {
-        if(tkn && tkn !== '0') {
-            setUserToken(tkn);
-            apiClient.get('user', {
-                headers: {
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${userToken}`,
-                }
-            })
-            .then((res) => {
-                if(res.data.status === 'success') {
-                    setUser(res.data.data.user);
-                    setIsLoading(false);
-                }
-            })
-        }
-    }
-
 
     return (
         <>
@@ -120,12 +97,12 @@ export default function CheckoutSection() {
         { !isRedirecting && !isLoading ? 
         <>
             <main id={"checkoutSection"}>
-        <p id={"checkoutTitle"}>Checkout</p>
-        <form id={"checkoutForm"} onSubmit={handleSubmit}>
-
-            <div className={"checkoutFormRow"}>
-                <label className={"checkoutFormUnit"}>
-                    First name *
+            <p id={"checkoutTitle"}>Checkout</p>
+            <form id={"checkoutForm"} onSubmit={handleSubmit}>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        First name *
+                    </label>
                     <input 
                         name={"firstName"} 
                         type={"text"} 
@@ -136,10 +113,13 @@ export default function CheckoutSection() {
                             first_name: e.target.value
                         }))}
                     />
-                    {error.first_name ? error.first_name : null}
-                </label>
-                <label className={"checkoutFormUnit"}>
-                    Last name *
+                    {error.first_name ? <div className={"error"}>{error.first_name}</div> : null}
+                </div>
+
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Last name *
+                    </label>
                     <input 
                         name={"lastName"} 
                         type={"text"} 
@@ -150,14 +130,13 @@ export default function CheckoutSection() {
                             last_name: e.target.value
                         }))}
                     />
-                    {error.last_name ? error.last_name : null}
-                </label>
-               
-            </div>
-            <div className={"checkoutFormRow"}>
+                    {error.last_name ? <div className={"error"}>{error.last_name}</div> : null}
+                </div>
 
-                <label className={"checkoutFormUnit"}>
-                    Email *
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Email *
+                    </label>
                     <input 
                         name={"email"} 
                         type={"text"}
@@ -168,10 +147,12 @@ export default function CheckoutSection() {
                             email: e.target.value
                         }))}
                     />
-                    {error.email ? error.email : null}
-                </label>
-                <label className={"checkoutFormUnit"}>
-                    Phone *
+                    {error.email ? <div className={"error"}>{error.email}</div> : null}
+                </div>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Phone *
+                    </label>
                     <input 
                         name={"phoneNumber"} 
                         type={"text"}
@@ -182,13 +163,12 @@ export default function CheckoutSection() {
                             phone: e.target.value
                         }))}
                     />
-                    {error.phone ? error.phone : null}
-                </label>
-                
-            </div>
-            <div className={"checkoutFormRow"}>
-                <label className={"checkoutFormUnit"}>
-                    Address line 1 *
+                    {error.phone ? <div className={"error"}>{error.phone}</div> : null}
+                </div>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Address line 1 *
+                    </label>
                     <input 
                         name={"addressLine1"} 
                         type={"text"}
@@ -199,10 +179,12 @@ export default function CheckoutSection() {
                             address_line_1: e.target.value
                         }))}
                     />
-                    {error.address_country ? error.address_line_1 : null}
-                </label>
-                <label className={"checkoutFormUnit"}>
-                    Address line 2 *
+                    {error.address_country ? <div className={"error"}>{error.address_line_1}</div> : null}
+                </div>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Address line 2 *
+                    </label>
                     <input 
                         name={"addressLine2"} 
                         type={"text"}
@@ -213,27 +195,28 @@ export default function CheckoutSection() {
                             address_line_2: e.target.value
                         }))}
                     />
-                    {error.address_line_2 ? error.address_line_2 : null}
-                </label>
-                
-            </div>
-            <div className={"checkoutFormRow"}>
-                <label className={"checkoutFormUnit"}>
-                    Postcode *
+                    {error.address_line_2 ? <div className={"error"}>{error.address_line_2}</div> : null}
+                </div>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Postcode *
+                    </label>
                     <input 
-                        name={"postcode"} 
-                        type={"text"}
-                        placeholder={"postcode"}
-                        value={user.postcode}
-                        onChange={e => setUser((prevState) => ({
-                            ...prevState,
-                            postcode: e.target.value
-                        }))}
-                    />
-                    {error.postcode ? error.postcode : null}
-                </label>
-                <label className={"checkoutFormUnit"}>
-                    City *
+                            name={"postcode"} 
+                            type={"text"}
+                            placeholder={"postcode"}
+                            value={user.postcode}
+                            onChange={e => setUser((prevState) => ({
+                                ...prevState,
+                                postcode: e.target.value
+                            }))}
+                        />
+                        {error.postcode ? <div className={"error"}>{error.postcode}</div> : null}
+                </div>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        City *
+                    </label>
                     <input 
                         name={"city"} 
                         type={"text"}
@@ -244,12 +227,12 @@ export default function CheckoutSection() {
                             city: e.target.value
                         }))}
                     />
-                    {error.city ? error.city : null}
-                </label>
-            </div>
-            <div className={"checkoutFormRow"}>
-                <label className={"checkoutFormUnit"}>
-                    Country *
+                    {error.city ? <div className={"error"}>{error.city}</div> : null}
+                </div>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Country *
+                    </label>
                     <input 
                         name={"country"} 
                         type={"text"}
@@ -260,22 +243,25 @@ export default function CheckoutSection() {
                             country: e.target.value
                         }))}
                     />
-                    {error.country ? error.country : null}
-                </label>
-                <label className={"checkoutFormUnit"}>
-                    Payment method *
+                    {error.country ? <div className={"error"}>{error.country}</div> : null}
+                </div>
+                <div className={"checkoutInput"}>
+                    <label className={"checkoutFormUnit"}>
+                        Payment method *
+                    </label>
                     <span id={"checkoutRadio"}>
-                        <input name={"paymentMethod"} type={"radio"} value={"Cash on delivery"}/> Cash on delivery
+                            <input name={"paymentMethod"} type={"radio"} value={"Cash on delivery"}/> Cash on delivery
                     </span>
-                </label>
-            </div>
-            <div className={"checkoutFormRow"}>
-            <button id={"checkoutSectionConfirmButton"}>{ isProcessing ? <Spinner size={20}/>: 'Confirm' }</button>
-            </div>
-        </form>
-    </main>
-    </> : null
-}
+                </div>
+                <div className={"checkoutFormRow"}>
+                { isProcessing ? <Spinner size={30}/>: <button className={"btn"}>Confirm</button> }
+                </div>
+            </form>
+        </main>
+        </> 
+    : 
+        null
+    }
         </>
     )
 }
