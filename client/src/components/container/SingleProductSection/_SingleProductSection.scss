@@ -14,14 +14,16 @@
 
         .productImage {
             padding: 5%;
-            width: 60%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            width: max(70%, 200px);
         }
     }
 
     .productPageRight {
 
         padding: 0 10% 0 5%;
-        font-size: 1.25vw;
+        font-size: max(1.25vw, 0.75rem);
 
         .productRightElements {
             padding-bottom: 2vh;
@@ -44,6 +46,10 @@
             margin-left: 65%;
             font-size: 2vh;
             background: var(--clr-white);
+        }
+
+        .cartButton {
+            font-size: max(1.25vw, 0.75rem);
         }
     }
 }

@@ -8,7 +8,7 @@
 
     .titleSection {
         h1 {
-            font-size: 4rem;
+            font-size: max(4.5vw, 2rem)
         }
     }
 
@@ -46,7 +46,7 @@
 
             p {
                 font-weight: 600;
-                font-size: 1.2rem;
+                font-size: max(1.25vw, 0.75rem);
             }
 
             .itemsColumn {
@@ -76,7 +76,7 @@
                 position: absolute;
                 left: 1vw;
 
-                font-size: 6rem;
+                font-size: max(6.5vw, 4rem);
                 color: var(--clr-white);
                 -webkit-text-stroke: 1px var(--clr-darkgray);
 

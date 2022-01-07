@@ -1,14 +1,20 @@
 const AddressBlock = () => {
     return (
         <container id={"contactsBlock"}>
-            <span>Address:</span>
-            <p>Somewhere in Universe</p>
+            <div className={"contactsElement"}>
+                <span>Address:</span>
+                <p>Somewhere in the Universe</p>
+            </div>
 
-            <span>Phone:</span>
-            <p>Some number</p>
+            <div className={"contactsElement"}>
+                <span>Phone:</span>
+                <p>Some phone number</p>
+            </div>
 
-            <span>Email:</span>
-            <p>g-bay@gbay.com</p>
+            <div className={"contactsElement"}>
+                <span>Email:</span>
+                <p>g-bay@gbay.com</p>
+            </div>
         </container>
     )
 }

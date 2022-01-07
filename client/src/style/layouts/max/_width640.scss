@@ -13,4 +13,8 @@
     #suPage .suContainer {
         width: 70%;
     }
+
+    #productPage {
+        grid-template-columns: 1fr;
+    }
 }

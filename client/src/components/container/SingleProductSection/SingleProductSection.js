@@ -67,7 +67,7 @@ export default function SingleProductSection(props) {
                             null
                         }
 
-                        <AddToCartBtn 
+                        <AddToCartBtn className={"cartButton"}
                             id={data.product.id}
                             quantity={1}    
                         />
