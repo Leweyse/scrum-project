@@ -15,18 +15,18 @@ const ReturnCancellationPage = () => {
                 <section className={"totalSection"}>
                     <header>
                         <p className={"itemsColumn"}>Order number</p>
-                        <p>Items</p>
-                        <p>Quantity</p>
-                        <p>Price</p>
-                        <p>Total</p>
-                        <p>   </p>
+                        <p className={"itemsColumn"}>Items</p>
+                        <p className={"itemsColumn"}>Quantity</p>
+                        <p className={"itemsColumn"}>Price</p>
+                        <p className={"itemsColumn"}>Total</p>
+                        <p className={"itemsColumn"}>   </p>
                     </header>
                     <section>
-                        <p>SOMENUMBER</p>
-                        <p>Title of product</p>
-                        <p>2</p>
-                        <p>35.00</p>
-                        <p>70.00</p>
+                        <p className={"itemsColumn"}>SOMENUMBER</p>
+                        <p className={"itemsColumn"}>Title of product</p>
+                        <p className={"itemsColumn"}>2</p>
+                        <p className={"itemsColumn"}>35.00</p>
+                        <p className={"itemsColumn"}>70.00</p>
                         {/*<p id={"orderNumber"}>SOMENUMBER</p>*/}
                         {/*<ProductRow*/}
                         {/*    // key={idx}*/}
@@ -36,17 +36,19 @@ const ReturnCancellationPage = () => {
                         {/*    price={`34.00 $`}*/}
                         {/*    total={`68.00 $`}*/}
                         {/*    />*/}
-                        <button>Return</button>
+                        <button className={"itemsColumn"}>Return</button>
                     </section>
                     <section>
-                        <p>SOMENUMBER</p>
-                        <p>Title of product</p>
-                        <p>2</p>
-                        <p>35.00</p>
-                        <p>70.00</p>
-                        <button>Return</button>
+                        <p className={"itemsColumn"}>SOMENUMBER</p>
+                        <p className={"itemsColumn"}>Title of product</p>
+                        <p className={"itemsColumn"}>2</p>
+                        <p className={"itemsColumn"}>35.00</p>
+                        <p className={"itemsColumn"}>70.00</p>
+                        <button className={"itemsColumn"}>Return</button>
                     </section>
+                    <section>
                         <button id={"returnAll"}>Return all</button>
+                    </section>
                 </section>
             </main>
             <Footer />

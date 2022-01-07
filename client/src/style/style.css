@@ -89,8 +89,6 @@ button:focus-visible {
 #navbar #navRight #productsLink {
   position: relative;
   display: grid;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   transition: all 0.3s ease;
@@ -144,8 +142,6 @@ button:focus-visible {
 }
 #navbar #navRight #navDropdown #navDropdownContent a {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   text-align: center;
@@ -342,8 +338,7 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #productCard .description_container {
   display: grid;
@@ -432,15 +427,6 @@ button:focus-visible {
   border-right: 3px solid transparent;
   -webkit-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
-}
-
-@-webkit-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes rotation {
@@ -763,8 +749,6 @@ container {
 }
 #stockSection .paginationContainer .currentPage {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   color: var(--clr-red);
 }
@@ -882,6 +866,7 @@ container {
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
   -moz-user-select: none;
+  -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -938,8 +923,7 @@ container {
   position: relative;
   width: 50%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #listingPage .main-container .left input {
   width: 50%;
@@ -1098,25 +1082,43 @@ container {
   width: 100%;
   display: grid;
   padding: 1rem;
+  font-size: 2vh;
   grid-template-columns: repeat(6, 1fr);
   place-items: start;
+}
+#returnCancellationSection .totalSection header p.itemsColumn,
+#returnCancellationSection .totalSection section p.itemsColumn {
+  margin-right: 7px;
+  font-size: 1.5vw;
 }
 #returnCancellationSection .totalSection header > *,
 #returnCancellationSection .totalSection section > * {
   margin: 0;
 }
-#returnCancellationSection .totalSection #returnAll {
-  justify-items: center;
+#returnCancellationSection .totalSection header #returnAll,
+#returnCancellationSection .totalSection section #returnAll {
+  grid-column-start: 6;
+  grid-column-end: 7;
+  width: 100%;
+  justify-items: start;
   border: 1px solid var(--clr-darkgray);
   border-radius: 5px;
-  width: 20%;
+  padding: 4px;
+  font-size: 100%;
+}
+#returnCancellationSection .totalSection header #returnAll:hover, #returnCancellationSection .totalSection header #returnAll:focus-visible,
+#returnCancellationSection .totalSection section #returnAll:hover,
+#returnCancellationSection .totalSection section #returnAll:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-cyan);
 }
 #returnCancellationSection .totalSection header {
   border-bottom: 1px solid var(--clr-darkgray);
 }
-#returnCancellationSection .totalSection header p {
+#returnCancellationSection .totalSection header p.itemsColumn {
   font-weight: 600;
-  font-size: 1rem;
+  margin-right: 5px;
 }
 
 #tACPage {
@@ -1189,4 +1191,6 @@ container {
 
 .success {
   color: limegreen;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
