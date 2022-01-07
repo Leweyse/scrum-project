@@ -1118,29 +1118,36 @@ container {
   flex-direction: column;
 }
 #returnCancellationSection .totalSection header,
-#returnCancellationSection .totalSection section {
+#returnCancellationSection .totalSection section article {
   width: 100%;
   display: grid;
   padding: 1rem;
   grid-template-columns: repeat(6, 1fr);
-  place-items: start;
+  place-items: center;
 }
 #returnCancellationSection .totalSection header > *,
-#returnCancellationSection .totalSection section > * {
+#returnCancellationSection .totalSection section article > * {
   margin: 0;
 }
-#returnCancellationSection .totalSection #returnAll {
-  justify-items: center;
-  border: 1px solid var(--clr-darkgray);
-  border-radius: 5px;
-  width: 20%;
-}
 #returnCancellationSection .totalSection header {
+  padding: 1.5rem;
   border-bottom: 1px solid var(--clr-darkgray);
 }
 #returnCancellationSection .totalSection header p {
   font-weight: 600;
   font-size: 1rem;
+}
+#returnCancellationSection .totalSection section {
+  padding-top: 1rem;
+}
+#returnCancellationSection .totalSection footer {
+  display: grid;
+  padding: 1.5rem;
+  grid-template-columns: repeat(6, 1fr);
+  place-items: center;
+}
+#returnCancellationSection .totalSection footer button {
+  grid-column: 6/7;
 }
 
 #tACPage {
