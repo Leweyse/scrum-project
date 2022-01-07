@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import useCookie from 'react-use-cookie';
+import { Spinner } from '../..';
 import imageUpload from "../../../../src/assets/images/upload_image.jpg";
 import apiClient from '../../../services/apiClient';
 
@@ -11,6 +12,7 @@ const ListingSection = (props) => {
 
     const [error, setError] = useState({});
     const [successMsg, setSuccessMsg] = useState(null);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     const [imagePreview, setImagePreview] = useState(props.type === 'update' && props.product.image !== 'default.jpg' ? `http://localhost:8000/storage/images/products/thumb/${props.product.image}` : imageUpload);
     
@@ -31,13 +33,15 @@ const ListingSection = (props) => {
     const create = async (event) => {
         event.preventDefault();
 
+        setIsProcessing(true);
+
         let bodyFormData = new FormData();
 
         bodyFormData.append('image',image);
         bodyFormData.append('title',title);
         bodyFormData.append('description',description);
         bodyFormData.append('categories_id',categoryId);
-        bodyFormData.append('price',price);
+        bodyFormData.append('price',`${parseFloat(price) * 100}`);
         bodyFormData.append('stock_unit',stockUnit);
 
         const res = await apiClient.post('/product/create',
@@ -50,15 +54,22 @@ const ListingSection = (props) => {
             }
         })
         
-        if (res.data.data.status === 'success') {
+        if (res.data.status === 'success') {
             setTitle('');
             setDescription('');
             setPrice('');
             setCategoryId('');
             setStockUnit('');
-            setSuccessMsg(<div className={"success"}>'Product successfully added to listings'</div>);
-        } else if (res.data.data.status === 'fail' && res.data.data.error) {
+            setError({});
+            setSuccessMsg(<div className={"success"}>Product successfully added to listings</div>);
+
+            setIsProcessing(false);
+        } 
+        
+        if (res.data.status === 'fail' && res.data.data.error) {
             setError(res.data.data.error);
+            setSuccessMsg(null);
+            setIsProcessing(false);
         }
     }
 
@@ -69,7 +80,7 @@ const ListingSection = (props) => {
             title: title,
             description: description,
             categories_id: categoryId,
-            price: price,
+            price: `${parseFloat(price) * 100}`,
             stock_unit: stockUnit
         },
         {
@@ -79,10 +90,14 @@ const ListingSection = (props) => {
             }
         })
         
-        if (res.data.data.status === 'success') {
+        if (res.data.status === 'success') {
+            setIsProcessing(false);
             setSuccessMsg(<div className={"success"}>Product is successfully updated</div>);
-        } else if (res.data.data.error) {
-            setError(res.data.data.error);
+            setError({});
+        } else if (res.data.error) {
+            setIsProcessing(false);
+            setSuccessMsg(null);
+            setError(res.data.error);
         } 
     }
 
@@ -91,16 +106,16 @@ const ListingSection = (props) => {
             <section className="title">
                 { type === 'create' ? <p>Add Listing</p> : <p>Edit Listing</p> }
             </section>
-            { successMsg ?
-                <section>
-                   {successMsg }
-                </section>
-                : null
-            }
             
             <section className="main-container">
                 {/* <img src="http://localhost:8000/storage/images/products/thumb/1234576579987.jpg" /> */}
                 <section className="left">
+                    { successMsg ?
+                        <section>
+                            {successMsg}
+                        </section>
+                        : null
+                    }
                     <img id={"uploadImage"}
                         className="uploadImage"
                         src={imagePreview}
@@ -158,9 +173,9 @@ const ListingSection = (props) => {
                     {error.stock_unit ? <div className={"error"}>{error.stock_unit}</div> : null}
 
                     {type === 'create' ?
-                        <button name={"addProduct"} className={"btn"}  onClick={create}>Add</button>
+                        !isProcessing ? <button name={"addProduct"} className={"btn"}  onClick={create}>Add</button> : <Spinner size={40}/>
                         :
-                        <button name={"editProduct"} className={"btn"}  onClick={update}>Submit changes</button>
+                        !isProcessing ? <button name={"editProduct"} className={"btn"}  onClick={update}>Submit changes</button> : <Spinner size={40}/>
                     }
                 </form>
             </section>
