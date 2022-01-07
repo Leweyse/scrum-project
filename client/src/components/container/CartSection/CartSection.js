@@ -59,8 +59,7 @@ const CartSection = () => {
                         <div>
                             <p>Subtotal</p>
                             <p>{ totalQuantity > 0 ? `$${subTotal}`: '$00.00' }</p>
-                            <button>Proceed</button>
-                            {/* <Link id={"productsLink"} to={"/checkout"}><button>Proceed</button></Link> */}
+                            <Link id={"productsLink"} to={"/checkout"}><button>Proceed</button></Link>
                         </div>
                     </footer>
                 </section>

@@ -27,7 +27,7 @@
         button {
             width: 30px;
 
-            font-size: 1.2rem;
+            font-size: max(1.25vw, 0.75rem);
             font-weight: 600;
 
             border: 1px solid var(--clr-darkgray);

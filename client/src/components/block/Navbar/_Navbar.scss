@@ -21,7 +21,7 @@
         place-items: center;
 
         #navHome {
-            font-size: 2vw;
+            font-size: max(2vw, 1rem);
             font-weight: bold;
         }
     }
@@ -47,7 +47,7 @@
             display: grid;
             width: max-content;
             padding: 0.25rem 0.5rem;
-
+            font-size: max(1.25vw, 0.75rem);
             transition: all 0.3s ease;
 
             &::after {
@@ -169,7 +169,7 @@
 
                     button {
                         text-align: center;
-                        font-size: 1.25vw;
+                        font-size: max(1.25vw, 0.65rem);
                     }
 
                     &:hover {
@@ -188,7 +188,7 @@
         }
 
         .navRight {
-            font-size: 1.25vw;
+            font-size: max(1.25vw, 0.65rem);
         }
     }
 }
