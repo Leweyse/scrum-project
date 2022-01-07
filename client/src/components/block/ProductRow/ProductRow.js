@@ -76,10 +76,9 @@ const ProductRow = (props) => {
             <div className={"productTitle"}>{props.title}</div>
             <p className={"productPrice"}>{props.price}</p>
             <span className={"productQuantity"}>
-                
-                <button onClick={updateCartMin}>{isRemoving ? <Spinner size={20}/>: "-"}</button>
                 <p>{currentQty}</p>
-                <button onClick={updateCartAdd}>{isAdding ? <Spinner size={20}/>: "+"}</button>
+                <button className={props.visibility} onClick={updateCartMin}>{isRemoving ? <Spinner size={20}/>: "-"}</button>
+                <button className={props.visibility} onClick={updateCartAdd}>{isAdding ? <Spinner size={20}/>: "+"}</button>
             </span>
             <p className={"productTotal"}>{props.total}</p>
             </article>

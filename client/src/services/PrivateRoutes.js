@@ -44,7 +44,7 @@ const PrivateRoutes = () => {
             setUserToken('0');
             setIsProcessing(false);
         }
-    }, [tkn, setUserToken, userToken])
+    }, [])
 
     return (
         <>

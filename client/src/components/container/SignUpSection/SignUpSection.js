@@ -72,7 +72,7 @@ const SignUpSection = () => {
                         setError(response.data.error);
                     } else if(response.data.token) {
                         setUserToken(response.data.token);
-                        navigate("/checkout");
+                        navigate("/");
                     }
                 });
             });
@@ -99,7 +99,7 @@ const SignUpSection = () => {
                                         firstName: e.target.value
                                     }))}
                                 />
-                                {error.first_name ? error.first_name : null}
+                                {error.first_name ? <div className={"error"}>{error.first_name}</div> : null}
                             </span>
                             <span className={"suInput"}>
                                 <label htmlFor={"suLastName"}>Last name <span>*</span></label>
@@ -114,7 +114,7 @@ const SignUpSection = () => {
                                         lastName: e.target.value
                                     }))}
                                 />
-                                {error.last_name ? error.last_name : null}
+                                {error.last_name ? <div className={"error"}>{error.last_name}</div> : null}
                             </span>
                             <span className={"suInput"}>
                                 <label htmlFor={"suEmail"}>Email address <span>*</span></label>
@@ -129,7 +129,7 @@ const SignUpSection = () => {
                                         email: e.target.value
                                     }))}
                                 />
-                                {error.email ? error.email : null}
+                                {error.email ? <div className={"error"}>{error.email}</div> : null}
                             </span>
                             <span className={"suInput"}>
                                 <label htmlFor={"suPhone"}>Phone Number <span>*</span></label>
@@ -144,7 +144,7 @@ const SignUpSection = () => {
                                         phone: e.target.value
                                     }))}
                                 />
-                                {error.phone ? error.phone : null}
+                                {error.phone ? <div className={"error"}>{error.phone}</div> : null}
                             </span>
                             <span className={"suInput"}>
                                 <label htmlFor={"suPassword"}>Password <span>*</span></label>
@@ -159,7 +159,7 @@ const SignUpSection = () => {
                                         password: e.target.value
                                     }))}
                                 />
-                                {error.password ? error.password : null}
+                                {error.password ? <div className={"error"}>{error.password}</div> : null}
                             </span>
                             <span className={"suCheckbox"}>
                                 <div id={"suRadio"} >
@@ -177,7 +177,7 @@ const SignUpSection = () => {
                                 <div id={"tACText"}>
                                     <label  htmlFor={"suTerms"}>By clicking this checkbox you agree to our terms and conditions</label>
                                 </div>
-                                {error.agree ? error.agree : null}
+                                {error.agree ? <div className={"error"}>{error.agree}</div> : null}
                             </span>
                             <button name={"signup"} className={"suBtn"}>{isProcessing ? <Spinner size={20}/>: "Submit"}</button>
                         </form>

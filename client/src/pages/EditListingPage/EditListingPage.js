@@ -1,20 +1,22 @@
+import { useContext } from 'react';
+
+import { Context } from '../../services/Context';
+
 import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from "react-router-dom";
-import useCookie, { getCookie } from 'react-use-cookie';
 import { ListingSection, Navbar, Footer } from "../../components";
 import { Spinner } from '../../components/block';
 import apiClient from '../../services/apiClient';
 
 export default function EditListingPage () {
-    let navigate = useNavigate();
-    let { id } = useParams();
-    
-    const [product, setProduct] = useState(null);
-    const [userId, setUserId] = useState(null);
-    const [tkn, setTkn] = useState(getCookie('token'));
-    const [userToken, setUserToken] = useCookie('token','0');
-    const [isLoading, setIsLoading] = useState(true);
+    const props = useContext(Context);
 
+    let { id } = useParams();
+    let navigate = useNavigate();
+
+    const [user, setUser] = useState(null);
+    const [product, setProduct] = useState(null);
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         authCheck();
@@ -69,12 +71,11 @@ export default function EditListingPage () {
         }
     }
 
-
     return (
         <>
             <Navbar/>
             { !isLoading ? 
-                <ListingSection type={"update"} userId={userId} product={product}/>
+                <ListingSection type={"update"} user={user} product={product}/>
             : 
                 <Spinner /> 
             }

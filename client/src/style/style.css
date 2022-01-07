@@ -821,6 +821,9 @@ span {
   border-radius: 36px;
   flex-direction: column;
 }
+#cartSection .totalSection .invisible {
+  display: none;
+}
 #cartSection .totalSection header,
 #cartSection .totalSection section,
 #cartSection .totalSection footer {
@@ -1145,6 +1148,13 @@ span {
   #suPage .suContainer {
     width: 70%;
   }
+}
+.error {
+  color: red;
+}
+
+.success {
+  color: limegreen;
 }
 
 /*# sourceMappingURL=style.css.map */

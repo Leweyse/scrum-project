@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'sku' => Str::upper(Str::random(8)),
             'title' => $this->faker->sentence($nbWords = Arr::random($this->titleLength), $variableNbWords = true),
             'description' => $this->faker->paragraph($nbSentences = Arr::random($this->descLength), $variableNbSentences = true) ,
-            'image' => 'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg',
+            'image' => 'default.jpg',
             'price' => $this->faker->numberBetween($min = 1000, $max = 10000),
             'stock_unit' => $this->faker->numberBetween($min = 10, $max = 500),
             'sold_unit' => 0
