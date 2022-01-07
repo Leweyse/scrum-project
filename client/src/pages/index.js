@@ -14,6 +14,7 @@ import ReturnCancellationPage from "./ReturnCancellationPage/ReturnCancellationP
 import UsersListings from "./UsersListings/UsersListings";
 import TermsConditionsPage from "./TermsConditionsPage/TermsConditionsPage";
 import ContactPage from "./ContactPage/ContactPage";
+import SearchResultPage from "./SearchResultPage/SearchResultPage";
 
 export {
     LoginPage,
@@ -32,4 +33,5 @@ export {
     UsersListings,
     TermsConditionsPage,
     ContactPage,
+    SearchResultPage,
 }

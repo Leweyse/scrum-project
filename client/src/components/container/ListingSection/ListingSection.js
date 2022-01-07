@@ -11,11 +11,11 @@ const ListingSection = (props) => {
     const [error, setError] = useState({});
     const [successMsg, setSuccessMsg] = useState(null);
     
-    const [title, setTitle] = useState(product.title);
-    const [description, setDescription] = useState(product.description);
-    const [price, setPrice] = useState(product.price);
-    const [stockUnit, setStockUnit] = useState(product.stock_unit);
-    const [categoryId, setCategoryId] = useState(product.categories_id);
+    const [title, setTitle] = useState(product.title || '');
+    const [description, setDescription] = useState(product.description || '');
+    const [price, setPrice] = useState(product.price || '');
+    const [stockUnit, setStockUnit] = useState(product.stock_unit  || '');
+    const [categoryId, setCategoryId] = useState(product.categories_id  || '');
     const [image, setImage] = useState('');
     
 
@@ -165,8 +165,7 @@ const ListingSection = (props) => {
                         value={stockUnit}
                         onChange={e => setStockUnit(e.target.value)}
                     />
-                        {error.stock_unit ? error.stock_unit: null}
-
+                        {error.stock_unit ? <div className={"error"}>{error.stock_unit}</div> : null}
 
                     {type === 'create' ?
                         <button name={"addProduct"} className={"listingSubmitButton"}  onClick={create}>Add</button>

@@ -29,7 +29,8 @@ class ProductController extends Controller
         $response = [
             'status' => 'success',
             'data' => [
-                'products' => $data
+                'products' => $data,
+                'totalLength' => count($products)
             ]
         ];
         return response($response, 200);
@@ -285,7 +286,23 @@ class ProductController extends Controller
         $response = [
             'status' => 'success',
             'data' => [
-                'products' => $products
+                'products' => $products,
+                'totalLength' => count($products)
+            ]
+        ];
+        return response($response, 200);
+    }
+    public function search(Request $request, $q) {
+        $products = Product::query()
+        ->where('title', 'LIKE', "%{$q}%") 
+        ->orWhere('description', 'LIKE', "%{$q}%") 
+        ->get();
+
+        $response = [
+            'status' => 'success',
+            'data' => [
+                'products' => $products,
+                'totalLength' => count($products)
             ]
         ];
         return response($response, 200);
@@ -300,7 +317,7 @@ class ProductController extends Controller
             'image.mimes' => 'Only jpg or png images are accepted',
             'price.required' => 'What is the price for the product',
             'stock_unit.required' => 'How many units are available',
-            'stock_unit.numeric' => 'must be a number'
+            'stock_unit.numeric' => 'This must be a number'
         ];
     }
 

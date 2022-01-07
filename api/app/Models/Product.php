@@ -31,7 +31,7 @@ class Product extends Model
         static::creating(function($Product)
         {
             $Product->user_ip =  \Request::ip();
-            //$Product->users_id =  \Auth::id();
+            $Product->users_id =  \Auth::id();
             $Product->sku =  Str::upper(Str::random(8));
         });
     }

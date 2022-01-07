@@ -25,7 +25,7 @@ const StockSection = (props) => {
             setError(null);
         } else if (location.pathname === '/user/listings') {
             const res = await apiClient.get(`product/user/${props.user.id}`)
-
+            console.log(res.data.data);
             if (res.data.data.products.length > 0) {
                 setData(res.data.data);
                 setIsProcessing(false);
@@ -35,6 +35,14 @@ const StockSection = (props) => {
                 setError("You do not have any listings in our database");
 
             }
+        }
+        else if (location.pathname === '/search/') {
+
+            const res = await apiClient.get(`product/search/test`)
+
+            setData(res.data.data);
+            setIsProcessing(false);
+            setError(null);
         }
     }
 
