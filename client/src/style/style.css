@@ -49,8 +49,6 @@ button:focus-visible {
 }
 
 .btn {
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.8rem 1rem;
   color: var(--clr-darkgray);
@@ -108,8 +106,6 @@ button:focus-visible {
 #navbar #navRight #productsLink {
   position: relative;
   display: grid;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   transition: all 0.3s ease;
@@ -163,8 +159,6 @@ button:focus-visible {
 }
 #navbar #navRight #navDropdown #navDropdownContent a {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   text-align: center;
@@ -293,6 +287,7 @@ button:focus-visible {
 #carousel #carouselTrackContainer .carouselTrack .slide {
   opacity: 0;
   transition-duration: 0.75s;
+  z-index: -1;
 }
 #carousel #carouselTrackContainer .carouselTrack .carouselSlide {
   position: absolute;
@@ -361,8 +356,7 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #productCard .description_container {
   display: grid;
@@ -429,6 +423,10 @@ button:focus-visible {
   color: var(--clr-red);
   border: 1px solid var(--clr-red);
   outline: none;
+}
+
+.slideElementLink {
+  text-decoration: none;
 }
 
 container {
@@ -504,15 +502,6 @@ container {
   border-right: 3px solid transparent;
   -webkit-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
-}
-
-@-webkit-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes rotation {
@@ -782,8 +771,6 @@ container {
 }
 #stockSection .paginationContainer .currentPage {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   color: var(--clr-red);
 }
@@ -901,6 +888,7 @@ container {
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
   -moz-user-select: none;
+  -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -957,8 +945,7 @@ container {
   position: relative;
   width: 50%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #listingPage .main-container .left input {
   width: 50%;
@@ -978,8 +965,6 @@ container {
   font-size: 0.9rem;
 }
 #listingPage .main-container #listingForm .btn {
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.8rem 2rem;
 }
@@ -1201,4 +1186,6 @@ container {
 
 .success {
   color: limegreen;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
