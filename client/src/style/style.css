@@ -49,6 +49,8 @@ button:focus-visible {
 }
 
 .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.8rem 1rem;
   color: var(--clr-darkgray);
@@ -106,6 +108,8 @@ button:focus-visible {
 #navbar #navRight #productsLink {
   position: relative;
   display: grid;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   font-size: max(1.25vw, 0.75rem);
@@ -160,6 +164,8 @@ button:focus-visible {
 }
 #navbar #navRight #navDropdown #navDropdownContent a {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   text-align: center;
@@ -358,7 +364,8 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #productCard .description_container {
   display: grid;
@@ -512,6 +519,15 @@ container {
   border-right: 3px solid transparent;
   -webkit-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 @keyframes rotation {
@@ -782,6 +798,8 @@ container {
 }
 #stockSection .paginationContainer .currentPage {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   color: var(--clr-red);
 }
@@ -902,7 +920,6 @@ container {
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
   -moz-user-select: none;
-  -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -959,7 +976,8 @@ container {
   position: relative;
   width: 50%;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #listingPage .main-container .left input {
   width: 50%;
@@ -979,6 +997,8 @@ container {
   font-size: 0.9rem;
 }
 #listingPage .main-container #listingForm .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.8rem 2rem;
 }
@@ -990,6 +1010,7 @@ container {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 #checkoutSection #checkoutTitle {
   font-size: 3.75rem;
@@ -997,25 +1018,26 @@ container {
   -webkit-text-stroke: 1px var(--clr-darkgray);
 }
 #checkoutSection #checkoutForm {
-  width: 60%;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1rem;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
 }
-#checkoutSection #checkoutForm .checkoutFormRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+#checkoutSection #checkoutForm .checkoutInput {
+  display: grid;
   align-items: center;
+  gap: 0.5rem;
 }
-#checkoutSection #checkoutForm .checkoutFormRow .checkoutFormUnit {
+#checkoutSection #checkoutForm .checkoutInput .checkoutFormUnit {
   display: flex;
   flex-direction: column;
-  width: 25%;
   font-weight: bold;
 }
-#checkoutSection #checkoutForm .checkoutFormRow button {
+#checkoutSection #checkoutForm .checkoutInput input {
+  padding: 0.25rem 0.5rem;
+}
+#checkoutSection #checkoutForm .checkoutInput button {
   width: 25%;
   border-radius: 11px;
 }
@@ -1211,6 +1233,4 @@ container {
 
 .success {
   color: limegreen;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

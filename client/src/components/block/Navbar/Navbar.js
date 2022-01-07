@@ -93,6 +93,7 @@ export default function Navbar () {
                                 <LogoutButton className={"navRight"}/>
                             </>) : (
                             <>
+                                <Link className={"navRight"} to={"/cart"}>Cart</Link>
                                 <Link className={"navRight"} to={"/login"}>Login</Link>
                                 <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
                             </>
