@@ -2,12 +2,15 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCookie } from "react-use-cookie";
 import { gsap } from "gsap";
+import {useNavigate} from "react-router-dom";
 
 import { UserIconSVG } from "../SVGs";
 import { LogoutButton } from "../";
 
 export default function Navbar () {
+    const navigate = useNavigate();
     const userToken = getCookie('token');
+    const navSearch = useRef(null);
 
     const [clicked, setClicked] = useState(false);
 
@@ -59,6 +62,16 @@ export default function Navbar () {
         userIconSvgAnimation.current.reverse();
     }
 
+    const search = (e) => {
+        if (e.key === 'Enter') {
+            navigate(`/search/${navSearch.current.value}`);
+        }
+    }
+
+    const handle = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <nav id={"navbar"}>
             <div id={"navLeft"}>
@@ -66,11 +79,14 @@ export default function Navbar () {
             </div>
             <div id={"navRight"}>
                 <form className={"navRight"} id={"navSearch"}>
-                    <input 
+                    <input
+                        ref={navSearch}
                         id={"navSearchInput"} 
                         type={"text"} 
                         placeholder={"Search..."} 
                         name={"navSearch"}
+                        onKeyDown={search}
+                        onSubmit={handle}
                     />
                 </form>
 
