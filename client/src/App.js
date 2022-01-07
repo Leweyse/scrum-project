@@ -70,6 +70,8 @@ function App() {
 
                 {/* Search Result page */}
                 <Route path="search/:q" element={<SearchResultPage />} />
+
+                <Route path="search/:q/products/:id" element={<SingleProductPage />} />
             </Routes>
         </BrowserRouter>
     );

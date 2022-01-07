@@ -84,7 +84,7 @@ const SearchResultPage = () => {
                             return (
                                 <ProductCard
                                     key={idx}
-                                    to={`products/${product.id}`}
+                                    to={`/products/${product.id}`}
                                     src={product.image}
                                     title={product.title}
                                     price={`$${(product.price / 100).toFixed(2)}`}
