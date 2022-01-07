@@ -38,7 +38,7 @@ const ProductCard = (props) => {
         <Link
             id={"productCard"}
             ref={productCardRef}
-            to={`/products/${props.toId}`}
+            to={props.to}
         >
             <img className={"image_container"} src={ props.src !==  'default.jpg' ? `http://localhost:8000/storage/images/products/thumb/${props.src}` : defaultProductImageUpload} alt={"Product"} />
             <section className={"description_container"}>

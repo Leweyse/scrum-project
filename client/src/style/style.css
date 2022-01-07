@@ -48,6 +48,25 @@ button:focus-visible {
   outline: none;
 }
 
+.btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.8rem 1rem;
+  color: var(--clr-darkgray);
+  text-decoration: none;
+  font-size: 1rem;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 11px;
+  background: var(--clr-white);
+  transition: all 0.2s ease;
+}
+.btn:hover, .btn:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-cyan);
+}
+
 #navbar {
   display: flex;
   width: 100%;
@@ -438,6 +457,7 @@ button:focus-visible {
     transform: rotate(360deg);
   }
 }
+
 container {
   position: absolute;
   margin-left: 35%;
@@ -499,6 +519,45 @@ container {
   font-size: max(1.15vw, 0.55rem);
 }
 
+#userIconSvg {
+  shape-rendering: auto;
+}
+
+#spinner-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s linear;
+}
+#spinner-container .spinner {
+  display: inline-block;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border-top: 3px solid var(--clr-darkgray);
+  border-right: 3px solid transparent;
+  -webkit-animation: rotation 1s linear infinite;
+  animation: rotation 1s linear infinite;
+}
+
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 #landingSection {
   position: relative;
   display: flex;
@@ -794,7 +853,7 @@ container {
   font-size: max(1.25vw, 0.75rem);
 }
 #productPage .productPageRight .productRightElements {
-  padding-bottom: 2vh;
+  padding-bottom: 1.5rem;
 }
 #productPage .productPageRight .productPageBold {
   font-weight: bold;
@@ -956,18 +1015,11 @@ container {
   width: 80%;
   font-size: 0.9rem;
 }
-#listingPage .main-container #listingForm .listingSubmitButton {
-  width: 45%;
-  padding: 0.5rem;
-  border: 1px solid var(--clr-darkgray);
-  border-radius: 11px;
-  background: var(--clr-white);
-  transition: all 0.2s ease;
-}
-#listingPage .main-container #listingForm .listingSubmitButton:hover, #listingPage .main-container #listingForm .listingSubmitButton:focus-visible {
-  color: var(--clr-white);
-  background: var(--clr-cyan);
-  border-color: var(--clr-cyan);
+#listingPage .main-container #listingForm .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.8rem 2rem;
 }
 
 #checkoutSection {
