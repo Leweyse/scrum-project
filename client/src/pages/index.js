@@ -15,6 +15,7 @@ import UsersListings from "./UsersListings/UsersListings";
 import TermsConditionsPage from "./TermsConditionsPage/TermsConditionsPage";
 import ContactPage from "./ContactPage/ContactPage";
 import SearchResultPage from "./SearchResultPage/SearchResultPage";
+import CategoryPage from "./CategoryPage/CategoryPage";
 
 export {
     LoginPage,
@@ -34,4 +35,5 @@ export {
     TermsConditionsPage,
     ContactPage,
     SearchResultPage,
+    CategoryPage,
 }
