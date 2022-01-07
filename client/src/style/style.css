@@ -89,8 +89,6 @@ button:focus-visible {
 #navbar #navRight #productsLink {
   position: relative;
   display: grid;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   transition: all 0.3s ease;
@@ -144,8 +142,6 @@ button:focus-visible {
 }
 #navbar #navRight #navDropdown #navDropdownContent a {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   text-align: center;
@@ -342,8 +338,7 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #productCard .description_container {
   display: grid;
@@ -432,15 +427,6 @@ button:focus-visible {
   border-right: 3px solid transparent;
   -webkit-animation: rotation 1s linear infinite;
   animation: rotation 1s linear infinite;
-}
-
-@-webkit-keyframes rotation {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 @keyframes rotation {
@@ -763,8 +749,6 @@ container {
 }
 #stockSection .paginationContainer .currentPage {
   position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
   width: max-content;
   color: var(--clr-red);
 }
@@ -882,6 +866,7 @@ container {
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
   -moz-user-select: none;
+  -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -938,8 +923,7 @@ container {
   position: relative;
   width: 50%;
   aspect-ratio: 1/1;
-  -o-object-fit: cover;
-     object-fit: cover;
+  object-fit: cover;
 }
 #listingPage .main-container .left input {
   width: 50%;
@@ -1189,4 +1173,6 @@ container {
 
 .success {
   color: limegreen;
-}/*# sourceMappingURL=style.css.map */
+}
+
+/*# sourceMappingURL=style.css.map */
