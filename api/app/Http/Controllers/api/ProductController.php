@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Stat;
 use App\Models\User;
-use App\Models\Category;
 use Validator;
 use Auth;
 use Image;
@@ -24,9 +23,7 @@ class ProductController extends Controller
         $data = [];
         foreach($products as $product) {
             $user = User::findOrFail($product->users_id);
-            $category = Category::findOrFail($product->categories_id);
             $product['user'] = $user->first_name . ' ' . $user->last_name;
-            $product['category'] = $category->name;
             $data[] = $product;
         }
         $response = [
@@ -49,9 +46,8 @@ class ProductController extends Controller
 
         foreach ($filtered_products as $key => $product) {
             $user = User::findOrFail($product->users_id);
-            $category = Category::findOrFail($product->categories_id);
             $product['user'] = $user->first_name . ' ' . $user->last_name;
-            $product['category'] = $category->name;
+
             $data[] = $product;
         }
 
@@ -133,6 +129,7 @@ class ProductController extends Controller
 
     }
     
+
     public function update(Request $request, $id)
     {
         $product = Product::where('id', $id)->first();
@@ -240,8 +237,6 @@ class ProductController extends Controller
         $product['user'] = $user->first_name . ' ' . $user->last_name;
         $stats = Stat::where('products_id',$id)->get();
         $product['stats'] = $stats;
-        $category = Category::findOrFail($product->categories_id);
-        $product['category'] = $category->name;
         $response = [
             'status' => 'success',
             'data' => [
@@ -288,18 +283,10 @@ class ProductController extends Controller
 
     public function productByUser(Request $request, $user_id) {
         $products = Product::where('users_id',$user_id)->get();
-        $data = [];
-        foreach($products as $product) {
-            $user = User::findOrFail($product->users_id);
-            $category = Category::findOrFail($product->categories_id);
-            $product['user'] = $user->first_name . ' ' . $user->last_name;
-            $product['category'] = $category->name;
-            $data[] = $product;
-        }
         $response = [
             'status' => 'success',
             'data' => [
-                'products' => $data,
+                'products' => $products,
                 'totalLength' => count($products)
             ]
         ];
@@ -308,18 +295,10 @@ class ProductController extends Controller
 
     public function productFromCategory(Request $request, $id) {
         $products = Product::where('categories_id',$id)->get();
-        $data = [];
-        foreach($products as $product) {
-            $user = User::findOrFail($product->users_id);
-            $category = Category::findOrFail($product->categories_id);
-            $product['user'] = $user->first_name . ' ' . $user->last_name;
-            $product['category'] = $category->name;
-            $data[] = $product;
-        }
         $response = [
             'status' => 'success',
             'data' => [
-                'products' => $data,
+                'products' => $products,
                 'totalLength' => count($products)
             ]
         ];
@@ -331,18 +310,10 @@ class ProductController extends Controller
         ->orWhere('description', 'LIKE', "%{$q}%") 
         ->get();
 
-        $data = [];
-        foreach($products as $product) {
-            $user = User::findOrFail($product->users_id);
-            $category = Category::findOrFail($product->categories_id);
-            $product['user'] = $user->first_name . ' ' . $user->last_name;
-            $product['category'] = $category->name;
-            $data[] = $product;
-        }
         $response = [
             'status' => 'success',
             'data' => [
-                'products' => $data,
+                'products' => $products,
                 'totalLength' => count($products)
             ]
         ];

@@ -45,7 +45,6 @@ const ProductCard = (props) => {
                 <div className={"productTitle"}>{props.title}</div>
                 <div className={"productPrice"}>{props.price}</div>
                 <div className={"productSeller"}>{props.seller}</div>
-                <div className={"productCategory"}>{props.category}</div>
             </section>
         </Link>
     )

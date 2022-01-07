@@ -89,7 +89,6 @@ const CategoryPage = () => {
                                     title={product.title}
                                     price={`$${(product.price / 100).toFixed(2)}`}
                                     seller={product.user}
-                                    category={product.category}
                                 />
                             )}
                         )}
