@@ -140,7 +140,7 @@ const ListingSection = (props) => {
                     <input
                         type={"text"}
                         placeholder={"Price"}
-                        value={price}
+                        value={(parseFloat(price) / 100).toFixed(2)}
                         onChange={e => setPrice(e.target.value)}
                     />
                     { error.price ? <div className={"error"}>{error.price}</div> : null }
