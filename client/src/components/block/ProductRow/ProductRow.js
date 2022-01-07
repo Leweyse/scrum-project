@@ -82,7 +82,7 @@ const ProductRow = (props) => {
             </span>
             <p className={"productTotal"}>{props.total}</p>
             </article>
-            : ''
+            : 'There are no products in you shopping cart'
         }
         </>
         

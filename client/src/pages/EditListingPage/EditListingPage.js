@@ -18,29 +18,58 @@ export default function EditListingPage () {
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
-    const getProduct = async () => {
-        const res = await apiClient.get(`product/${id}`, {
-            headers: {
-                Accept: 'application/json'
-            }
-        })
+    useEffect(() => {
+        authCheck();
+    });
 
-        if (res.data.data.product) {
-            if (props.user.id !== res.data.data.product.users_id) {
-                navigate("/profile");
-            } else {
-                setUser(props.user.id);
-                setProduct(res.data.data.product);
-                setIsLoading(false);
-            }
-        } else {
-            navigate("/products");
+    const authCheck = () => {
+        if(tkn && tkn !== '0') {
+            setUserToken(tkn);
+            apiClient.get('user', {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${userToken}`,
+                }
+            })
+                .then((res) => {
+                    apiClient.get(`product/${id}`, {
+                        headers: {
+                            Accept: 'application/json'
+                        }
+                    })
+                    .then((resp) => {
+                        if(resp.data.data.product) {
+                            if(res.data.data.user.id !== resp.data.data.product.users_id) {
+                                navigate("/profile");
+                            }
+                            else{
+                                setUserId(res.data.data.user.id);
+                                setProduct(resp.data.data.product);
+                                setIsLoading(false);
+                            }
+                        }
+                        else {
+                            navigate("/products");
+                        }
+                        
+                    });
+                })
+                .catch((err) => {
+                    if (err.response && err.response.status === 401) {
+                        setUserId(null);
+                        setTkn('0');
+                        setUserToken('0');
+                        navigate("/login");
+                    }
+                });
+        }
+        else {
+            setUserId(null);
+            setTkn('0');
+            setUserToken('0');
+            navigate("/login");
         }
     }
-
-    useEffect(() => {
-        getProduct();
-    });
 
     return (
         <>

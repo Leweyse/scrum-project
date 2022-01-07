@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-
+import { Link } from "react-router-dom";
 import { ProductRow } from '../../block';
 
 import apiClient from "../../../services/apiClient";
@@ -60,7 +60,8 @@ const CartSection = () => {
                         <div>
                             <p>Subtotal</p>
                             <p>{`$${subTotal}`}</p>
-                            <button>Proceed</button>
+                            <Link id={"productsLink"} to={"/checkout"}><button>Proceed</button></Link>
+                            
                         </div>
                     </footer>
                 </section>
