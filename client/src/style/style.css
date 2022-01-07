@@ -346,6 +346,7 @@ button:focus-visible {
   display: grid;
   padding: 2rem;
   text-decoration: none;
+  max-width: max(20vw, 15rem);
   border: 1px solid var(--clr-darkgray);
   border-radius: 5px;
   grid-template-rows: repeat(2, 1fr);
@@ -755,6 +756,7 @@ container {
   width: 100%;
   display: grid;
   padding: 2vh 4rem;
+  place-items: center;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
   gap: 4rem;
 }
