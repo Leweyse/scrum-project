@@ -66,12 +66,13 @@ export default function SingleProductSection(props) {
                             :
                             null
                         }
-
+                        
                         { props.user && (props.user.id === data.product.users_id) ? 
                             <Link className={"btn"} to={`/user/product/update/${data.product.id}`}>Edit</Link> 
                             : 
                             <AddToCartBtn 
                                 id={data.product.id}
+                                className={"cartButton"}
                                 quantity={1}    
                             />
                         }
