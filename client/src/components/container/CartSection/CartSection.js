@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-
+import { Link } from "react-router-dom";
 import { ProductRow } from '../../block';
 
 import apiClient from "../../../services/apiClient";
@@ -60,6 +60,7 @@ const CartSection = () => {
                             <p>Subtotal</p>
                             <p>{ totalQuantity > 0 ? `$${subTotal}`: '$00.00' }</p>
                             <button>Proceed</button>
+                            {/* <Link id={"productsLink"} to={"/checkout"}><button>Proceed</button></Link> */}
                         </div>
                     </footer>
                 </section>
