@@ -14,68 +14,41 @@ export default function EditListingPage () {
     let { id } = useParams();
     let navigate = useNavigate();
 
-    const [user, setUser] = useState(null);
     const [product, setProduct] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        authCheck();
+        getProducts();
     });
 
-    const authCheck = () => {
-        if(tkn && tkn !== '0') {
-            setUserToken(tkn);
-            apiClient.get('user', {
-                headers: {
-                    Accept: 'application/json',
-                    Authorization: `Bearer ${userToken}`,
+    const getProducts = () => {
+        apiClient.get(`product/${id}`, {
+            headers: {
+                Accept: 'application/json'
+            }
+        })
+        .then((resp) => {
+            if(resp.data.data.product) {
+                if(props.user.id !== resp.data.data.product.users_id) {
+                    navigate("/profile");
                 }
-            })
-                .then((res) => {
-                    apiClient.get(`product/${id}`, {
-                        headers: {
-                            Accept: 'application/json'
-                        }
-                    })
-                    .then((resp) => {
-                        if(resp.data.data.product) {
-                            if(res.data.data.user.id !== resp.data.data.product.users_id) {
-                                navigate("/profile");
-                            }
-                            else{
-                                setUserId(res.data.data.user.id);
-                                setProduct(resp.data.data.product);
-                                setIsLoading(false);
-                            }
-                        }
-                        else {
-                            navigate("/products");
-                        }
-                        
-                    });
-                })
-                .catch((err) => {
-                    if (err.response && err.response.status === 401) {
-                        setUserId(null);
-                        setTkn('0');
-                        setUserToken('0');
-                        navigate("/login");
-                    }
-                });
-        }
-        else {
-            setUserId(null);
-            setTkn('0');
-            setUserToken('0');
-            navigate("/login");
-        }
+                else{
+                    setProduct(resp.data.data.product);
+                    setIsLoading(false);
+                }
+            }
+            else {
+                navigate("/products");
+            }
+            
+        });
     }
 
     return (
         <>
             <Navbar/>
             { !isLoading ? 
-                <ListingSection type={"update"} user={user} product={product}/>
+                <ListingSection type={"update"} user={props.user} product={product}/>
             : 
                 <Spinner /> 
             }
