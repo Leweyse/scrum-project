@@ -5,8 +5,7 @@ import useCookie, { getCookie } from 'react-use-cookie';
 import apiClient from "./apiClient";
 import { Context } from './Context';
 
-import { Navbar, Footer } from '../components';
-import { Spinner } from '../components/block';
+import { Navbar, Footer, Spinner } from '../components';
 
 const PrivateRoutes = () => {
     const [tkn, setTkn] = useState(getCookie('token'));

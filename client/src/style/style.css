@@ -89,6 +89,8 @@ button:focus-visible {
 #navbar #navRight #productsLink {
   position: relative;
   display: grid;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   transition: all 0.3s ease;
@@ -142,6 +144,8 @@ button:focus-visible {
 }
 #navbar #navRight #navDropdown #navDropdownContent a {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
   text-align: center;
@@ -338,7 +342,8 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 #productCard .description_container {
   display: grid;
@@ -429,6 +434,15 @@ button:focus-visible {
   animation: rotation 1s linear infinite;
 }
 
+@-webkit-keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
 @keyframes rotation {
   0% {
     transform: rotate(0deg);
@@ -444,7 +458,7 @@ container {
   box-sizing: border-box;
 }
 
-input[type=text], input[type=email], textarea {
+#contactForm input[type=text], #contactForm input[type=email], #contactForm textarea {
   width: 100%;
   padding: 12px;
   border: 1px solid var(--clr-darkgray);
@@ -453,8 +467,7 @@ input[type=text], input[type=email], textarea {
   margin-bottom: 16px;
   resize: vertical;
 }
-
-#contactFormSubmitBtn {
+#contactForm #contactFormSubmitBtn {
   width: 30%;
   border: 1px solid var(--clr-darkgray);
   border-radius: 5px;
@@ -462,7 +475,7 @@ input[type=text], input[type=email], textarea {
   text-align: center;
   font-size: 1.5vw;
 }
-#contactFormSubmitBtn:hover, #contactFormSubmitBtn:focus-visible {
+#contactForm #contactFormSubmitBtn:hover, #contactForm #contactFormSubmitBtn:focus-visible {
   color: var(--clr-white);
   background: var(--clr-cyan);
   border-color: var(--clr-cyan);
@@ -482,14 +495,13 @@ input[type=text], input[type=email], textarea {
   flex-direction: column;
   justify-content: center;
 }
-#contactsBlock p {
-  padding: 1%;
-}
-
-span {
+#contactsBlock span {
   padding: 1%;
   font-weight: 600;
   font-size: 1.5vw;
+}
+#contactsBlock p {
+  padding: 1%;
 }
 
 #landingSection {
@@ -593,8 +605,7 @@ span {
   display: grid;
   width: 40%;
   height: 98%;
-  padding: 2rem 0;
-  grid-template-rows: 0.25fr 0.75fr;
+  padding: 2rem 0 3rem 0;
   place-items: center;
   gap: 2rem;
   border: 1px solid var(--clr-darkgray);
@@ -677,13 +688,13 @@ span {
   width: 100%;
   height: 100%;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.2fr 1fr;
   place-items: center;
   align-items: baseline;
   gap: 1rem;
 }
 #profileSection #profileSectionTitle {
   grid-column: 1/3;
+  margin-bottom: 2rem;
   font-size: 2.5rem;
   font-weight: 600;
 }
@@ -752,6 +763,8 @@ span {
 }
 #stockSection .paginationContainer .currentPage {
   position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
   width: max-content;
   color: var(--clr-red);
 }
@@ -869,7 +882,6 @@ span {
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
   -moz-user-select: none;
-  -khtml-user-select: none;
   -webkit-user-select: none;
   -ms-user-select: none;
   user-select: none;
@@ -901,7 +913,10 @@ span {
   align-content: center;
 }
 #listingPage .title {
-  padding: 2rem 2rem 3rem;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-90deg);
 }
 #listingPage .title > * {
   font-size: 3.75rem;
@@ -909,34 +924,52 @@ span {
   -webkit-text-stroke: 1px var(--clr-darkgray);
 }
 #listingPage .main-container {
-  display: flex;
-  gap: 20px;
-  margin: 0 20px;
-  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  gap: 2rem;
 }
 #listingPage .main-container .left {
-  width: 30%;
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+}
+#listingPage .main-container .left img {
+  position: relative;
+  width: 50%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#listingPage .main-container .left input {
+  width: 50%;
 }
 #listingPage .main-container #listingForm {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
+  display: grid;
+  width: 80%;
+  place-items: center;
+  gap: 1.5rem;
 }
-#listingPage label {
-  font-size: 20px;
+#listingPage .main-container #listingForm input[type=text],
+#listingPage .main-container #listingForm textarea {
+  padding: 0.25rem 0.5rem;
 }
-#listingPage input {
-  height: 30px;
+#listingPage .main-container #listingForm > * {
+  width: 80%;
+  font-size: 0.9rem;
 }
-#listingPage textarea {
-  height: 50px;
+#listingPage .main-container #listingForm .listingSubmitButton {
+  width: 45%;
+  padding: 0.5rem;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 11px;
+  background: var(--clr-white);
+  transition: all 0.2s ease;
 }
-#listingPage img {
-  width: 100%;
-}
-#listingPage .listingSubmitButton {
-  height: 30px;
-  margin: 30px 0;
+#listingPage .main-container #listingForm .listingSubmitButton:hover, #listingPage .main-container #listingForm .listingSubmitButton:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-cyan);
 }
 
 #checkoutSection {
@@ -1106,6 +1139,7 @@ span {
   height: 100%;
   justify-content: space-evenly;
 }
+
 #titleContacts {
   position: relative;
   margin-left: -70vw;
@@ -1155,6 +1189,4 @@ span {
 
 .success {
   color: limegreen;
-}
-
-/*# sourceMappingURL=style.css.map */
+}/*# sourceMappingURL=style.css.map */

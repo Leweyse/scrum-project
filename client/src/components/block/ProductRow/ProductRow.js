@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from 'react';
+import { useState } from 'react';
 import apiClient from "../../../services/apiClient";
 import { Spinner } from '../../block';
 
@@ -71,19 +71,22 @@ const ProductRow = (props) => {
     }
     return (
         <>
-        { currentQty > 0 ?
             <article id={"productRow"}>
-            <div className={"productTitle"}>{props.title}</div>
-            <p className={"productPrice"}>{props.price}</p>
-            <span className={"productQuantity"}>
-                <p>{currentQty}</p>
-                <button className={props.visibility} onClick={updateCartMin}>{isRemoving ? <Spinner size={20}/>: "-"}</button>
-                <button className={props.visibility} onClick={updateCartAdd}>{isAdding ? <Spinner size={20}/>: "+"}</button>
-            </span>
-            <p className={"productTotal"}>{props.total}</p>
+            { currentQty > 0 ?
+                <>
+                    <div className={"productTitle"}>{props.title}</div>
+                    <p className={"productPrice"}>{props.price}</p>
+                    <span className={"productQuantity"}>
+                        <p>{currentQty}</p>
+                        { !isRemoving ? <button className={props.visibility} onClick={updateCartMin}>-</button>: <Spinner size={20}/> }
+                        { !isAdding ? <button className={props.visibility} onClick={updateCartAdd}>+</button> : <Spinner size={20}/> }
+                    </span>
+                    <p className={"productTotal"}>{props.total}</p>
+                </>
+            :
+                <div className={"productTitle"}>No items in cart</div>
+            }
             </article>
-            : 'There are no products in you shopping cart'
-        }
         </>
         
     )

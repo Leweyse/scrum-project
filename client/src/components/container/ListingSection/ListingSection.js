@@ -4,12 +4,15 @@ import imageUpload from "../../../../src/assets/images/upload_image.jpg";
 import apiClient from '../../../services/apiClient';
 
 const ListingSection = (props) => {
-    const [type, setType] = useState(props.type);
-    const [product, setProduct] = useState(props.type === 'create' ? "[]" : props.product);
     const [userToken] = useCookie('token','0');
-    const [imagePreview, setImagePreview] = useState(props.type === 'update' && props.product.image !== 'default.jpg' ? `http://localhost:8000/storage/images/products/thumb/${props.product.image}` : imageUpload);
+
+    const type = props.type;
+    const product = props.type === 'create' ? [] : props.product;
+
     const [error, setError] = useState({});
     const [successMsg, setSuccessMsg] = useState(null);
+
+    const [imagePreview, setImagePreview] = useState(props.type === 'update' && props.product.image !== 'default.jpg' ? `http://localhost:8000/storage/images/products/thumb/${props.product.image}` : imageUpload);
     
     const [title, setTitle] = useState(product.title);
     const [description, setDescription] = useState(product.description);
@@ -18,7 +21,6 @@ const ListingSection = (props) => {
     const [categoryId, setCategoryId] = useState(product.categories_id);
     const [image, setImage] = useState('');
     
-
     const handleImagePreview = (e) => {
         let image_as_base64 = URL.createObjectURL(e.target.files[0]);
         let image_as_files = e.target.files[0];
@@ -26,80 +28,68 @@ const ListingSection = (props) => {
         setImage(image_as_files); 
     }
 
-
-    const create = (event) => {
+    const create = async (event) => {
         event.preventDefault();
 
-        apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
-            .then(res => {
-                let bodyFormData = new FormData();
-                bodyFormData.append('image',image);
-                bodyFormData.append('title',title);
-                bodyFormData.append('description',description);
-                bodyFormData.append('categories_id',categoryId);
-                bodyFormData.append('price',price);
-                bodyFormData.append('stock_unit',stockUnit);
-                apiClient.post('/product/create',
-                    bodyFormData,
-                {
-                    headers: {
-                        Accept: 'application/json',
-                        Authorization: `Bearer ${userToken}`,
-                        "Content-Type": "multipart/form-data"
-                    }
-                }).catch(
-                    function (err) {
-                      console.log(err);
-                    }
-                  )
-                .then(resp => {
-                    if(resp.data.status === 'success') {
-                        setTitle('');
-                        setDescription('');
-                        setPrice('');
-                        setCategoryId('');
-                        setStockUnit('');
-                        setSuccessMsg(<div className={"success"}>'Product successfully added to listings'</div>);
-                    }
-                    if(resp.data.status === 'fail' && resp.data.data.error) {
-                        setError(resp.data.data.error);
-                    } 
-                })
-            });
+        let bodyFormData = new FormData();
+
+        bodyFormData.append('image',image);
+        bodyFormData.append('title',title);
+        bodyFormData.append('description',description);
+        bodyFormData.append('categories_id',categoryId);
+        bodyFormData.append('price',price);
+        bodyFormData.append('stock_unit',stockUnit);
+
+        const res = await apiClient.post('/product/create',
+            bodyFormData,
+        {
+            headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${userToken}`,
+                "Content-Type": "multipart/form-data"
+            }
+        })
+        
+        if (res.data.data.status === 'success') {
+            setTitle('');
+            setDescription('');
+            setPrice('');
+            setCategoryId('');
+            setStockUnit('');
+            setSuccessMsg(<div className={"success"}>'Product successfully added to listings'</div>);
+        } else if (res.data.data.status === 'fail' && res.data.data.error) {
+            setError(res.data.data.error);
+        }
     }
 
-    const update = (event) => {
+    const update = async (event) => {
         event.preventDefault();
-        apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
-            .then(res => {
-                apiClient.post( `/product/update/${product.id}`, {
-                    title: title,
-                    description: description,
-                    categories_id: categoryId,
-                    price: price,
-                    stock_unit: stockUnit
-                },
-                {
-                    headers: {
-                        Accept: 'application/json',
-                        Authorization: `Bearer ${userToken}`
-                    }
-                })
-                .then(resp => {
-                    if(resp.data.status === 'success') {
-                        setSuccessMsg(<div className={"success"}>'Product is successfully updated'</div>);
-                    }
-                    if(resp.data.data.error) {
-                        setError(resp.data.data.error);
-                    } 
-                });
-            });
+
+        const res = await apiClient.post( `/product/update/${product.id}`, {
+            title: title,
+            description: description,
+            categories_id: categoryId,
+            price: price,
+            stock_unit: stockUnit
+        },
+        {
+            headers: {
+                Accept: 'application/json',
+                Authorization: `Bearer ${userToken}`
+            }
+        })
+        
+        if (res.data.data.status === 'success') {
+            setSuccessMsg(<div className={"success"}>Product is successfully updated</div>);
+        } else if (res.data.data.error) {
+            setError(res.data.data.error);
+        } 
     }
 
     return (
         <main id={"listingPage"}>
             <section className="title">
-                {type === 'create' ? <p>Add Listing</p> : <p>Edit Listing</p>}
+                { type === 'create' ? <p>Add Listing</p> : <p>Edit Listing</p> }
             </section>
             { successMsg ?
                 <section>
@@ -116,21 +106,21 @@ const ListingSection = (props) => {
                         src={imagePreview}
                         alt="Upload"
                     />
-                </section>
-                <form id={"listingForm"}>
                     <input 
                         id={"imageLoad"} 
                         type="file"
                         onChange={handleImagePreview}
                     />
-                    {error.image ? <div className={"error"}>{error.image}</div> : null}
+                    { error.image ? <div className={"error"}>{error.image}</div> : null }
+                </section>
+                <form id={"listingForm"}>
                     <input
                         type={"text"}
                         placeholder={"Title"}
                         value={title}
                         onChange={e => setTitle(e.target.value)}
                     />
-                    {error.title ? <div className={"error"}>{error.title}</div> : null}
+                    { error.title ? <div className={"error"}>{error.title}</div> : null }
 
                     <input
                         type={"text"}
@@ -138,7 +128,7 @@ const ListingSection = (props) => {
                         value={price}
                         onChange={e => setPrice(e.target.value)}
                     />
-                    {error.price ? <div className={"error"}>{error.price}</div> : null}
+                    { error.price ? <div className={"error"}>{error.price}</div> : null }
 
                     <select 
                        value={categoryId}
@@ -157,7 +147,7 @@ const ListingSection = (props) => {
                         onChange={e => setDescription(e.target.value)}
                         placeholder={"Product description"}
                     />
-                    {error.description ? <div className={"error"}>{error.description}</div> : null}
+                    { error.description ? <div className={"error"}>{error.description}</div> : null }
 
                     <input
                         type={"text"}
@@ -165,8 +155,7 @@ const ListingSection = (props) => {
                         value={stockUnit}
                         onChange={e => setStockUnit(e.target.value)}
                     />
-                        {error.stock_unit ? error.stock_unit: null}
-
+                    { error.stock_unit ? error.stock_unit: null }
 
                     {type === 'create' ?
                         <button name={"addProduct"} className={"listingSubmitButton"}  onClick={create}>Add</button>
