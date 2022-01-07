@@ -8,16 +8,19 @@ export const SlidesData = [
                     parentClassName={"carouselSlideElement"}
                     childClassName={"carouselElementInnerText carouselBuySlideElement"}
                     content={"Buy"}
+                    url={"/products"}
                 />
                 <SlideElement
                     parentClassName={"carouselSlideElement"}
                     childClassName={"carouselElementInnerText carouselSellSlideElement"}
                     content={"Sell"}
+                    url={"/user/product/add"}
                 />
                 <SlideElement
                     parentClassName={"carouselSlideElement"}
                     childClassName={"carouselElementInnerText carouselBidSlideElement"}
                     content={"Bid"}
+                    url={"*"}
                 />
             </>
         )
@@ -29,16 +32,19 @@ export const SlidesData = [
                     parentClassName={"carouselSlideElement"}
                     childClassName={"carouselElementInnerText"}
                     content={"Misc"}
+                    url={"*"}
                 />
                 <SlideElement
                     parentClassName={"carouselSlideElement"}
                     childClassName={"carouselElementInnerText"}
                     content={"Misc"}
+                    url={"*"}
                 />
                 <SlideElement
                     parentClassName={"carouselSlideElement"}
                     childClassName={"carouselElementInnerText"}
                     content={"Misc"}
+                    url={"*"}
                 />
             </>
         )

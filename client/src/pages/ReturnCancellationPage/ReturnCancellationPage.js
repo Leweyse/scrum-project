@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import {ProductRow} from "../../components/block";
 import {Footer, Navbar} from "../../components";
 
 const ReturnCancellationPage = () => {
@@ -9,8 +7,7 @@ const ReturnCancellationPage = () => {
             <Navbar />
             <main id={"returnCancellationSection"}>
                 <div className={"titleSection"}>
-                    <h1>Returns</h1>
-                    <p>Order history</p>
+                    <h1>Order history</h1>
                 </div>
                 <section className={"totalSection"}>
                     <header>
@@ -22,31 +19,26 @@ const ReturnCancellationPage = () => {
                         <p>   </p>
                     </header>
                     <section>
-                        <p>SOMENUMBER</p>
-                        <p>Title of product</p>
-                        <p>2</p>
-                        <p>35.00</p>
-                        <p>70.00</p>
-                        {/*<p id={"orderNumber"}>SOMENUMBER</p>*/}
-                        {/*<ProductRow*/}
-                        {/*    // key={idx}*/}
-                        {/*    order={"SOMENUMBER"}*/}
-                        {/*    title={"Title Product"}*/}
-                        {/*    quantity={"2"}*/}
-                        {/*    price={`34.00 $`}*/}
-                        {/*    total={`68.00 $`}*/}
-                        {/*    />*/}
-                        <button>Return</button>
+                        <article>
+                            <p>SOMENUMBER</p>
+                            <p>Title of product</p>
+                            <p>2</p>
+                            <p>35.00</p>
+                            <p>70.00</p>
+                            <button>Return</button>
+                        </article>
+                        <article>
+                            <p>SOMENUMBER</p>
+                            <p>Title of product</p>
+                            <p>2</p>
+                            <p>35.00</p>
+                            <p>70.00</p>
+                            <button>Return</button>
+                        </article>
                     </section>
-                    <section>
-                        <p>SOMENUMBER</p>
-                        <p>Title of product</p>
-                        <p>2</p>
-                        <p>35.00</p>
-                        <p>70.00</p>
-                        <button>Return</button>
-                    </section>
-                        <button id={"returnAll"}>Return all</button>
+                    <footer>
+                        <button className={"btn"}>Return all</button>
+                    </footer>
                 </section>
             </main>
             <Footer />
