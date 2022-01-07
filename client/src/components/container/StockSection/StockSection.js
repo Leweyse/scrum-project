@@ -39,14 +39,20 @@ const StockSection = (props) => {
 
             }
         }
-        else if (location.pathname === '/search/') {
-            PATH.current = '/products'
-            const res = await apiClient.get(`product/search/test`)
+        // else if (/\search+$/.test(location.pathname)) { 
+        //     const res = await apiClient.get(`product/search/t`)
 
-            setData(res.data.data);
-            setIsProcessing(false);
-            setError(null);
-        }
+        //     setData(res.data.data);
+        //     setIsProcessing(false);
+        //     setError(null);
+        // }
+        // else if (location.pathname === '/search/'?'(*)') {
+        //     const res = await apiClient.get(`product/search/t`)
+
+        //     setData(res.data.data);
+        //     setIsProcessing(false);
+        //     setError(null);
+        // }
     }
 
     const handleSubmit = (e) => {
