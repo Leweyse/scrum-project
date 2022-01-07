@@ -60,22 +60,9 @@
                 font-size: 0.9rem;
             }
 
-            .listingSubmitButton {
-                width: 45%;
-                padding: 0.5rem;
-                border: 1px solid var(--clr-darkgray);
-                border-radius: 11px;
-
-                background: var(--clr-white);
-
-                transition: all 0.2s ease;
-
-                &:hover,
-                &:focus-visible {
-                    color: var(--clr-white);
-                    background: var(--clr-cyan);
-                    border-color: var(--clr-cyan);
-                }
+            .btn {
+                width: max-content;
+                padding: 0.8rem 2rem;
             }
         }
     }

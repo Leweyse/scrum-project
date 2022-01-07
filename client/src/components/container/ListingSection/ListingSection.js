@@ -158,9 +158,9 @@ const ListingSection = (props) => {
                     {error.stock_unit ? <div className={"error"}>{error.stock_unit}</div> : null}
 
                     {type === 'create' ?
-                        <button name={"addProduct"} className={"listingSubmitButton"}  onClick={create}>Add</button>
+                        <button name={"addProduct"} className={"btn"}  onClick={create}>Add</button>
                         :
-                        <button name={"editProduct"} className={"listingSubmitButton"}  onClick={update}>Submit changes</button>
+                        <button name={"editProduct"} className={"btn"}  onClick={update}>Submit changes</button>
                     }
                 </form>
             </section>
