@@ -1,8 +1,11 @@
-import React, {useState} from 'react';
+import { useState } from 'react';
 import useCookie from 'react-use-cookie';
-import { Spinner } from '../..';
-import imageUpload from "../../../../src/assets/images/upload_image.jpg";
+
 import apiClient from '../../../services/apiClient';
+
+import imageUpload from "../../../assets/images/upload_image.jpg";
+
+import { Spinner } from '../..';
 
 const ListingSection = (props) => {
     const [userToken] = useCookie('token','0');
@@ -27,7 +30,7 @@ const ListingSection = (props) => {
         let image_as_base64 = URL.createObjectURL(e.target.files[0]);
         let image_as_files = e.target.files[0];
         setImagePreview(image_as_base64);
-        setImage(image_as_files); 
+        setImage(image_as_files);
     }
 
     const create = async (event) => {
@@ -35,25 +38,26 @@ const ListingSection = (props) => {
 
         setIsProcessing(true);
 
-        let bodyFormData = new FormData();
+        let createFormData = new FormData();
 
-        bodyFormData.append('image',image);
-        bodyFormData.append('title',title);
-        bodyFormData.append('description',description);
-        bodyFormData.append('categories_id',categoryId);
-        bodyFormData.append('price',`${parseFloat(price) * 100}`);
-        bodyFormData.append('stock_unit',stockUnit);
+        createFormData.append('image',image);
+        createFormData.append('title',title);
+        createFormData.append('description',description);
+        createFormData.append('categories_id',categoryId);
+        createFormData.append('price',`${parseFloat(price) * 100}`);
+        createFormData.append('stock_unit',stockUnit);
 
         const res = await apiClient.post('/product/create',
-            bodyFormData,
-        {
-            headers: {
-                Accept: 'application/json',
-                Authorization: `Bearer ${userToken}`,
-                "Content-Type": "multipart/form-data"
+            createFormData,
+            {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${userToken}`,
+                    "Content-Type": `multipart/form-data; boundary=${createFormData._boundary}`
+                }
             }
-        })
-        
+        );
+
         if (res.data.status === 'success') {
             setTitle('');
             setDescription('');
@@ -76,19 +80,27 @@ const ListingSection = (props) => {
     const update = async (event) => {
         event.preventDefault();
 
-        const res = await apiClient.post( `/product/update/${product.id}`, {
-            title: title,
-            description: description,
-            categories_id: categoryId,
-            price: `${parseFloat(price) * 100}`,
-            stock_unit: stockUnit
-        },
-        {
-            headers: {
-                Accept: 'application/json',
-                Authorization: `Bearer ${userToken}`
+        setIsProcessing(true);
+
+        const editFormData = new FormData();
+
+        editFormData.append('image',image);
+        editFormData.append('title',title);
+        editFormData.append('description',description);
+        editFormData.append('categories_id',categoryId);
+        editFormData.append('price',`${parseFloat(price) * 100}`);
+        editFormData.append('stock_unit',stockUnit);
+
+        const res = await apiClient.post( `/product/update/${product.id}`,
+            editFormData,
+            {
+                headers: {
+                    Accept: 'application/json',
+                    Authorization: `Bearer ${userToken}`,
+                    "Content-Type": "multipart/form-data"
+                }
             }
-        })
+        );
         
         if (res.data.status === 'success') {
             setIsProcessing(false);
