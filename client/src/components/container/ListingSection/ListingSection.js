@@ -18,7 +18,7 @@ const ListingSection = (props) => {
     
     const [title, setTitle] = useState(product.title || '');
     const [description, setDescription] = useState(product.description || '');
-    const [price, setPrice] = useState(product.price || '');
+    const [price, setPrice] = useState((parseFloat(product.price) / 100).toFixed(2) || '');
     const [stockUnit, setStockUnit] = useState(product.stock_unit  || '');
     const [categoryId, setCategoryId] = useState(product.categories_id  || '');
     const [image, setImage] = useState('');
@@ -140,7 +140,7 @@ const ListingSection = (props) => {
                     <input
                         type={"text"}
                         placeholder={"Price"}
-                        value={(parseFloat(price) / 100).toFixed(2)}
+                        value={price}
                         onChange={e => setPrice(e.target.value)}
                     />
                     { error.price ? <div className={"error"}>{error.price}</div> : null }

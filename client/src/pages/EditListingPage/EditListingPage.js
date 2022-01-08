@@ -18,10 +18,16 @@ export default function EditListingPage () {
     const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        getProducts();
-    });
+        const abortController = new AbortController();
 
-    const getProducts = () => {
+        getProduct();
+
+        return () => {
+            abortController.abort();
+        }
+    }, []);
+
+    const getProduct = () => {
         apiClient.get(`product/${id}`, {
             headers: {
                 Accept: 'application/json'
