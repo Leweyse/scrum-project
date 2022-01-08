@@ -2,11 +2,12 @@ import { useState, useEffect, useRef } from 'react';
 
 import apiClient from "../../../services/apiClient";
 
-import { ProductCard, Spinner } from '../../block';
+import { Pagination, ProductCard, Spinner } from '../../block';
 
-import {useLocation} from "react-router-dom";
+import { useLocation, useParams } from "react-router-dom";
 
 const StockSection = (props) => {
+    let { q } = useParams();
     const location = useLocation();
     
     const [data, setData] = useState(null);
@@ -20,39 +21,45 @@ const StockSection = (props) => {
 
     const getProducts = async () => {
         if (location.pathname === '/products') {
-            PATH.current = '/products'
+            PATH.current = '/products';
+
             const res = await apiClient.get(`products/page/${pageNumber.current}/${ITEMS_PER_PAGE}`);
+
             setData(res.data.data);
             setIsProcessing(false);
             setError(null);
+
         } else if (location.pathname === '/user/listings') {
             const res = await apiClient.get(`product/user/${props.user.id}`)
 
             if (res.data.data.products.length > 0) {
-                PATH.current = '/user/products'
+                PATH.current = '/user/products';
+
                 setData(res.data.data);
                 setIsProcessing(false);
                 setError(null);
+
             } else {
                 setIsProcessing(false);
                 setError("You do not have any listings in our database");
+            }
+        } else if (q && location.pathname === `/search/${q}`) {
+            PATH.current = '/products';
+            
+            const res = await apiClient.get(`product/search/${q}`)
+    
+            if (res.data.data.products.length > 0) {
+                PATH.current = '/products';
 
+                setData(res.data.data);
+                setIsProcessing(false);
+                setError(null);
+
+            } else {
+                setIsProcessing(false);
+                setError("We do not have any product with this title in our database");
             }
         }
-        // else if (/\search+$/.test(location.pathname)) { 
-        //     const res = await apiClient.get(`product/search/t`)
-
-        //     setData(res.data.data);
-        //     setIsProcessing(false);
-        //     setError(null);
-        // }
-        // else if (location.pathname === '/search/'?'(*)') {
-        //     const res = await apiClient.get(`product/search/t`)
-
-        //     setData(res.data.data);
-        //     setIsProcessing(false);
-        //     setError(null);
-        // }
     }
 
     const handleSubmit = (e) => {
@@ -85,32 +92,13 @@ const StockSection = (props) => {
             <main id={"stockSection"}>
                 { error === null ?
                 <>
-                    <section className={"paginationContainer"}>
-                        { Array.from(Array(Math.ceil(data.totalLength / ITEMS_PER_PAGE))).map((page, idx) => {
-                                if ((pageNumber.current - 1) === idx) {
-                                    return (
-                                        <button
-                                            key={idx}
-                                            onClick={handleSubmit}
-                                            value={idx}
-                                            className={"currentPage"}
-                                        >
-                                            {idx + 1}
-                                        </button>
-                                    )
-                                } else {
-                                    return (
-                                        <button
-                                            key={idx}
-                                            onClick={handleSubmit}
-                                            value={idx}
-                                        >
-                                            {idx + 1}
-                                        </button>
-                                    )}
-                            }
-                        )}
-                    </section>
+                    <Pagination 
+                        dataLength={data.totalLength} 
+                        items_per_page={ITEMS_PER_PAGE} 
+                        handleSubmit={handleSubmit} 
+                        currentPage={pageNumber.current} 
+                    />
+
                     <section className={'stockContainer'}>
                         { data.products.map((product, idx) => {
                             return (
@@ -125,32 +113,13 @@ const StockSection = (props) => {
                             )}
                         )}
                     </section>
-                    <section className={"paginationContainer"}>
-                        { Array.from(Array(Math.ceil(data.totalLength / ITEMS_PER_PAGE))).map((page, idx) => {
-                                if ((pageNumber.current - 1) === idx) {
-                                    return (
-                                        <button
-                                            key={idx}
-                                            onClick={handleSubmit}
-                                            value={idx}
-                                            className={"currentPage"}
-                                        >
-                                            {idx + 1}
-                                        </button>
-                                    )
-                                } else {
-                                    return (
-                                        <button
-                                            key={idx}
-                                            onClick={handleSubmit}
-                                            value={idx}
-                                        >
-                                            {idx + 1}
-                                        </button>
-                                    )}
-                            }
-                        )}
-                    </section>
+
+                    <Pagination 
+                        dataLength={data.totalLength} 
+                        items_per_page={ITEMS_PER_PAGE} 
+                        handleSubmit={handleSubmit} 
+                        currentPage={pageNumber.current} 
+                    />
                 </>
                 : error }
             </main>
