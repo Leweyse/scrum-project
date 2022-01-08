@@ -351,9 +351,10 @@ button:focus-visible {
 #productCard {
   position: relative;
   display: grid;
+  width: 100%;
+  height: 100%;
   padding: 2rem;
   text-decoration: none;
-  max-width: max(20vw, 15rem);
   border: 1px solid var(--clr-darkgray);
   border-radius: 5px;
   grid-template-rows: repeat(2, 1fr);
@@ -371,7 +372,7 @@ button:focus-visible {
   display: grid;
   width: 100%;
   height: 100%;
-  padding: 2rem 2rem 0 2rem;
+  padding: 2rem 10% 0 10%;
   place-items: center;
   gap: 1rem;
 }
@@ -782,7 +783,8 @@ container {
   display: grid;
   padding: 2vh 4rem;
   place-items: center;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 0.25fr));
   gap: 4rem;
 }
 #stockSection .paginationContainer {
@@ -828,7 +830,8 @@ container {
 #productPage .productPageLeft .productImage {
   padding: 5%;
   aspect-ratio: 1/1;
-  object-fit: cover;
+  -o-object-fit: cover;
+     object-fit: cover;
   width: max(70%, 200px);
 }
 #productPage .productPageRight {
