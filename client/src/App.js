@@ -16,10 +16,10 @@ import {
     CartPage,
     ProfilePage,
     ReturnCancellationPage,
+    SearchResultPage,
     UsersListings,
     ContactPage,
     TermsConditionsPage,
-    SearchResultPage,
     CategoryPage
 } from './pages';
 
@@ -39,6 +39,14 @@ function App() {
                 <Route path="products" element={ <ProductsPage /> } />
                 {/* Single Products */}
                 <Route path="products/:id" element={ <SingleProductPage/>} />
+
+                {/* Search Result page */}
+                <Route path="search/:q" element={<SearchResultPage />} />
+                {/* Single Products */}
+                <Route path="search/:q/products/:id" element={<SingleProductPage />} />
+                  
+                {/* Search Result page */}
+                <Route path="category/:id" element={<CategoryPage />} />
 
                 <Route path="/user" element={<PrivateRoutes />}>
                     {/* Info user account */}
@@ -60,21 +68,14 @@ function App() {
                 <Route path="cart" element={ <CartPage /> } />
                 <Route path="checkout" element={ <CheckoutPage /> } />
 
-                {/* Default Route */}
-                <Route path="*" element={<Navigate to="/" />} />
-
                 {/* Terms and conditions */}
                 <Route path={"terms-and-conditions"} element={<TermsConditionsPage />} />
 
                 {/* Contact page */}
                 <Route path="contacts" element={<ContactPage />} />
 
-                {/* Search Result page */}
-                <Route path="search/:q" element={<SearchResultPage />} />
-                <Route path="search/:q/products/:id" element={<SingleProductPage />} />
-                  
-                {/* Search Result page */}
-                <Route path="category/:id" element={<CategoryPage />} />
+                {/* Default Route */}
+                <Route path="*" element={<Navigate to="/" />} />
             </Routes>
         </BrowserRouter>
     );

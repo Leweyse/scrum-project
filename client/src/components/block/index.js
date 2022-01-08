@@ -11,7 +11,8 @@ import { UserIconSVG, ButtonLeftSVG, ButtonRightSVG } from './SVGs';
 
 import { Spinner } from './Loading';
 import ContactForm from "./ContactForm/ContactForm";
-import AddressBlock from "./AddressBlock/AddressBlock"
+import AddressBlock from "./AddressBlock/AddressBlock";
+import Pagination from "./Pagination/Pagination"
 
 export {
     Navbar,
@@ -24,7 +25,7 @@ export {
     StatsChart,
     ContactForm,
     AddressBlock,
-
+    Pagination,
   
     UserIconSVG,
     ButtonLeftSVG,
