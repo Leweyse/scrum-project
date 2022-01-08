@@ -500,6 +500,34 @@ container {
   font-size: max(1.15vw, 0.55rem);
 }
 
+.paginationContainer {
+  padding: 1rem;
+}
+.paginationContainer button {
+  margin-inline: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.paginationContainer button:hover, .paginationContainer button:focus-visible {
+  transform: scale(1.25);
+}
+.paginationContainer .currentPage {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: var(--clr-red);
+}
+.paginationContainer .currentPage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-red);
+}
+
 #userIconSvg {
   shape-rendering: auto;
 }
@@ -786,33 +814,6 @@ container {
   justify-content: center;
   grid-template-columns: repeat(auto-fit, minmax(15rem, 0.25fr));
   gap: 4rem;
-}
-#stockSection .paginationContainer {
-  padding: 1rem;
-}
-#stockSection .paginationContainer button {
-  margin-inline: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-#stockSection .paginationContainer button:hover, #stockSection .paginationContainer button:focus-visible {
-  transform: scale(1.25);
-}
-#stockSection .paginationContainer .currentPage {
-  position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  color: var(--clr-red);
-}
-#stockSection .paginationContainer .currentPage::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--clr-red);
 }
 
 #productPage {
