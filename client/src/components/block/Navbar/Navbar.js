@@ -75,7 +75,7 @@ export default function Navbar () {
     return (
         <nav id={"navbar"}>
             <div id={"navLeft"}>
-                <Link id={"navHome"} to={"/"}>G-bay</Link>
+                <Link id={"navHome"} to={"/"}>G-Bay</Link>
             </div>
             <div id={"navRight"}>
                 <form className={"navRight"} id={"navSearch"}>
