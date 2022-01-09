@@ -118,7 +118,7 @@ Please comment the line 34, run the last command, and uncomment the line of code
 
 <br>
 
-Then, run the last command.
+Finally, run the next command.
 ```
   php artisan storage:link
 ```
