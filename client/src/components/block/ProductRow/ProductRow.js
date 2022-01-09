@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import apiClient from "../../../services/apiClient";
 import { Spinner } from '../../block';
 
@@ -8,35 +8,38 @@ const ProductRow = (props) => {
     const [isSuccessMsg, setSuccessMsg] = useState(null);
     const [isErrorMsg, setErrorMsg] = useState(null);
 
-    const [currentQty, setCurrentQty] = useState(props.quantity);
+    const price = useRef(props.price);
+    const currentQty = useRef(props.quantity);
+
+    const [total, setTotal] = useState(parseFloat(price.current) * currentQty.current);
 
     const updateCartAdd = (event) => {
         event.preventDefault();
 
         setIsAdding(true);
 
-        apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
+        apiClient.post( '/cart/update', 
+        {
+            quantity: 1,
+            rowId: props.rowId
+        },
+        {
+            headers: {
+                Accept: 'application/json'
+            }
+        })
             .then(res => {
-                apiClient.post( '/cart/update', 
-                {
-                    quantity: 1,
-                    rowId: props.rowId
-                },
-                {
-                    headers: {
-                        Accept: 'application/json'
-                    }
-                })
-                    .then(res => {
-                        setIsAdding(false)
-                        if(res.data.status === 'success') {
-                            setCurrentQty(parseInt(currentQty) + 1)
-                            setSuccessMsg("Product updated successfully")
-                        }
-                        if(res.data.status === 'fail') {
-                            setErrorMsg("Sorry There was some error")
-                        }
-                    });
+                setIsAdding(false)
+                if(res.data.status === 'success') {
+                    currentQty.current = parseInt(currentQty.current) + 1;
+                    setTotal(parseFloat(price.current) * currentQty.current)
+                    setSuccessMsg("Product updated successfully")
+
+                    props.handleSubTotal(parseFloat(price.current));
+                }
+                if(res.data.status === 'fail') {
+                    setErrorMsg("Something went wrong!")
+                }
             });
     }
 
@@ -45,46 +48,46 @@ const ProductRow = (props) => {
 
         setIsRemoving(true);
 
-        apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
+        apiClient.post( '/cart/update', 
+        {
+            quantity: -1,
+            rowId: props.rowId
+        },
+        {
+            headers: {
+                Accept: 'application/json'
+            }
+        })
             .then(res => {
-                apiClient.post( '/cart/update', 
-                {
-                    quantity: -1,
-                    rowId: props.rowId
-                },
-                {
-                    headers: {
-                        Accept: 'application/json'
-                    }
-                })
-                    .then(res => {
-                        setIsRemoving(false)
-                        if(res.data.status === 'success') {
-                            setCurrentQty(parseInt(currentQty) - 1)
-                            setSuccessMsg("Product updated successfully")
-                        }
-                        if(res.data.status === 'fail') {
-                            setErrorMsg("Sorry There was some error")
-                        }
-                    });
+                setIsRemoving(false)
+                if(res.data.status === 'success') {
+                    currentQty.current = parseInt(currentQty.current) - 1;
+                    setTotal(parseFloat(price.current) * currentQty.current)
+                    setSuccessMsg("Product updated successfully")
+
+                    props.handleSubTotal(parseFloat(price.current) * -1);
+                }
+                if(res.data.status === 'fail') {
+                    setErrorMsg("Something went wrong!")
+                }
             });
     }
     return (
         <>
             <article id={"productRow"}>
-            { currentQty > 0 ?
+            { currentQty.current > 0 ?
                 <>
                     <div className={"productTitle"}>{props.title}</div>
-                    <p className={"productPrice"}>{props.price}</p>
+                    <p className={"productPrice"}>{`$${parseFloat(price.current).toFixed(2)}`}</p>
                     <span className={"productQuantity"}>
-                        <p>{currentQty}</p>
-                        { !isRemoving ? <button className={props.visibility} onClick={updateCartMin}>-</button>: <Spinner size={20}/> }
+                        <p>{currentQty.current}</p>
                         { !isAdding ? <button className={props.visibility} onClick={updateCartAdd}>+</button> : <Spinner size={20}/> }
+                        { !isRemoving ? <button className={props.visibility} onClick={updateCartMin}>-</button>: <Spinner size={20}/> }
                     </span>
-                    <p className={"productTotal"}>{props.total}</p>
+                    <p className={"productTotal"}>{`$${parseFloat(total).toFixed(2)}`}</p>
                 </>
             :
-                <div className={"productTitle"}>No items in cart</div>
+                <div className={"productTitle"}>No items</div>
             }
             </article>
         </>
