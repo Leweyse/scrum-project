@@ -1,5 +1,14 @@
-# **G-Bay**
-This project is part of the [BeCode][becode] training.
+<h1 style="text-align: center; font-size: 3rem; font-weight: 700">
+G-Bay
+</h1>
+
+<div style="text-align: center">
+<img src="./screenshots/preview_landing.png" width="75%">
+</div>
+
+<p style="text-align: center">
+This project is part of the <a href="https://becode.org/">Becode</a> training
+</p>
 
 ## **Contents**
 - [Description](#description)
