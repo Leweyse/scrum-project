@@ -1,56 +1,265 @@
-# B-Bay
+<h1 align="center" style="font-weight: 700">
+G-Bay
+</h1>
 
-## Description
+<div align="center">
+<img src="./screenshots/preview_landing.png" width="75%">
+</div>
 
-<!-- 
-Part of description that should be added
+<p align="center">
+This project is part of the <a href="https://becode.org/">Becode</a> training
+</p>
 
-- Products for sell and the `rest`: buy, add, edit
-- Geek webshop
-- Based on website 
--->
+## **Contents**
+- [Description](#description)
+- [How to Install and Run the Project](#configuration_guide)
+  - [Extra Information: API](api/README.md)
+  - [Extra Information: Client Side](client/README.md)
+- [Features](#features)
+- [Development Book](DEVBOOK.md)
+- [Contributors](#contributors)
 
-## Features
+## **Description**
+G-Bay is an E-commerce Site for fans. As a buyer, you'll be able to create an account, edit your profile, filter results, and more. As a seller, you'll be able to see your listing of products, update their information, or remove them.
 
-### User => Seller and Buyer
-- Create User
-- Edit User
-- Delete User
+[React JS][reactjs] is used for Client-Side, [Laravel 8][laravel] as API, and [MySQL][mysql] as Database Service. In addition, [SCSS][sass] is used to style this project, but SCSS modules are not implemented.
 
-### Product
-- Add Product to Stock
-- Categories
-- Edit Product on Stock
-- Delete Product from Stock
+The folder structure for the React App is based on this [article][folder].
 
-### Stock
-- Display all Products available
-- Create list view
+[Package manager][pm]:
+- React App: [yarn][pm-yarn]
+- Laravel API: [composer][pm-composer]
 
-### Statistics
-- Based on Popularity
-- Based on Price
-- Displayed graphic
+## **Configuration Guide**
+This project is not hosted online, but it's completely functional. To use G-Bay on your local device, it's necessary  to follow some steps.
 
-## Bidding system
-- How should this be implemented
+### **Requirements**
+1. Install `PHP` on your computer. We recommend using XAMPP for this purpose, as the process is straightforward and you can complete it in a few minutes.
 
-## Order cancellations
-- Policy on returns
-  - How long/what circumstances
-- Return method(s)
+2. Should you chose to install `PHP` manually, after configuring your installation and `php.ini` file, install MySQL and a database administration tool of your choice (e.g., DBeaver, Datagrip) for setting up the project database and configuring your SQL server.
 
-add terms and agreements radio input to sign up page, required input, we need proof in the database of user having ticked the terms and agreements
+3. Download and Install the latest version of `Composer`.
 
-landing page - call to action
-sell stuff? go here : buy stuff here
+4. Install `yarn` package manager.
 
-make page to show other user profiles: show name, items selling
+5. If you'd like to make style changes, be sure to configure or enable an SCSS compiler to be able to edit each component's stylesheets.
 
-contact page?
-about us?
-password reset
-profile
-order cancellation/return purchase page
-add terms and agreements to sign up page
-modify landing page to include calls to action, get rid of huge log
+### **Clone repository**
+```
+  git clone git@github.com:Leweyse/scrum-project.git
+
+  cd scrum-project
+```
+
+### **Install Dependecies**
+**Folder Structure**
+```
+  -> scrum-project
+    -> [...]
+    -> api
+    -> client
+    -> [...]
+```
+
+Run the following commands in your terminal
+
+**API**
+```
+  cd api
+
+  // If 'composer' is installed correctly
+  composer install
+
+  // Alternative option
+  php composer.phar install
+```
+**Client**
+```
+  cd client
+
+  yarn
+```
+
+### **Config**
+**Database**
+```
+  cd api
+
+  php artisan migrate
+
+  php artisan db:seed --class=DatabaseSeeder
+```
+
+The next command provides 500 products to our DB. If you want to modify the number of products, you should take a look at the `ProductSeeder.php` file or do not run this command.
+
+```
+  -> database
+    -> seeders
+      -> [...]
+      -> ProductSeeder.php
+      -> [...]
+```
+
+```
+  php artisan db:seed --class=ProductSeeder
+```
+
+It's possible you face an issue after running the last command. To provide data to our DB, we use FakerPHP. Sadly, it returns unauthenticated users. To solve this issue, you have to modify the `Product.php` file.
+
+```
+  -> app
+    -> Models
+      -> [...]
+      -> Product.php
+      -> [...]
+```
+
+Please comment the line 34, run the last command, and uncomment the line of code.
+
+<br>
+
+Then, run the last command.
+```
+  php artisan storage:link
+```
+
+**API**
+```
+  cd api
+```
+
+Create a `.env` file based on the `.env.example` file. Add your credentials in the next section:
+
+```
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1s
+  DB_PORT=3306
+  DB_DATABASE=
+  DB_USERNAME=
+  DB_PASSWORD=
+```
+
+**Client**
+
+```
+  // If something goes wrong with the Client-Side,
+  // you should take a look to the following files
+
+  LoginSection.js
+  SignUpSection.js
+  apiClient.js
+```
+
+### **Development Server**
+**API**
+```
+  php artisan serve
+```
+**Client**
+```
+  yarn start
+```
+**Tip**
+```
+  Do not forget run MySQL server...
+```
+
+## **Features**
+### **User**
+- Implemented
+  - Login
+  - Create Account
+    - Require agreement with terms and conditions
+  - Edit Account
+  - Reset Password
+    - Email confirmation
+  - Buy Items
+  - Sell Items
+- In Progress
+  - Delete Accout
+
+### **Stock**
+- Implemented
+  - Display Products available with pagination
+  - Basic information for each product
+
+### **Product**
+- Implemented
+  - Add Product to Stock
+  - Update Product information on Stock
+  - Single Product page
+  - Filter by Products' name
+  - Display statistics based on price
+- In Progress
+  - Filter by Categories
+  - Delete Product from Stock
+
+### **Statistics**
+- Implemented
+  - Stats based on product price
+  - Display graphic
+
+### **Cart**
+- Implemented
+  - Display products added to cart
+  - Display quantity, total and subtotal
+  - Update total and quantity of each product in cart
+
+## **Contributors**
+<table>
+<td>
+<article style="text-align:center">
+<img src="https://avatars.githubusercontent.com/u/70060756?v=4" width="150px">
+
+[Jörg von Dzerzawa][gh-j]
+
+[jvondzerza][gh-j]
+</article>
+</td>
+<td>
+<article style="text-align:center">
+<img src="https://avatars.githubusercontent.com/u/69996340?v=4" width="150px">
+
+[Daryl Castro][gh-l]
+
+[Leweyse][gh-l]
+</article>
+</td>
+<td>
+<article style="text-align:center">
+<img src="https://avatars.githubusercontent.com/u/86771301?v=4" width="150px">
+
+[Katya Heylen][gh-k]
+
+[katyaheylen][gh-k]
+</article>
+</td>
+<td>
+<article style="text-align:center">
+<img src="https://avatars.githubusercontent.com/u/867168?v=4" width="150px">
+
+[Sushanta Pyakurel][gh-m]
+
+[mesushanta][gh-m]
+</article>
+</td>
+</table>
+
+[gh-j]: https://github.com/jvondzerza
+[gh-k]: https://github.com/katyaheylen
+[gh-l]: https://github.com/Leweyse
+[gh-m]: https://github.com/mesushanta
+
+<!-- Extra Links -->
+[becode]: https://becode.org/
+
+[reactjs]: https://reactjs.org/
+[laravel]: https://laravel.com/
+[mysql]: https://www.mysql.com/
+[sass]: https://sass-lang.com/
+
+[folder]: https://www.sitepoint.com/react-architecture-best-practices/
+
+[pm]: https://en.wikipedia.org/wiki/Package_manager#:~:text=A%20package%20manager%20or%20package,computer%20in%20a%20consistent%20manner.&text=Package%20managers%20are%20designed%20to,for%20manual%20installs%20and%20updates.
+[pm-yarn]: https://yarnpkg.com/
+[pm-composer]: https://getcomposer.org/
