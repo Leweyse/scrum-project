@@ -2,6 +2,8 @@
 <font size="10">G-Bay</font>
 </h1>
 
+##
+
 <div align="center">
 <img src="./screenshots/preview_landing.png" width="75%">
 </div>
