@@ -1,16 +1,16 @@
 import { Footer, Navbar, SingleProductSection } from "../../components";
 
+import { Context } from '../../services/Context';
+import {useContext} from "react";
+
 export default function SingleProductPage () {
+    const props = useContext(Context);
+
     return (
+
         <>
             <Navbar/>
-            <SingleProductSection
-                src={'https://m.media-amazon.com/images/I/61kocbtP2QL._AC_SL1000_.jpg'}
-                name={'Vinyl Ex:Re'}
-                price={'30.00 $'}
-                seller={'Daryl Castro'}
-                description={"Sick vinyl bro, pls buy so I can pay my rent!"}
-            />
+            {props.user ? <SingleProductSection user={props.user} /> : <SingleProductSection />}
             <Footer />
         </>
     )

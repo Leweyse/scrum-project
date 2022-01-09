@@ -2,12 +2,15 @@ import { useRef, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { getCookie } from "react-use-cookie";
 import { gsap } from "gsap";
+import {useNavigate} from "react-router-dom";
 
 import { UserIconSVG } from "../SVGs";
 import { LogoutButton } from "../";
 
 export default function Navbar () {
+    const navigate = useNavigate();
     const userToken = getCookie('token');
+    const navSearch = useRef(null);
 
     const [clicked, setClicked] = useState(false);
 
@@ -59,18 +62,31 @@ export default function Navbar () {
         userIconSvgAnimation.current.reverse();
     }
 
+    const search = (e) => {
+        if (e.key === 'Enter') {
+            navigate(`/search/${navSearch.current.value}`);
+        }
+    }
+
+    const handle = (e) => {
+        e.preventDefault();
+    }
+
     return (
         <nav id={"navbar"}>
             <div id={"navLeft"}>
-                <Link id={"navHome"} to={"/"}>G-bay</Link>
+                <Link id={"navHome"} to={"/"}>G-Bay</Link>
             </div>
             <div id={"navRight"}>
                 <form className={"navRight"} id={"navSearch"}>
-                    <input 
+                    <input
+                        ref={navSearch}
                         id={"navSearchInput"} 
                         type={"text"} 
                         placeholder={"Search..."} 
                         name={"navSearch"}
+                        onKeyDown={search}
+                        onSubmit={handle}
                     />
                 </form>
 
@@ -87,12 +103,13 @@ export default function Navbar () {
                     <div id={"navDropdownContent"} ref={navDropdownContent}>
                         { userToken && userToken !== "0" ? (
                             <>
-                                <Link className={"navRight"} to={"/profile"}>Profile</Link>
                                 <Link className={"navRight"} to={"/cart"}>Cart</Link>
-                                <Link className={"navRight"} to={"/add"}>Sell</Link>
+                                <Link className={"navRight"} to={"/user/profile"}>Profile</Link>
+                                <Link className={"navRight"} to={"/user/product/add"}>Sell</Link>
                                 <LogoutButton className={"navRight"}/>
                             </>) : (
                             <>
+                                <Link className={"navRight"} to={"/cart"}>Cart</Link>
                                 <Link className={"navRight"} to={"/login"}>Login</Link>
                                 <Link className={"navRight"} to={"/sign-up"}>Sign Up</Link>
                             </>

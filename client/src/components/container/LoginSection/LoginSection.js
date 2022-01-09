@@ -8,12 +8,14 @@ import apiClient from "../../../services/apiClient";
 const LoginSection = () => {
     let navigate = useNavigate();
 
+    const [errorMsg, setErrorMsg] = useState(null);
+
     const [tkn, setTkn] = useState(getCookie('token'));
     const [userToken, setUserToken] = useCookie('token','0');
-    const [userId, setUserId] = useCookie('user','');
-    
+
     const [error, setError] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [isProcessing, setIsProcessing] = useState(false);
 
     const [info, setInfo] = useState({
         email: '',
@@ -23,7 +25,7 @@ const LoginSection = () => {
     const handleSubmit = (event) => {
         event.preventDefault();
 
-        setIsLoading(true);
+        setIsProcessing(true);
 
         apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
             .then(res => {
@@ -38,13 +40,15 @@ const LoginSection = () => {
                     }
                 })
                     .then(res => {
+                        setIsProcessing(false)
+                        if(res.data.status === 'fail' && res.data.message !== null) {
+                            setErrorMsg("Your login credentials do no match")
+                        }
                         if(res.data.data.error) {
                             setError(res.data.data.error);
-                            setIsLoading(false);
                         }
                         if(res.data.data.token) {
                             setUserToken(res.data.data.token);
-                            setUserId(res.data.data.user.id);
                             navigate("/products");
                         }
                     });
@@ -67,7 +71,6 @@ const LoginSection = () => {
                     if (err.response && err.response.status === 401) {
                         setTkn('0');
                         setUserToken('0');
-                        setUserId('');
                         setIsLoading(false);
                     }
                 });
@@ -84,6 +87,7 @@ const LoginSection = () => {
                 <div id={"loginContainer"}>
                     <p id={"loginLogo"}>G-bay</p>
                     <p id={"loginLogoCropped"}>G-bay</p>
+                    { errorMsg ? <span className={"error"}>{errorMsg}</span> : null }
                     <form id={"loginForm"} onSubmit={handleSubmit}>
                         <input
                             id={"loginEmail"}
@@ -96,7 +100,7 @@ const LoginSection = () => {
                                 email: e.target.value
                             }))}
                         />
-                        {error.email ? error.email : null}
+                        { error.email ? <span className={"error"}>{error.email}</span> : null }
                         <input
                             id={"loginPassword"}
                             type={"password"}
@@ -108,14 +112,14 @@ const LoginSection = () => {
                                 password: e.target.value
                             }))}
                         />
-                        {error.password ? error.password : null}
+                        { error.password ? <span className={"error"}>{error.password}</span> : null }
                         <div id={"loginFormButtonContainer"}>
-                            <button type={'submit'} id={"loginSubmit"}>Submit</button>
+                            { !isProcessing ? <button type={'submit'} id={"loginSubmit"}>Submit</button> : <Spinner size={40}/> }
                         </div>
                     </form>
                     <div id={"loginLinks"}>
                         <Link id={"signUp"} to={'/sign-up'}>Sign up</Link>
-                        <Link id={"passwordReset"} to={'/reset-password'}>Forgot password?</Link>
+                        <Link id={"passwordForgot"} to={'/forgot-password'}>Forgot password?</Link>
                     </div>
                 </div>
             </div>

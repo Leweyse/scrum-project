@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer id={"footer"}>
             <div id={"footerAbove"}>
-                <Link to={"/contact"}>Contact</Link>
+                <Link to={"/contacts"}>Contact</Link>
             </div>
             <div id={"footerBelow"}>
                 <p>Copyright © 2021 All Rights Reserved.</p>

@@ -16,7 +16,8 @@ class RegisterController extends Controller
             'last_name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required|min:8',
-            'phone' => 'required'
+            'phone' => 'required',
+            'agree' =>'accepted'
         ], $this->errorMessages());
 
 
@@ -56,6 +57,7 @@ class RegisterController extends Controller
             'password.min'   => 'Minimum :min characters password',
             'form.password.confirmed'   => 'Two passwords does not match',
             'form.agree.required' => 'You must agree the terms',
+            'agree.accepted' => 'You must agree terms and condition to register'
         ];
     }
 }

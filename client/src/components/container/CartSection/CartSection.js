@@ -1,32 +1,34 @@
-import { useEffect } from 'react';
-import { ProductRow } from '../../block';
+import { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
+import { ProductRow, Spinner } from '../../block';
 
-// Comments maybe will be use to display data in this cart
-
-// import apiClient from "../../../services/apiClient";
-
-// import { Spinner } from '../../block';
+import apiClient from "../../../services/apiClient";
 
 const CartSection = () => {
-    // const [data, setData] = useState(null);
+    const [cart, setCart] = useState({});
+    const [subTotal, setSubTotal] = useState('00.00');
+    const [totalQuantity, setTotalQuantity] = useState('0');
 
+    const [isProcessing, setIsProcessing] = useState(true);
+
+    const handleSubTotal = (param) => {
+        setSubTotal(parseFloat(subTotal) + param);
+    }
+    
     useEffect(() => {
-        // const getProductsInCart = async () => {
-        //     const res = await apiClient.get('products');
-        //     setData(res.data.data);
-        // }
+        setIsProcessing(true);
 
-        // getProductsInCart();
-    }, []);
-
+        apiClient.get("cart")
+            .then(res => {
+                setIsProcessing(false);
+                setCart(res.data.data.cart.cartItems);
+                setSubTotal(res.data.data.cart.subTotal);
+                setTotalQuantity(res.data.data.cart.quantity);
+             });
+    }, [])
+    
     return (
         <>
-            {/* { data !== null ? 
-                <main id={"cartSection"}>
-                    
-                </main>
-            : <Spinner /> } */}
-
             <main id={"cartSection"}>
                 <div className={"titleSection"}>
                     <h1>Cart</h1>
@@ -39,22 +41,39 @@ const CartSection = () => {
                         <p>Total</p>
                     </header>
                     <section>
-                        { Array.from(Array(5)).map((row, idx) =>
-                            <ProductRow
-                                key={idx}
-                                title={"Title Product"}
-                                price={`34.00 $`}
-                                quantity={"2"}
-                                total={`68.00 $`}
-                            />
-                        )}
+                        { isProcessing ? 
+                            <Spinner size={40} />
+                        :
+                            totalQuantity > 0 ?
+                                Object.keys(cart).map((key) => {
+                                    return (
+                                        <ProductRow
+                                            key={key}
+                                            title={cart[key].name}
+                                            price={cart[key].price}
+                                            quantity={`${cart[key].qty}`}
+                                            rowId={cart[key].rowId}
+                                            handleSubTotal={handleSubTotal}
+                                        />
+                                    )
+                                })
+                            :
+                                <ProductRow
+                                    title={"No items in cart"}
+                                    price={null}
+                                    quantity={null}
+                                    total={null}
+                                    visibility={"invisible"}
+                                />
+                        }
                     </section>
+    
                     <footer>
                         <p id={"bgText"}>G-bay</p>
                         <div>
                             <p>Subtotal</p>
-                            <p>68.00 $</p>
-                            <button>Proceed</button>
+                            <p>{ totalQuantity > 0 ? `$${parseFloat(subTotal).toFixed(2)}`: '$00.00' }</p>
+                            <Link id={"productsLink"} to={"/checkout"}><button>Proceed</button></Link>
                         </div>
                     </footer>
                 </section>

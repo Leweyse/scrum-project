@@ -14,17 +14,19 @@
 
         .productImage {
             padding: 5%;
-            width: 60%;
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            width: max(70%, 200px);
         }
     }
 
     .productPageRight {
 
-        padding: 0 5%;
-        font-size: 1.25vw;
+        padding: 0 10% 0 5%;
+        font-size: max(1.25vw, 0.75rem);
 
         .productRightElements {
-            padding-bottom: 2vh;
+            padding-bottom: 1.5rem;
         }
 
         .productPageBold {
@@ -33,11 +35,10 @@
 
         .productPriceStatistics {
             display: grid;
-            width: 50%;
-            height: 8rem;
+            width: 25rem;
+            height: 12.5rem;
             place-items: center;
-
-            border: 1px solid var(--clr-darkgray);
+            font-size: 0.75rem;
         }
 
         .productPageAddToCart {

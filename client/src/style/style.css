@@ -38,14 +38,33 @@ main {
 }
 
 button {
+  font-size: max(1.25vw, 0.75rem);
   color: var(--clr-darkgray);
-  font-size: 1rem;
   background: transparent;
   border: none;
   cursor: pointer;
 }
 button:focus-visible {
   outline: none;
+}
+
+.btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.8rem 1rem;
+  color: var(--clr-darkgray);
+  text-decoration: none;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 11px;
+  background: var(--clr-white);
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+.btn:hover, .btn:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-cyan);
 }
 
 #navbar {
@@ -69,7 +88,7 @@ button:focus-visible {
   place-items: center;
 }
 #navbar #navLeft #navHome {
-  font-size: 2vw;
+  font-size: max(2vw, 1rem);
   font-weight: bold;
 }
 #navbar #navRight {
@@ -93,6 +112,7 @@ button:focus-visible {
   width: -moz-max-content;
   width: max-content;
   padding: 0.25rem 0.5rem;
+  font-size: max(1.25vw, 0.75rem);
   transition: all 0.3s ease;
 }
 #navbar #navRight #productsLink::after {
@@ -193,6 +213,7 @@ button:focus-visible {
 }
 #navbar #navRight #navDropdown #navDropdownContent form button {
   text-align: center;
+  font-size: max(1.25vw, 0.65rem);
 }
 #navbar #navRight #navDropdown #navDropdownContent form:hover::after {
   width: 100%;
@@ -203,7 +224,7 @@ button:focus-visible {
   color: var(--clr-white);
 }
 #navbar #navRight .navRight {
-  font-size: 1.25vw;
+  font-size: max(1.25vw, 0.65rem);
 }
 
 #footer {
@@ -217,7 +238,7 @@ button:focus-visible {
 }
 #footer a {
   text-decoration: none;
-  font-size: 1.25vw;
+  font-size: max(1.25vw, 0.65rem);
   color: var(--clr-darkgray);
 }
 #footer #footerAbove {
@@ -229,7 +250,7 @@ button:focus-visible {
 #footer #footerBelow {
   display: flex;
   width: 100%;
-  font-size: 0.75vw;
+  font-size: max(0.75vw, 0.5rem);
   justify-content: space-evenly;
   place-items: center;
 }
@@ -273,6 +294,7 @@ button:focus-visible {
 #carousel #carouselTrackContainer .carouselTrack .slide {
   opacity: 0;
   transition-duration: 0.75s;
+  z-index: -1;
 }
 #carousel #carouselTrackContainer .carouselTrack .carouselSlide {
   position: absolute;
@@ -308,7 +330,7 @@ button:focus-visible {
   color: var(--clr-yellow);
   -webkit-text-stroke: 2px var(--clr-cyan);
 }
-#carousel #carouselTrackContainer .carouselTrack .carouselSlide .carouselSlideElement .carouselMiscSlideElement {
+#carousel #carouselTrackContainer .carouselTrack .carouselSlide .carouselSlideElement .carouselBidSlideElement {
   color: var(--clr-cyan);
   -webkit-text-stroke: 2px var(--clr-darkgray);
 }
@@ -329,6 +351,8 @@ button:focus-visible {
 #productCard {
   position: relative;
   display: grid;
+  width: 100%;
+  height: 100%;
   padding: 2rem;
   text-decoration: none;
   border: 1px solid var(--clr-darkgray);
@@ -348,7 +372,7 @@ button:focus-visible {
   display: grid;
   width: 100%;
   height: 100%;
-  padding: 2rem 2rem 0 2rem;
+  padding: 2rem 10% 0 10%;
   place-items: center;
   gap: 1rem;
 }
@@ -399,7 +423,7 @@ button:focus-visible {
 }
 #productRow .productQuantity button {
   width: 30px;
-  font-size: 1.2rem;
+  font-size: max(1.25vw, 0.75rem);
   font-weight: 600;
   border: 1px solid var(--clr-darkgray);
   border-radius: 15px;
@@ -409,6 +433,99 @@ button:focus-visible {
   color: var(--clr-red);
   border: 1px solid var(--clr-red);
   outline: none;
+}
+
+.slideElementLink {
+  text-decoration: none;
+}
+
+container {
+  position: absolute;
+  margin-left: 35%;
+  width: 50%;
+  box-sizing: border-box;
+}
+
+#contactForm label {
+  font-size: max(1.15vw, 0.55rem);
+}
+#contactForm input[type=text], #contactForm input[type=email], #contactForm textarea {
+  width: 100%;
+  min-height: 5vh;
+  padding: 12px;
+  border: 1px solid var(--clr-darkgray);
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+  font-size: max(1.15vw, 0.55rem);
+}
+#contactForm #contactFormSubmitBtn {
+  width: 30%;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 5px;
+  padding: 1%;
+  text-align: center;
+  font-size: max(1.15vw, 0.55rem);
+}
+#contactForm #contactFormSubmitBtn:hover, #contactForm #contactFormSubmitBtn:focus-visible {
+  color: var(--clr-white);
+  background: var(--clr-cyan);
+  border-color: var(--clr-cyan);
+}
+
+#contactsBlock {
+  position: absolute;
+  margin-left: -55%;
+  width: 30%;
+  height: 30%;
+  border: none;
+  border-radius: 5px;
+  box-sizing: border-box;
+  background-color: #ead637;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+#contactsBlock .contactsElement {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+#contactsBlock .contactsElement span {
+  font-weight: 600;
+  font-size: max(1.15vw, 0.55rem);
+}
+
+.paginationContainer {
+  padding: 1rem;
+}
+.paginationContainer button {
+  margin-inline: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+.paginationContainer button:hover, .paginationContainer button:focus-visible {
+  transform: scale(1.25);
+}
+.paginationContainer .currentPage {
+  position: relative;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  color: var(--clr-red);
+}
+.paginationContainer .currentPage::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--clr-red);
 }
 
 #userIconSvg {
@@ -551,8 +668,7 @@ button:focus-visible {
   display: grid;
   width: 40%;
   height: 98%;
-  padding: 2rem 0;
-  grid-template-rows: 0.25fr 0.75fr;
+  padding: 2rem 0 3rem 0;
   place-items: center;
   gap: 2rem;
   border: 1px solid var(--clr-darkgray);
@@ -593,6 +709,7 @@ button:focus-visible {
   font-size: 1rem;
 }
 #suSection .suContainer .suForm .suInput label {
+  width: 100%;
   font-size: 1.1rem;
   font-weight: 600;
 }
@@ -601,7 +718,32 @@ button:focus-visible {
 }
 #suSection .suContainer .suForm .suInput input {
   width: 100%;
-  padding: 0.25rem;
+  padding: 0.25rem 0.5rem;
+}
+#suSection .suContainer .suForm .suCheckbox {
+  display: grid;
+  place-items: center;
+  gap: 1rem;
+}
+#suSection .suContainer .suForm .suCheckbox #suRadio {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+#suSection .suContainer .suForm .suCheckbox #suRadio #tAC {
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-align: left;
+}
+#suSection .suContainer .suForm .suCheckbox #suRadio #tAC span {
+  color: var(--clr-red);
+}
+#suSection .suContainer .suForm .suCheckbox #suRadio input {
+  zoom: 1.5;
+}
+#suSection .suContainer .suForm .suCheckbox #tACText {
+  width: 45%;
+  text-align: center;
 }
 
 #profileSection {
@@ -609,13 +751,13 @@ button:focus-visible {
   width: 100%;
   height: 100%;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: 0.2fr 1fr;
   place-items: center;
   align-items: baseline;
   gap: 1rem;
 }
 #profileSection #profileSectionTitle {
   grid-column: 1/3;
+  margin-bottom: 2rem;
   font-size: 2.5rem;
   font-weight: 600;
 }
@@ -636,6 +778,9 @@ button:focus-visible {
 }
 #profileSection #infoFieldsLeft .infoFields .infoText {
   font-size: 1.1rem;
+}
+#profileSection #infoFieldsLeft .profileFormInput {
+  border-bottom: none;
 }
 #profileSection #infoFieldsRight {
   display: grid;
@@ -665,35 +810,10 @@ button:focus-visible {
   width: 100%;
   display: grid;
   padding: 2vh 4rem;
-  grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  place-items: center;
+  justify-content: center;
+  grid-template-columns: repeat(auto-fit, minmax(15rem, 0.25fr));
   gap: 4rem;
-}
-#stockSection .paginationContainer {
-  padding: 1rem;
-}
-#stockSection .paginationContainer button {
-  margin-inline: 1rem;
-  cursor: pointer;
-  transition: all 0.2s ease;
-}
-#stockSection .paginationContainer button:hover, #stockSection .paginationContainer button:focus-visible {
-  transform: scale(1.25);
-}
-#stockSection .paginationContainer .currentPage {
-  position: relative;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  color: var(--clr-red);
-}
-#stockSection .paginationContainer .currentPage::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  height: 2px;
-  background: var(--clr-red);
 }
 
 #productPage {
@@ -710,24 +830,27 @@ button:focus-visible {
 }
 #productPage .productPageLeft .productImage {
   padding: 5%;
-  width: 60%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+  width: max(70%, 200px);
 }
 #productPage .productPageRight {
-  padding: 0 5%;
-  font-size: 1.25vw;
+  padding: 0 10% 0 5%;
+  font-size: max(1.25vw, 0.75rem);
 }
 #productPage .productPageRight .productRightElements {
-  padding-bottom: 2vh;
+  padding-bottom: 1.5rem;
 }
 #productPage .productPageRight .productPageBold {
   font-weight: bold;
 }
 #productPage .productPageRight .productPriceStatistics {
   display: grid;
-  width: 50%;
-  height: 8rem;
+  width: 25rem;
+  height: 12.5rem;
   place-items: center;
-  border: 1px solid var(--clr-darkgray);
+  font-size: 0.75rem;
 }
 #productPage .productPageRight .productPageAddToCart {
   width: 25%;
@@ -743,7 +866,7 @@ button:focus-visible {
   gap: 1.25rem;
 }
 #cartSection .titleSection h1 {
-  font-size: 4rem;
+  font-size: max(4.5vw, 2rem);
 }
 #cartSection .totalSection {
   display: flex;
@@ -751,6 +874,9 @@ button:focus-visible {
   border: 1px solid var(--clr-darkgray);
   border-radius: 36px;
   flex-direction: column;
+}
+#cartSection .totalSection .invisible {
+  display: none;
 }
 #cartSection .totalSection header,
 #cartSection .totalSection section,
@@ -771,7 +897,7 @@ button:focus-visible {
 }
 #cartSection .totalSection header p {
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: max(1.25vw, 0.75rem);
 }
 #cartSection .totalSection header .itemsColumn {
   width: 100%;
@@ -793,7 +919,7 @@ button:focus-visible {
   grid-column: 1/3;
   position: absolute;
   left: 1vw;
-  font-size: 6rem;
+  font-size: max(6.5vw, 4rem);
   color: var(--clr-white);
   -webkit-text-stroke: 1px var(--clr-darkgray);
   -moz-user-select: none;
@@ -828,7 +954,10 @@ button:focus-visible {
   align-content: center;
 }
 #listingPage .title {
-  padding: 2rem 2rem 3rem;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%) rotate(-90deg);
 }
 #listingPage .title > * {
   font-size: 3.75rem;
@@ -836,74 +965,45 @@ button:focus-visible {
   -webkit-text-stroke: 1px var(--clr-darkgray);
 }
 #listingPage .main-container {
-  display: flex;
-  gap: 20px;
-  margin: 0 20px;
-  width: 60%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  gap: 2rem;
 }
 #listingPage .main-container .left {
-  width: 30%;
+  display: grid;
+  place-items: center;
+  gap: 2rem;
+}
+#listingPage .main-container .left img {
+  position: relative;
+  width: 50%;
+  aspect-ratio: 1/1;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+#listingPage .main-container .left input {
+  width: 50%;
 }
 #listingPage .main-container #listingForm {
-  display: flex;
-  flex-direction: column;
-  width: 60%;
-}
-#listingPage label {
-  font-size: 20px;
-}
-#listingPage input {
-  height: 30px;
-}
-#listingPage textarea {
-  height: 50px;
-}
-#listingPage img {
-  width: 100%;
-}
-#listingPage .listingSubmitButton {
-  height: 30px;
-  margin: 30px 0;
-}
-
-#productPage {
   display: grid;
-  width: 100%;
-  padding: 1rem;
-  align-items: center;
-  grid-template-columns: repeat(2, 1fr);
-}
-#productPage .productPageLeft {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-#productPage .productPageLeft .productImage {
-  padding: 5%;
-  width: 60%;
-}
-#productPage .productPageRight {
-  padding: 0 5%;
-  font-size: 1.25vw;
-}
-#productPage .productPageRight .productRightElements {
-  padding-bottom: 2vh;
-}
-#productPage .productPageRight .productPageBold {
-  font-weight: bold;
-}
-#productPage .productPageRight .productPriceStatistics {
-  display: grid;
-  width: 50%;
-  height: 8rem;
+  width: 80%;
   place-items: center;
-  border: 1px solid var(--clr-darkgray);
+  gap: 1.5rem;
 }
-#productPage .productPageRight .productPageAddToCart {
-  width: 25%;
-  margin-left: 65%;
-  font-size: 2vh;
-  background: var(--clr-white);
+#listingPage .main-container #listingForm input[type=text],
+#listingPage .main-container #listingForm textarea {
+  padding: 0.25rem 0.5rem;
+}
+#listingPage .main-container #listingForm > * {
+  width: 80%;
+  font-size: 0.9rem;
+}
+#listingPage .main-container #listingForm .btn {
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  padding: 0.8rem 2rem;
 }
 
 #checkoutSection {
@@ -913,6 +1013,7 @@ button:focus-visible {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  gap: 2rem;
 }
 #checkoutSection #checkoutTitle {
   font-size: 3.75rem;
@@ -920,25 +1021,26 @@ button:focus-visible {
   -webkit-text-stroke: 1px var(--clr-darkgray);
 }
 #checkoutSection #checkoutForm {
-  width: 60%;
-  height: 70%;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-evenly;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 1rem;
+  -moz-column-gap: 2rem;
+       column-gap: 2rem;
 }
-#checkoutSection #checkoutForm .checkoutFormRow {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
+#checkoutSection #checkoutForm .checkoutInput {
+  display: grid;
   align-items: center;
+  gap: 0.5rem;
 }
-#checkoutSection #checkoutForm .checkoutFormRow .checkoutFormUnit {
+#checkoutSection #checkoutForm .checkoutInput .checkoutFormUnit {
   display: flex;
   flex-direction: column;
-  width: 25%;
   font-weight: bold;
 }
-#checkoutSection #checkoutForm .checkoutFormRow button {
+#checkoutSection #checkoutForm .checkoutInput input {
+  padding: 0.25rem 0.5rem;
+}
+#checkoutSection #checkoutForm .checkoutInput button {
   width: 25%;
   border-radius: 11px;
 }
@@ -1005,6 +1107,90 @@ button:focus-visible {
   cursor: pointer;
 }
 
+#returnCancellationSection {
+  display: flex;
+  width: 70%;
+  flex-direction: column;
+  gap: 1rem;
+}
+#returnCancellationSection .titleSection h1 {
+  font-size: 3rem;
+  margin-top: 5%;
+}
+#returnCancellationSection .titleSection p {
+  font-weight: 600;
+  margin-top: 5%;
+  margin-bottom: 2.5%;
+}
+#returnCancellationSection .totalSection {
+  display: flex;
+  width: 100%;
+  border: 1px solid var(--clr-darkgray);
+  border-radius: 36px;
+  flex-direction: column;
+}
+#returnCancellationSection .totalSection header,
+#returnCancellationSection .totalSection section article {
+  width: 100%;
+  display: grid;
+  padding: 1rem;
+  grid-template-columns: repeat(6, 1fr);
+  place-items: center;
+}
+#returnCancellationSection .totalSection header > *,
+#returnCancellationSection .totalSection section article > * {
+  margin: 0;
+}
+#returnCancellationSection .totalSection header {
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--clr-darkgray);
+}
+#returnCancellationSection .totalSection header p {
+  font-weight: 600;
+  font-size: 1rem;
+}
+#returnCancellationSection .totalSection section {
+  padding-top: 1rem;
+}
+#returnCancellationSection .totalSection footer {
+  display: grid;
+  padding: 1.5rem;
+  grid-template-columns: repeat(6, 1fr);
+  place-items: center;
+}
+#returnCancellationSection .totalSection footer button {
+  grid-column: 6/7;
+}
+
+#tACPage {
+  display: flex;
+  justify-content: space-evenly;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+#tACPage #tACTitle {
+  font-size: min(2.5vw, 5rem);
+  padding-bottom: 2rem;
+}
+#tACPage #tACContent {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  justify-content: space-evenly;
+}
+
+#titleContacts {
+  position: relative;
+  margin-left: -70vw;
+  margin-top: -45vh;
+  font-size: 2.5vw;
+  z-index: 3;
+}
+
 @media (max-width: 1200px) {
   #loginPage #loginContainer {
     width: 50%;
@@ -1039,4 +1225,15 @@ button:focus-visible {
   #suPage .suContainer {
     width: 70%;
   }
+
+  #productPage {
+    grid-template-columns: 1fr;
+  }
+}
+.error {
+  color: red;
+}
+
+.success {
+  color: limegreen;
 }/*# sourceMappingURL=style.css.map */
