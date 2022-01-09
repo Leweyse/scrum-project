@@ -71,7 +71,7 @@ Route::group(['middleware' => ['auth:sanctum']], function() {
     // Password change
 
     // Bidding
-
+    Route::post('/bid', [OrderController::class, 'bid']);
     // Ordering
 
 
