@@ -18,7 +18,16 @@ const ProductRow = (props) => {
 
         setIsAdding(true);
 
-        apiClient.get("http://localhost:8000/sanctum/csrf-cookie")
+        apiClient.post( '/cart/update', 
+        {
+            quantity: 1,
+            rowId: props.rowId
+        },
+        {
+            headers: {
+                Accept: 'application/json'
+            }
+        })
             .then(res => {
                 setIsAdding(false)
                 if(res.data.status === 'success') {
