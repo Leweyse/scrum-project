@@ -1,8 +1,6 @@
 <h1 align="center" style="font-weight: 700">
-<font size="10">G-Bay</font>
+G-Bay
 </h1>
-
-##
 
 <div align="center">
 <img src="./screenshots/preview_landing.png" width="75%">
@@ -15,8 +13,8 @@ This project is part of the <a href="https://becode.org/">Becode</a> training
 ## **Contents**
 - [Description](#description)
 - [How to Install and Run the Project](#configuration_guide)
-  - [API](api/README.md)
-  - [Client Side](client/README.md)
+  - [Extra Information: API](api/README.md)
+  - [Extra Information: Client Side](client/README.md)
 - [Features](#features)
 - [Development Book](DEVBOOK.md)
 - [Contributors](#contributors)
@@ -36,19 +34,134 @@ The folder structure for the React App is based on this [article][folder].
 This project is not hosted online, but it's completely functional. To use G-Bay on your local device, it's necessary  to follow some steps.
 
 ### **Requirements**
-1. a) Install PHP on your computer. We recommend using XAMPP for this purpose, as the process is straightforward and you can complete it in a few minutes.
+1. Install `PHP` on your computer. We recommend using XAMPP for this purpose, as the process is straightforward and you can complete it in a few minutes.
 
-1. b) Should you chose to install PHP manually, after configuring your installation and php.ini file, install MySQL and a database administration tool of your choice (e.g., DBeaver, Datagrip) for setting up the project database and configuring your SQL server.
+2. Should you chose to install `PHP` manually, after configuring your installation and `php.ini` file, install MySQL and a database administration tool of your choice (e.g., DBeaver, Datagrip) for setting up the project database and configuring your SQL server.
 
-2. Download and Install the latest version of Composer.
+3. Download and Install the latest version of `Composer`.
 
-3. Install `yarn` package manager.
+4. Install `yarn` package manager.
 
-4. If you'd like to make style changes, be sure to configure or enable an SCSS compiler to be able to edit each component's stylesheets.
+5. If you'd like to make style changes, be sure to configure or enable an SCSS compiler to be able to edit each component's stylesheets.
 
 ### **Clone repository**
 ```
   git clone git@github.com:Leweyse/scrum-project.git
+
+  cd scrum-project
+```
+
+### **Install Dependecies**
+**Folder Structure**
+```
+  -> scrum-project
+    -> [...]
+    -> api
+    -> client
+    -> [...]
+```
+
+Run the following commands in your terminal
+
+**API**
+```
+  cd api
+
+  // If 'composer' is installed correctly
+  composer install
+
+  // Alternative option
+  php composer.phar install
+```
+**Client**
+```
+  cd client
+
+  yarn
+```
+
+### **Config**
+**Database**
+```
+  cd api
+
+  php artisan migrate
+
+  php artisan db:seed --class=DatabaseSeeder
+```
+
+The next command provides 500 products to our DB. If you want to modify the number of products, you should take a look at the `ProductSeeder.php` file or do not run this command.
+
+```
+  -> database
+    -> seeders
+      -> [...]
+      -> ProductSeeder.php
+      -> [...]
+```
+
+```
+  php artisan db:seed --class=ProductSeeder
+```
+
+It's possible you face an issue after running the last command. To provide data to our DB, we use FakerPHP. Sadly, it returns unauthenticated users. To solve this issue, you have to modify the `Product.php` file.
+
+```
+  -> app
+    -> Models
+      -> [...]
+      -> Product.php
+      -> [...]
+```
+
+Please comment the line 34, run the last command, and uncomment the line of code.
+
+<br>
+
+Then, run the last command.
+```
+  php artisan storage:link
+```
+
+**API**
+```
+  cd api
+```
+
+Create a `.env` file based on the `.env.example` file. Add your credentials in the next section:
+
+```
+  DB_CONNECTION=mysql
+  DB_HOST=127.0.0.1s
+  DB_PORT=3306
+  DB_DATABASE=
+  DB_USERNAME=
+  DB_PASSWORD=
+```
+
+**Client**
+
+```
+  // If something goes wrong with the Client-Side,
+  // you should take a look to the following files
+
+  LoginSection.js
+  SignUpSection.js
+  apiClient.js
+```
+
+### **Development Server**
+**API**
+```
+  php artisan serve
+```
+**Client**
+```
+  yarn start
+```
+**Tip**
+```
+  Do not forget run MySQL server...
 ```
 
 ## **Features**
