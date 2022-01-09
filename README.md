@@ -38,7 +38,7 @@ This project is not hosted online, but it's completely functional. To use G-Bay 
 ### **Requirements**
 1. a) Install PHP on your computer. We recommend using XAMPP for this purpose, as the process is straightforward and you can complete it in a few minutes.
 
-1. b) Should you chose to install PHP manually, after configuring your installation and php.ini file, install MySQL and a database administration tool of your choice (e.g., DBeaver, Datagrip) for setting up the project database.
+1. b) Should you chose to install PHP manually, after configuring your installation and php.ini file, install MySQL and a database administration tool of your choice (e.g., DBeaver, Datagrip) for setting up the project database and configuring your SQL server.
 
 2. Download and Install the latest version of Composer.
 
