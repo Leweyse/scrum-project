@@ -36,11 +36,14 @@ The folder structure for the React App is based on this [article][folder].
 This project is not hosted online, but it's completely functional. To use G-Bay on your local device, it's necessary  to follow some steps.
 
 ### **Requirements**
-1. Install PHP on your computer. We recommend using XAMPP for this purpose, as the process is straightforward and you can complete it in a few minutes.
+1. a) Install PHP on your computer. We recommend using XAMPP for this purpose, as the process is straightforward and you can complete it in a few minutes.
+  b) Should you chose to install PHP manually, after configuring your installation and php.ini file, install MySQL and a database administration tool of your choice (e.g., DBeaver, Datagrip) for setting up the project database.
 
 2. Download and Install the latest version of Composer.
 
 3. Install `yarn` package manager.
+
+4. If you'd like to make style changes, be sure to configure or enable an SCSS compiler to be able to edit each component's stylesheets.
 
 ### **Clone repository**
 ```
