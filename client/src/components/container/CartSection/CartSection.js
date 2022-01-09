@@ -59,22 +59,12 @@ const CartSection = () => {
                                 })
                             :
                                 <ProductRow
-                                    key={key}
-                                    title={cart[key].name}
-                                    price={`$${cart[key].price}`}
-                                    quantity={`${cart[key].qty}`}
-                                    total={`$${(cart[key].subtotal)}`}
-                                    rowId={cart[key].rowId}
+                                    title={"No items in cart"}
+                                    price={null}
+                                    quantity={null}
+                                    total={null}
+                                    visibility={"invisible"}
                                 />
-                            )
-                        :
-                            <ProductRow
-                                title={"No items in cart"}
-                                price={null}
-                                quantity={null}
-                                total={null}
-                                visibility={"invisible"}
-                            />
                         }
                     </section>
     
@@ -82,7 +72,7 @@ const CartSection = () => {
                         <p id={"bgText"}>G-bay</p>
                         <div>
                             <p>Subtotal</p>
-                            <p>{ totalQuantity > 0 ? `$${subTotal}`: '$00.00' }</p>
+                            <p>{ totalQuantity > 0 ? `$${parseFloat(subTotal).toFixed(2)}`: '$00.00' }</p>
                             <Link id={"productsLink"} to={"/checkout"}><button>Proceed</button></Link>
                         </div>
                     </footer>
