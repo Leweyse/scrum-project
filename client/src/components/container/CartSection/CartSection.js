@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from "react-router-dom";
-import { ProductRow } from '../../block';
+import { ProductRow, Spinner } from '../../block';
 
 import apiClient from "../../../services/apiClient";
 
@@ -16,8 +16,11 @@ const CartSection = () => {
     }
     
     useEffect(() => {
+        setIsProcessing(true);
+
         apiClient.get("cart")
             .then(res => {
+                setIsProcessing(false);
                 setCart(res.data.data.cart.cartItems);
                 setSubTotal(res.data.data.cart.subTotal);
                 setTotalQuantity(res.data.data.cart.quantity);
@@ -38,8 +41,23 @@ const CartSection = () => {
                         <p>Total</p>
                     </header>
                     <section>
-                        { totalQuantity > 0 ?
-                            Object.keys(cart).map((key) => 
+                        { isProcessing ? 
+                            <Spinner size={40} />
+                        :
+                            totalQuantity > 0 ?
+                                Object.keys(cart).map((key) => {
+                                    return (
+                                        <ProductRow
+                                            key={key}
+                                            title={cart[key].name}
+                                            price={cart[key].price}
+                                            quantity={`${cart[key].qty}`}
+                                            rowId={cart[key].rowId}
+                                            handleSubTotal={handleSubTotal}
+                                        />
+                                    )
+                                })
+                            :
                                 <ProductRow
                                     key={key}
                                     title={cart[key].name}
