@@ -1,5 +1,5 @@
-<h1 align="center" style="font-size: 3rem; font-weight: 700">
-G-Bay
+<h1 align="center" style="font-weight: 700">
+<font size="10">G-Bay</font>
 </h1>
 
 <div align="center">
