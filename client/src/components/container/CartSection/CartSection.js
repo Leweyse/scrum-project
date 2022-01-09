@@ -8,6 +8,12 @@ const CartSection = () => {
     const [cart, setCart] = useState({});
     const [subTotal, setSubTotal] = useState('00.00');
     const [totalQuantity, setTotalQuantity] = useState('0');
+
+    const [isProcessing, setIsProcessing] = useState(true);
+
+    const handleSubTotal = (param) => {
+        setSubTotal(parseFloat(subTotal) + param);
+    }
     
     useEffect(() => {
         apiClient.get("cart")
