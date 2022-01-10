@@ -70,7 +70,7 @@ class ProductController extends Controller
             'image' => 'nullable|mimes:jpeg,jpg,png',
             'price' => 'required|numeric',
             'stock_unit' => 'required|numeric',
-            'expires' => 'required_if:type,bid'
+            'expires' => 'required_if:type,bid|date'
         ], $this->errorMessages());
 
         if ($validator->fails()) {
@@ -118,6 +118,7 @@ class ProductController extends Controller
             'description' =>  $request->description,
             'image' => $image,
             'price' =>  $request->price,
+            'type' => $request->type,
             'stock_unit' =>  $request->stock_unit,
             'min_bid' => $min_bid,
             'expires' => $expires
@@ -162,7 +163,8 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'nullable|mimes:jpeg,jpg,png',
             'price' => 'required|numeric',
-            'stock_unit' => 'required|numeric'
+            'stock_unit' => 'required|numeric',
+            'expires' => 'required_if:type,bid|date'
         ], $this->errorMessages());
 
         if ($validator->fails()) {
@@ -195,13 +197,25 @@ class ProductController extends Controller
     
             Storage::disk('public')->put('images/products/thumb' . '/' . $image, $thumb_img);
         }
+
+        $min_bid = null;
+        $expires = null;
+        if($request->type == 'bid') {
+            $min_bid = $request->price;
+            $expires = $request->expires;
+        }
+
         $update = Product::where('id', $id)->update([
             'categories_id' => $request->categories_id,
             'title' =>  $request->title,
             'description' =>  $request->description,
             'image' => $image,
             'price' =>  $request->price,
+            'type' => $request->type,
             'stock_unit' =>  $request->stock_unit,
+            'min_bid' => $min_bid,
+            'expires' => $expires
+
         ]);
         if(!$update) {
             $response = [
