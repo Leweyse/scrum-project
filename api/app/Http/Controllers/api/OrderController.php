@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\Bid;
 use Validator;
 use Auth;
 use Cart;
@@ -63,6 +64,40 @@ class OrderController extends Controller
         
     }
 
+    public function bid(request $request) {
+        $is_bid = Bid::where('products_id',$request->products_id)->orderBy('bid','desc')->first();
+        if($is_bid) {
+            $min_bid = $is_bid->bid + 1;
+        }
+        else {
+            $product = Product::find($request->products_id)->first();
+            $min_bid = $product->price;
+        }
+
+        $validator = Validator::make($request->all(), [
+            'bid' => 'required|numeric|min:'.$min_bid,
+        ], $this->errorMessages());
+
+        if ($validator->fails()) {
+            $response = [
+                'status' => 'fail',
+                'data' => [
+                    'error' => $errors = $validator->errors()
+                ]
+            ];
+            return response($response, 200);
+        }
+        $bid = Bid::create([
+            'products_id' => $request->products_id,
+            'bid' => $request->bid
+        ]);
+        if($bid) {
+            $response = [
+                'status' => 'success'
+            ];
+            return response($response, 200);
+        }
+    }
     public function getCartContent() {
         return Cart::content();
       }

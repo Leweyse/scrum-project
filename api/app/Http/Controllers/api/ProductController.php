@@ -69,7 +69,8 @@ class ProductController extends Controller
             'description' => 'required',
             'image' => 'nullable|mimes:jpeg,jpg,png',
             'price' => 'required|numeric',
-            'stock_unit' => 'required|numeric'
+            'stock_unit' => 'required|numeric',
+            'expires' => 'required_if:type,bid'
         ], $this->errorMessages());
 
         if ($validator->fails()) {
@@ -104,6 +105,13 @@ class ProductController extends Controller
             Storage::disk('public')->put('images/products/thumb' . '/' . $image, $thumb_img);
         }
 
+        $min_bid = null;
+        $expires = null;
+        if($request->type == 'bid') {
+            $min_bid = $request->price;
+            $expires = $request->expires;
+        }
+
         $product = Product::create([
             'categories_id' => $request->categories_id,
             'title' =>  $request->title,
@@ -111,6 +119,8 @@ class ProductController extends Controller
             'image' => $image,
             'price' =>  $request->price,
             'stock_unit' =>  $request->stock_unit,
+            'min_bid' => $min_bid,
+            'expires' => $expires
         ]);
         if(!$product) {
            $response = [
@@ -329,7 +339,8 @@ class ProductController extends Controller
             'image.mimes' => 'Only jpg or png images are accepted',
             'price.required' => 'What is the price for the product',
             'stock_unit.required' => 'How many units are available',
-            'stock_unit.numeric' => 'This must be a number'
+            'stock_unit.numeric' => 'This must be a number',
+            'expires.required_if' => 'Please enter the expiry for bidding'
         ];
     }
 
