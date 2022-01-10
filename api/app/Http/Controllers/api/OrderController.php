@@ -65,15 +65,11 @@ class OrderController extends Controller
     }
 
     public function bid(request $request) {
-        $is_bid = Bid::where('products_id',$request->products_id)->orderBy('bid','desc')->first();
-        if($is_bid) {
-            $min_bid = $is_bid->bid + 1;
-        }
-        else {
-            $product = Product::find($request->products_id)->first();
-            $min_bid = $product->price;
-        }
+       
+        $product = Product::where('id',$request->products_id)->first();
+        $min_bid = $product->min_bid;
 
+        $product = Product::find($request->products_id)->first();
         $validator = Validator::make($request->all(), [
             'bid' => 'required|numeric|min:'.$min_bid,
         ], $this->errorMessages());
@@ -92,6 +88,9 @@ class OrderController extends Controller
             'bid' => $request->bid
         ]);
         if($bid) {
+            $update = Product::where('id', $request->products_id)->update([
+                'min_bid' => $request->bid + 1
+            ]);
             $response = [
                 'status' => 'success'
             ];
@@ -111,7 +110,8 @@ class OrderController extends Controller
             'address_line_1' => 'Please provide tour address',
             'postcode' => 'Please provide yout postcode',
             'city' => 'Please provide your city',
-            'country' => 'Please provide your city'
+            'country' => 'Please provide your city',
+            'bid.min' => 'Min bid amount is not reached'
         ];
     }
 }

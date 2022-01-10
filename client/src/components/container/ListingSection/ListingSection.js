@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useCookie from 'react-use-cookie';
 
 import apiClient from '../../../services/apiClient';
@@ -10,7 +10,7 @@ import { Spinner } from '../..';
 const ListingSection = (props) => {
     const [userToken] = useCookie('token','0');
 
-    const type = props.type;
+    const action = props.type;
     const product = props.type === 'create' ? [] : props.product;
 
     const [error, setError] = useState({});
@@ -24,7 +24,11 @@ const ListingSection = (props) => {
     const [price, setPrice] = useState((parseFloat(product.price) / 100).toFixed(2) || '');
     const [stockUnit, setStockUnit] = useState(product.stock_unit  || '');
     const [categoryId, setCategoryId] = useState(product.categories_id  || '');
+    const [type, setType] = useState(product.type  || '');
+    const [expires, setExpires] = useState(product.expires || '');
+    
     const [image, setImage] = useState('');
+    const [categories, setCategories] = useState([]);
     
     const handleImagePreview = (e) => {
         let image_as_base64 = URL.createObjectURL(e.target.files[0]);
@@ -33,6 +37,14 @@ const ListingSection = (props) => {
         setImage(image_as_files);
     }
 
+    const getCategories = async () => {
+        const res = await apiClient.get('/categories');
+        setCategories(res.data.data.categories);
+    }
+
+    useEffect(() => {
+        getCategories();
+    }, []);
     const create = async (event) => {
         event.preventDefault();
 
@@ -46,6 +58,8 @@ const ListingSection = (props) => {
         createFormData.append('categories_id',categoryId);
         createFormData.append('price',`${parseFloat(price) * 100}`);
         createFormData.append('stock_unit',stockUnit);
+        createFormData.append('type',type);
+        createFormData.append('expires',expires);
 
         const res = await apiClient.post('/product/create',
             createFormData,
@@ -64,6 +78,8 @@ const ListingSection = (props) => {
             setPrice('');
             setCategoryId('');
             setStockUnit('');
+            setType('');
+            setExpires('');
             setError({});
             setSuccessMsg(<div className={"success"}>Product successfully added to listings</div>);
 
@@ -90,6 +106,8 @@ const ListingSection = (props) => {
         editFormData.append('categories_id',categoryId);
         editFormData.append('price',`${parseFloat(price) * 100}`);
         editFormData.append('stock_unit',stockUnit);
+        editFormData.append('type',type);
+        editFormData.append('expires',expires);
 
         const res = await apiClient.post( `/product/update/${product.id}`,
             editFormData,
@@ -116,7 +134,7 @@ const ListingSection = (props) => {
     return (
         <main id={"listingPage"}>
             <section className="title">
-                { type === 'create' ? <p>Add Listing</p> : <p>Edit Listing</p> }
+                { action === 'create' ? <p>Add Listing</p> : <p>Edit Listing</p> }
             </section>
             
             <section className="main-container">
@@ -162,12 +180,42 @@ const ListingSection = (props) => {
                        onChange={e => setCategoryId(e.target.value)}
                     >
                         <option value="">Choose a category</option>
-                        <option value="1">Category 1</option>
-                        <option value="2">Category 2</option>
-                        <option value="3">Category 3</option>
-                        <option value="4">Category 4</option>
-                        <option value="5">Category 5</option>
+                        
+                        { categories.map((catg, idx) => {
+                            return (
+                                <option
+                                    key={idx}
+                                    value={catg.id}
+                                >
+                                    {catg.name}
+                                </option>
+                            )}
+                        )}
+                        
                     </select>
+                    { error.categories_id ? <div className={"error"}>{error.categories_id}</div> : null }
+
+
+                    <select 
+                       value={type}
+                       onChange={e => setType(e.target.value)}
+                    >
+                        <option value="sell">Sell</option>
+                        <option value="bid">Bid</option>
+                    </select>
+                    { error.type ? <div className={"error"}>{error.type}</div> : null }
+
+                    { type === 'bid' ?
+                    <>
+                    <input
+                        type={"date"}
+                        placeholder={"Bidding closes on"}
+                        value={expires}
+                        onChange={e => setExpires(e.target.value)}
+                    />
+                    { error.expires ? <div className={"error"}>{error.expires}</div> : null }
+                    </>: null }       
+                    
 
                     <textarea 
                         value={description}
@@ -184,7 +232,7 @@ const ListingSection = (props) => {
                     />
                     {error.stock_unit ? <div className={"error"}>{error.stock_unit}</div> : null}
 
-                    {type === 'create' ?
+                    {action === 'create' ?
                         !isProcessing ? <button name={"addProduct"} className={"btn"}  onClick={create}>Add</button> : <Spinner size={40}/>
                         :
                         !isProcessing ? <button name={"editProduct"} className={"btn"}  onClick={update}>Submit changes</button> : <Spinner size={40}/>
